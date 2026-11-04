@@ -37,6 +37,7 @@ def insights(media_id: str) -> dict:
 
 def main():
     hoje = dt.datetime.now(TZ).date()
+    print(f"Token do tipo {ig.tipo_token()}, API {ig.base()}, conta {ig.user_id()}")
     conta = ig.get(ig.user_id(), fields="username,followers_count,follows_count,media_count")
     seguidores = conta.get("followers_count", 0)
 

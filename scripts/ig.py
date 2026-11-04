@@ -35,8 +35,16 @@ def _url(path: str) -> str:
     return f"{base()}{prefix}/{path.lstrip('/')}"
 
 
+def tipo_token() -> str:
+    return "facebook" if _token().startswith("EAA") else "instagram"
+
+
 def user_id() -> str:
-    return os.environ.get("IG_USER_ID", "").strip() or CONTA_PADRAO
+    """Com token do login do Instagram, "me" já é a conta; com token do Facebook, usa o ID da conta."""
+    definido = os.environ.get("IG_USER_ID", "").strip()
+    if definido:
+        return definido
+    return CONTA_PADRAO if tipo_token() == "facebook" else "me"
 
 
 def _token() -> str:

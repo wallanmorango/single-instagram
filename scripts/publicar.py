@@ -29,10 +29,8 @@ LIMITE_HASHTAGS = 5
 
 
 def pages_base() -> str:
-    base = os.environ.get("PAGES_BASE_URL", "").strip().rstrip("/")
-    if not base:
-        raise SystemExit("PAGES_BASE_URL não configurado (variável do repositório).")
-    return base
+    base = os.environ.get("PAGES_BASE_URL", "").strip() or "https://wallanmorango.github.io/single-instagram"
+    return base.rstrip("/")
 
 
 def posts_do_dia(data: str):

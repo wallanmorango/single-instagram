@@ -16,12 +16,11 @@ Automação gratuita do Instagram **@singletecnologia**: o Claude cria os posts,
 ## Configuração (uma única vez)
 
 1. **GitHub Pages:** Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)` → Save.
-2. **Variável do repositório:** Settings → Secrets and variables → Actions → aba *Variables* → `PAGES_BASE_URL` = `https://wallanmorango.github.io/single-instagram`.
-3. **App na Meta e token do Instagram:** em developers.facebook.com, criar um app, adicionar o produto *Instagram* → *API setup with Instagram login*, adicionar a conta @singletecnologia e gerar o token com as permissões `instagram_business_basic`, `instagram_business_content_publish`, `instagram_business_manage_comments`, `instagram_business_manage_messages` e `instagram_business_manage_insights`.
-4. **Secrets do repositório** (aba *Secrets*):
-   - `IG_ACCESS_TOKEN`: o token gerado no passo 3.
+2. **App na Meta e token do Instagram:** em developers.facebook.com, criar um app, adicionar o produto *Instagram* → *API setup with Instagram login*, adicionar a conta @singletecnologia e gerar o token com as permissões `instagram_business_basic`, `instagram_business_content_publish`, `instagram_business_manage_comments`, `instagram_business_manage_messages` e `instagram_business_manage_insights`.
+3. **Secrets do repositório** (Settings → Secrets and variables → Actions → *New repository secret*):
+   - `IG_ACCESS_TOKEN`: o token gerado no passo 2.
    - `IG_USER_ID`: o ID da conta do Instagram mostrado na mesma tela.
    - `GH_PAT`: token *fine-grained* do GitHub só para este repositório, com permissão *Secrets: Read and write* (usado para renovar o token sozinho).
-5. Testar: Actions → *Relatório semanal* → *Run workflow*. Se gerar um arquivo em `relatorios/`, está tudo certo.
+4. Testar: Actions → *Relatório semanal* → *Run workflow*. Se gerar um arquivo em `relatorios/`, está tudo certo.
 
 Detalhes do formato dos posts e regras de conteúdo: [CLAUDE.md](CLAUDE.md).

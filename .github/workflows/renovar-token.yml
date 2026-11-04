@@ -26,8 +26,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           python scripts/renovar_token.py
-          gh secret set IG_ACCESS_TOKEN --repo "$GITHUB_REPOSITORY" < "$NOVO_TOKEN_ARQUIVO"
-          rm -f "$NOVO_TOKEN_ARQUIVO"
+          if [ -s "$NOVO_TOKEN_ARQUIVO" ]; then
+            gh secret set IG_ACCESS_TOKEN --repo "$GITHUB_REPOSITORY" < "$NOVO_TOKEN_ARQUIVO"
+            rm -f "$NOVO_TOKEN_ARQUIVO"
+          fi
       - name: Avisar se falhar
         if: failure()
         env:

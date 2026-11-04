@@ -11,21 +11,32 @@ import time
 
 import requests
 
-BASE = "https://graph.instagram.com"
+CONTA_PADRAO = "17841458425967321"  # ID da conta @singletecnologia (não é segredo)
 
 
 class IGError(Exception):
     pass
 
 
+def base() -> str:
+    """Tokens do login do Instagram (IG...) usam graph.instagram.com;
+    tokens do login do Facebook/usuário do sistema (EAA...) usam graph.facebook.com."""
+    forcada = os.environ.get("IG_API_BASE", "").strip()
+    if forcada:
+        return forcada.rstrip("/")
+    return "https://graph.facebook.com" if _token().startswith("EAA") else "https://graph.instagram.com"
+
+
 def _url(path: str) -> str:
     version = os.environ.get("IG_API_VERSION", "").strip()
+    if not version and "graph.facebook.com" in base():
+        version = "v24.0"
     prefix = f"/{version}" if version else ""
-    return f"{BASE}{prefix}/{path.lstrip('/')}"
+    return f"{base()}{prefix}/{path.lstrip('/')}"
 
 
 def user_id() -> str:
-    return os.environ.get("IG_USER_ID", "").strip() or "me"
+    return os.environ.get("IG_USER_ID", "").strip() or CONTA_PADRAO
 
 
 def _token() -> str:

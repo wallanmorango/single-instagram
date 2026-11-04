@@ -12,6 +12,11 @@ token = os.environ.get("IG_ACCESS_TOKEN", "").strip()
 destino = os.environ.get("NOVO_TOKEN_ARQUIVO", "").strip()
 if not token or not destino:
     sys.exit("IG_ACCESS_TOKEN e NOVO_TOKEN_ARQUIVO são obrigatórios.")
+if token.startswith("EAA"):
+    # Token do login do Facebook / usuário do sistema: não usa esta renovação.
+    print("Token do tipo Facebook (EAA...): renovação pelo Instagram não se aplica.")
+    print("::notice::Confira a validade no Depurador de Token da Meta (developers.facebook.com/tools/debug/accesstoken).")
+    sys.exit(0)
 
 resp = requests.get("https://graph.instagram.com/refresh_access_token",
                     params={"grant_type": "ig_refresh_token", "access_token": token}, timeout=60)

@@ -1,0 +1,38 @@
+name: Renovar token do Instagram
+
+on:
+  schedule:
+    - cron: "17 12 1,15 * *"   # dias 1 e 15 de cada mês (o token dura 60 dias)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  renovar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - name: Renovar token e atualizar o Secret
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          NOVO_TOKEN_ARQUIVO: ${{ runner.temp }}/ig_token
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          python scripts/renovar_token.py
+          gh secret set IG_ACCESS_TOKEN --repo "$GITHUB_REPOSITORY" < "$NOVO_TOKEN_ARQUIVO"
+          rm -f "$NOVO_TOKEN_ARQUIVO"
+      - name: Avisar se falhar
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Renovação do token do Instagram falhou" \
+            --body "A renovação automática falhou em $(date -u +%F). Gere um novo token no app da Meta e atualize o Secret IG_ACCESS_TOKEN. Confira também se o Secret GH_PAT está válido."

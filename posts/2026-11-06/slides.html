@@ -5,15 +5,69 @@
 <title>3 medidas DAX para dashboard financeiro — Single Tecnologia</title>
 <link rel="stylesheet" href="../../templates/base.css">
 <style>
-.dica { margin-top: 36px; display: flex; gap: 18px; align-items: flex-start; font-size: 32px; line-height: 1.35; font-weight: 500; color: var(--muted); }
-.escuro .dica { color: #C9D7F3; }
-.dica b { color: var(--ink); }
-.escuro .dica b { color: #fff; }
-.dica::before { content: ""; flex-shrink: 0; width: 16px; height: 16px; margin-top: 14px; background: var(--amber); border-radius: 3px; transform: rotate(45deg); }
-.num { font-weight: 900; font-size: 30px; color: var(--blue-600); letter-spacing: .1em; }
-.compacto h2 { font-size: 66px; margin-top: 20px; }
-.compacto pre.codigo { font-size: 29px; line-height: 1.38; padding: 32px 40px; margin-top: 28px; }
-.compacto .dica { margin-top: 26px; font-size: 30px; }
+/* capa: painel financeiro em perspectiva */
+.palco { position: absolute; left: 0; right: 0; top: 150px; height: 540px; z-index: 2; }
+.painel { position: absolute; left: 150px; top: 40px; width: 760px; height: 430px; padding: 30px 34px;
+  transform: perspective(1800px) rotateX(10deg) rotateY(-16deg) rotateZ(2deg); }
+.painel .cab { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 22px; color: var(--nevoa); }
+.painel .cab b { color: #fff; font-size: 26px; font-weight: 900; }
+.painel svg { width: 100%; height: 320px; margin-top: 18px; }
+.kpi.a { position: absolute; left: 60px; top: 300px; transform: rotate(-4deg); }
+.kpi.b { position: absolute; right: 70px; top: 0; transform: rotate(3deg); }
+.kpi.c { position: absolute; right: 120px; top: 360px; transform: rotate(-2deg); }
+.capa-txt { margin-top: auto; padding-bottom: 150px; display: flex; flex-direction: column; gap: 28px; }
+
+/* lâminas de medida */
+.conteudo { margin-top: 44px; display: flex; flex-direction: column; gap: 32px; }
+.codigo-area { position: relative; }
+.codigo-area .janela { width: 660px; }
+.codigo-area .janela pre { font-size: 36px; line-height: 1.55; padding: 34px 40px 42px; }
+.codigo-area .flutua { position: absolute; right: -20px; top: 150px; transform: rotate(-3deg); width: 380px; }
+.codigo-area .flutua .val { font-size: 66px; }
+.flutua svg { width: 100%; height: 70px; margin-top: 10px; }
+.lado { display: flex; gap: 28px; align-items: flex-start; }
+.lado .janela pre { font-size: 27px; line-height: 1.42; padding: 26px 30px 30px; }
+.coluna { display: flex; flex-direction: column; gap: 24px; padding-top: 60px; }
+.coluna .kpi { min-width: 0; width: 290px; padding: 24px 26px; }
+.coluna .kpi .val { font-size: 48px; }
+
+/* bala orçado x realizado */
+.bala { padding: 30px 34px; width: 920px; }
+.bala .linha { display: flex; justify-content: space-between; font-weight: 700; font-size: 24px; color: var(--cinza); }
+.bala .linha b { color: var(--tinta); font-weight: 900; font-size: 30px; }
+.bala .trilho { position: relative; height: 60px; border-radius: 12px; background: #E3EAF7; margin: 16px 0 14px; }
+.bala .feito { position: absolute; left: 0; top: 0; bottom: 0; width: 77.6%; border-radius: 12px; background: linear-gradient(90deg, var(--marinho), var(--azul)); }
+.bala .meta { position: absolute; left: 80%; top: -10px; bottom: -10px; width: 6px; border-radius: 3px; background: var(--ambar); box-shadow: 0 0 0 4px rgba(255,180,0,.25); }
+
+/* modelo: calendário -> vendas */
+.modelo { display: flex; align-items: center; gap: 0; margin-top: 8px; }
+.tabela { width: 330px; padding: 0; overflow: hidden; }
+.tabela .nome { padding: 18px 24px; font-weight: 900; font-size: 28px; background: rgba(255,255,255,.08); border-bottom: 1px solid rgba(255,255,255,.12); display: flex; align-items: center; gap: 12px; }
+.tabela .nome svg { width: 28px; height: 28px; }
+.tabela .col { padding: 10px 24px; font-family: var(--mono); font-size: 22px; color: var(--nevoa); }
+.tabela .col.chave { color: var(--ambar); font-weight: 800; }
+.tabela .col:last-child { padding-bottom: 18px; }
+.liga { flex: 1; position: relative; height: 4px; background: linear-gradient(90deg, var(--ambar), var(--celeste)); }
+.liga span { position: absolute; top: -40px; font-family: var(--mono); font-weight: 800; font-size: 26px; color: #fff; }
+.liga span:first-child { left: 8px; }
+.liga span:last-child { right: 8px; }
+.passos { list-style: none; display: grid; gap: 18px; margin-top: 8px; }
+.passos li { display: flex; gap: 24px; align-items: flex-start; padding: 24px 28px; border-radius: 24px; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12); font-weight: 700; font-size: 34px; line-height: 1.25; }
+.passos .n { flex-shrink: 0; width: 54px; height: 54px; border-radius: 14px; background: var(--ambar); color: var(--noite); font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center; }
+.passos small { display: block; font-family: var(--mono); font-weight: 500; font-size: 23px; color: var(--celeste); margin-top: 8px; }
+
+/* lâmina final: barra de ações do Instagram */
+.acoes { margin-top: 110px; padding: 34px 40px; display: flex; align-items: center; gap: 44px; width: 640px; position: relative; }
+.acoes svg { width: 64px; height: 64px; stroke: var(--tinta); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.acoes .salvar { margin-left: auto; position: relative; width: 110px; height: 110px; border-radius: 30px; background: var(--noite); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(5,15,43,.12); }
+.acoes .salvar svg { stroke: var(--ambar); fill: var(--ambar); width: 60px; height: 60px; }
+.acoes .enviar { position: relative; width: 110px; height: 110px; border-radius: 30px; background: var(--azul); display: flex; align-items: center; justify-content: center; }
+.acoes .enviar svg { stroke: #fff; width: 58px; height: 58px; }
+.aviso { position: absolute; right: -30px; top: -86px; transform: rotate(3deg); background: var(--noite); color: #fff; font-weight: 900; font-size: 26px; padding: 16px 24px; border-radius: 18px; display: flex; align-items: center; gap: 12px; }
+.aviso::after { content: ""; position: absolute; right: 70px; bottom: -12px; width: 26px; height: 26px; background: var(--noite); transform: rotate(45deg); border-radius: 4px; }
+.cursor { position: absolute; right: 28px; bottom: -46px; width: 70px; height: 70px; }
+.cta { margin-top: 56px; align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 40px; padding: 28px 44px; border-radius: 99px; }
+.cta svg { width: 38px; height: 38px; stroke: var(--ambar); fill: var(--ambar); }
 </style>
 </head>
 <body>
@@ -21,104 +75,160 @@
   <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
   <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
   <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tabela" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" fill="none" stroke="#60A5FA" stroke-width="2"/><path d="M3 9h18M9 9v11" stroke="#60A5FA" stroke-width="2"/></symbol>
 </svg>
 
 <!-- 1. Capa -->
-<section class="slide escuro">
-  <div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="kicker">Dica de DAX</span>
-    <h1>3 medidas que todo <span class="hl">dashboard financeiro</span> precisa</h1>
-    <p class="texto">Copie, cole e adapte no seu Power BI.</p>
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="palco">
+    <div class="halo" style="width:420px;height:420px;left:330px;top:80px;background:rgba(37,99,235,.55)"></div>
+    <div class="vidro painel">
+      <div class="cab"><b>Painel financeiro</b><span>jan a out</span></div>
+      <svg viewBox="0 0 690 300" preserveAspectRatio="none">
+        <defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#60A5FA" stop-opacity=".55"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></linearGradient></defs>
+        <g fill="rgba(255,255,255,.16)"><rect x="10" y="236" width="44" height="54" rx="6"/><rect x="79" y="226" width="44" height="64" rx="6"/><rect x="148" y="214" width="44" height="76" rx="6"/><rect x="217" y="222" width="44" height="68" rx="6"/><rect x="286" y="200" width="44" height="90" rx="6"/><rect x="355" y="206" width="44" height="84" rx="6"/><rect x="424" y="190" width="44" height="100" rx="6"/><rect x="493" y="196" width="44" height="94" rx="6"/><rect x="562" y="178" width="44" height="112" rx="6"/><rect x="631" y="170" width="44" height="120" rx="6"/></g>
+        <path d="M32 262 L101 236 L170 204 L239 178 L308 140 L377 108 L446 76 L515 52 L584 30 L653 12 L653 290 L32 290 Z" fill="url(#ar)"/>
+        <path d="M32 262 L101 236 L170 204 L239 178 L308 140 L377 108 L446 76 L515 52 L584 30 L653 12" fill="none" stroke="#60A5FA" stroke-width="5" stroke-linejoin="round"/>
+        <circle cx="653" cy="12" r="10" fill="#FFB400"/>
+      </svg>
+    </div>
+    <div class="cartao kpi a"><div class="rot">Receita YTD</div><div class="val">R$ 4,28 mi</div></div>
+    <div class="vidro kpi b"><div class="rot">vs ano anterior</div><div class="val">+12,3%</div><span class="var sobe">▲ acima de 2025</span></div>
+    <div class="cartao kpi c"><div class="rot">Desvio do orçado</div><div class="val">−3,0%</div><span class="var desce">▼ abaixo da meta</span></div>
   </div>
-  <svg class="simbolo-fundo" style="color:#60A5FA;opacity:.12"><use href="#s-mono"/></svg>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">1/6 →</span></div>
+  <div class="capa-txt">
+    <span class="etiqueta">Dica de DAX</span>
+    <h1 class="titulo m">3 medidas que todo <span class="mk">dashboard financeiro</span> precisa</h1>
+    <p class="apoio">Copie, cole e adapte no seu Power BI.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i class="at"></i><i></i><i></i><i></i><i></i><i></i></div><span class="arraste">Arraste <svg><use href="#seta"/></svg></span></div>
 </section>
 
 <!-- 2. YTD -->
 <section class="slide">
-  <div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="num">MEDIDA 1</span>
-    <h2>Acumulado no ano <span class="hl">(YTD)</span></h2>
-    <p class="texto">Mostra quanto a empresa já faturou de janeiro até o mês selecionado.</p>
-<pre class="codigo">Receita YTD =
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Medida 1 de 3</span>
+    <h2 class="titulo p">Acumulado no ano <span class="mk az">(YTD)</span></h2>
+    <p class="apoio">Mostra quanto a empresa já faturou de janeiro até o mês selecionado.</p>
+    <div class="codigo-area">
+      <div class="janela">
+        <div class="barra"><i></i><i></i><i></i><span>medidas.dax</span></div>
+<pre><span class="n">Receita YTD</span> =
 <span class="k">TOTALYTD</span> (
-    [Receita],
-    <span class="s">'Calendario'[Data]</span>
+    <span class="m">[Receita]</span>,
+    <span class="t">'Calendario'[Data]</span>
 )</pre>
-    <p class="dica"><span><b>[Receita]</b> é a sua medida de soma, por exemplo SUM ( Vendas[Valor] ).</span></p>
+      </div>
+      <div class="cartao kpi flutua">
+        <div class="rot">Receita YTD</div><div class="val">R$ 4,28 mi</div>
+        <svg viewBox="0 0 300 70" preserveAspectRatio="none"><path d="M4 64 L34 60 L64 54 L94 47 L124 38 L154 31 L184 23 L214 16 L244 9 L274 4" fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="274" cy="4" r="0" /></svg>
+      </div>
+    </div>
+    <p class="dica" style="margin-top:40px"><span><b>[Receita]</b> é a sua medida de soma, por exemplo <code>SUM ( Vendas[Valor] )</code>.</span></p>
   </div>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">2/6 →</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i class="at"></i><i></i><i></i><i></i><i></i></div></div>
 </section>
 
 <!-- 3. Ano anterior -->
-<section class="slide compacto">
-  <div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="num">MEDIDA 2</span>
-    <h2>Comparação com o <span class="hl">ano anterior</span></h2>
-<pre class="codigo">Receita AA =
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:28px">
+    <span class="etiqueta">Medida 2 de 3</span>
+    <h2 class="titulo p">Comparação com o <span class="mk az">ano anterior</span></h2>
+    <div class="lado">
+      <div class="janela" style="width:610px">
+        <div class="barra"><i></i><i></i><i></i><span>medidas.dax</span></div>
+<pre><span class="n">Receita AA</span> =
 <span class="k">CALCULATE</span> (
-    [Receita],
+    <span class="m">[Receita]</span>,
     <span class="k">SAMEPERIODLASTYEAR</span> (
-        <span class="s">'Calendario'[Data]</span>
+        <span class="t">'Calendario'[Data]</span>
     )
 )
 
-Var % AA =
+<span class="n">Var % AA</span> =
 <span class="k">DIVIDE</span> (
-    [Receita] - [Receita AA],
-    [Receita AA]
+    <span class="m">[Receita]</span> - <span class="m">[Receita AA]</span>,
+    <span class="m">[Receita AA]</span>
 )</pre>
+      </div>
+      <div class="coluna">
+        <div class="cartao kpi" style="transform:rotate(2deg)"><div class="rot">Receita</div><div class="val">R$ 4,28 mi</div></div>
+        <div class="cartao kpi" style="transform:rotate(-2deg)"><div class="rot">Receita AA</div><div class="val">R$ 3,81 mi</div></div>
+        <div class="cartao kpi" style="transform:rotate(1.5deg);background:var(--noite);color:#fff"><div class="rot" style="color:var(--nevoa)">Var % AA</div><div class="val">+12,3%</div><span class="var sobe" style="color:#4ADE80">▲ cresceu</span></div>
+      </div>
+    </div>
     <p class="dica"><span>Formate <b>Var % AA</b> como porcentagem e use cor verde e vermelha no visual.</span></p>
   </div>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">3/6 →</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i class="at"></i><i></i><i></i><i></i></div></div>
 </section>
 
 <!-- 4. Orçado x realizado -->
 <section class="slide">
-  <div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="num">MEDIDA 3</span>
-    <h2>Desvio do <span class="hl">orçamento</span></h2>
-    <p class="texto">Mostra em porcentagem quanto o realizado ficou acima ou abaixo do orçado.</p>
-<pre class="codigo">Desvio % =
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Medida 3 de 3</span>
+    <h2 class="titulo p">Desvio do <span class="mk az">orçamento</span></h2>
+    <p class="apoio">Mostra em porcentagem quanto o realizado ficou acima ou abaixo do orçado.</p>
+    <div class="janela" style="width:820px">
+      <div class="barra"><i></i><i></i><i></i><span>medidas.dax</span></div>
+<pre style="font-size:38px;padding:34px 44px 40px"><span class="n">Desvio %</span> =
 <span class="k">DIVIDE</span> (
-    [Realizado] - [Orçado],
-    [Orçado]
+    <span class="m">[Realizado]</span> - <span class="m">[Orçado]</span>,
+    <span class="m">[Orçado]</span>
 )</pre>
+    </div>
+    <div class="cartao bala" style="transform:rotate(-1.5deg);margin:-40px 0 0 60px">
+      <div class="linha"><span>Realizado <b>R$ 970 mil</b></span><span>Orçado <b>R$ 1,0 mi</b></span></div>
+      <div class="trilho"><div class="feito"></div><div class="meta"></div></div>
+      <div class="linha"><span>Desvio %</span><span class="var desce" style="margin-top:0">−3,0%</span></div>
+    </div>
     <p class="dica"><span>Use <b>DIVIDE</b> em vez de "/": ele evita erro quando o orçado é zero.</span></p>
   </div>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">4/6 →</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i class="at"></i><i></i><i></i></div></div>
 </section>
 
 <!-- 5. Pré-requisito -->
-<section class="slide escuro">
-  <div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="kicker">Antes de tudo</span>
-    <h2>Sem tabela calendário, <span class="hl">nada disso funciona</span></h2>
-    <ul class="lista">
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Antes de tudo</span>
+    <h2 class="titulo p">Sem tabela calendário, <span class="mk">nada disso funciona</span></h2>
+    <div class="modelo">
+      <div class="vidro tabela"><div class="nome"><svg><use href="#i-tabela"/></svg>Calendario</div><div class="col chave">Data</div><div class="col">Ano</div><div class="col">Mês</div></div>
+      <div class="liga"><span>1</span><span>*</span></div>
+      <div class="vidro tabela"><div class="nome"><svg><use href="#i-tabela"/></svg>Vendas</div><div class="col chave">Data</div><div class="col">Cliente</div><div class="col">Valor</div></div>
+    </div>
+    <ul class="passos">
       <li><span class="n">1</span><div>Crie uma tabela de datas<small>Calendario = CALENDARAUTO ()</small></div></li>
       <li><span class="n">2</span><div>Marque como tabela de datas<small>Ferramentas da tabela → Marcar como tabela de datas</small></div></li>
       <li><span class="n">3</span><div>Relacione com a sua tabela de fatos<small>Calendario[Data] → Vendas[Data]</small></div></li>
     </ul>
   </div>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">5/6 →</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i class="at"></i><i></i></div></div>
 </section>
 
 <!-- 6. CTA -->
 <section class="slide ambar">
-  <div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="kicker">Gostou?</span>
-    <h2>Salve para usar no seu próximo dashboard.</h2>
-    <p class="texto">E envie para aquele colega que ainda faz o acumulado na mão no Excel.</p>
-    <span class="cta">Salvar e compartilhar</span>
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:90px">
+    <span class="etiqueta">Gostou?</span>
+    <h2 class="titulo m">Salve para usar no seu <span class="mk">próximo dashboard.</span></h2>
+    <p class="apoio">E envie para aquele colega que ainda faz o acumulado na mão no Excel.</p>
+    <div class="cartao acoes">
+      <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.2A8 8 0 1 1 20 11.5z"/></svg>
+      <div class="enviar"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></div>
+      <div class="salvar"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+      <div class="aviso">Salvo para o próximo projeto</div>
+      <svg class="cursor" viewBox="0 0 24 24" style="stroke:#fff;fill:#050F2B;stroke-width:1.4"><path d="M5 3l14 8-6 1.5L10 19z"/></svg>
+    </div>
+    <span class="cta"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Salvar e compartilhar</span>
   </div>
-  <svg class="simbolo-fundo" style="color:#050F2B;opacity:.08"><use href="#s-mono"/></svg>
-  <div class="rodape"><span>singletecnologia.netlify.app</span><span class="contador">6/6</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i></i><i class="at"></i></div><span style="font-weight:900;font-size:26px">singletecnologia.netlify.app</span></div>
 </section>
 </body>
 </html>

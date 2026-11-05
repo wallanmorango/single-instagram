@@ -4,81 +4,181 @@
 <meta charset="utf-8">
 <title>Lançamento da nova marca — Single Tecnologia</title>
 <link rel="stylesheet" href="../../templates/base.css">
+<style>
+/* capa: o pedido e a entrega */
+.palco { position: absolute; left: 80px; right: 80px; top: 160px; height: 560px; z-index: 2; }
+.palco .bolha.eles { position: absolute; left: 0; top: 10px; transform: rotate(-2deg); }
+.palco .entrega { position: absolute; right: 0; top: 170px; width: 640px; transform: rotate(2deg); padding: 22px; border-radius: 34px 34px 10px 34px; background: var(--azul); box-shadow: 0 40px 90px -20px rgba(37,99,235,.75); }
+.entrega .msg { color: #fff; font-weight: 700; font-size: 32px; padding: 6px 10px 18px; }
+.mini { background: #fff; border-radius: 22px; padding: 22px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.mini .k { background: var(--gelo); border-radius: 16px; padding: 14px 18px; }
+.mini .k span { display: block; font-weight: 700; font-size: 18px; color: var(--cinza); }
+.mini .k b { display: block; font-weight: 900; font-size: 34px; color: var(--tinta); letter-spacing: -.02em; }
+.mini svg { grid-column: 1 / -1; width: 100%; height: 110px; }
+.palco .status { position: absolute; right: 30px; top: 520px; background: #fff; box-shadow: 0 20px 40px -12px rgba(0,0,0,.5); font-size: 26px; padding: 12px 22px; }
+.capa-txt { margin-top: auto; padding-bottom: 150px; display: flex; flex-direction: column; gap: 26px; }
+
+/* símbolo explodido */
+.conteudo { margin-top: 44px; display: flex; flex-direction: column; gap: 30px; }
+.explode { position: relative; height: 640px; margin-top: 10px; }
+.explode svg.peca { position: absolute; }
+.explode .nota { position: absolute; display: flex; align-items: center; gap: 14px; font-weight: 900; font-size: 30px; padding: 14px 22px; border-radius: 16px; background: #fff; box-shadow: 0 20px 40px -16px rgba(5,15,43,.35); }
+.explode .nota i { width: 16px; height: 16px; border-radius: 4px; }
+.explode .tracejado { position: absolute; border-top: 3px dashed rgba(10,26,61,.3); }
+
+/* serviços */
+.grade { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 14px; }
+.servico { padding: 24px 24px 28px; display: flex; flex-direction: column; gap: 10px; }
+.servico .ilus { height: 168px; border-radius: 18px; background: rgba(5,15,43,.55); border: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.servico .ilus svg { width: 100%; height: 100%; }
+.servico h3 { font-weight: 900; font-size: 31px; letter-spacing: -.015em; margin-top: 8px; line-height: 1.1; }
+.servico p { font-weight: 500; font-size: 24px; line-height: 1.3; color: var(--nevoa); }
+
+/* chamado entregue */
+.chamado { padding: 34px 38px 20px; margin-top: 8px; transform: rotate(-1deg); }
+.chamado .cab { display: flex; justify-content: space-between; align-items: center; padding-bottom: 22px; border-bottom: 2px solid #E6ECF6; }
+.chamado .cab span { font-family: var(--mono); font-weight: 700; font-size: 24px; color: var(--cinza); }
+.chamado .cab b { display: block; font-weight: 900; font-size: 34px; margin-top: 4px; }
+.item { display: flex; gap: 22px; align-items: flex-start; padding: 22px 0; border-bottom: 2px solid #EEF2F9; }
+.item:last-child { border-bottom: 0; }
+.item .ok { flex-shrink: 0; width: 50px; height: 50px; border-radius: 14px; background: var(--azul); display: flex; align-items: center; justify-content: center; }
+.item .ok svg { width: 30px; height: 30px; }
+.item div { font-weight: 900; font-size: 36px; line-height: 1.15; }
+.item small { display: block; font-weight: 500; font-size: 27px; color: var(--cinza); margin-top: 4px; }
+
+/* final: comentário vira direct */
+.fluxo { position: relative; margin-top: 30px; height: 300px; }
+.comentario { position: absolute; left: 0; top: 0; width: 700px; padding: 22px 26px; display: flex; align-items: center; gap: 20px; transform: rotate(-2deg); }
+.comentario .av { width: 64px; height: 64px; border-radius: 99px; background: linear-gradient(135deg, #93C5FD, #2563EB); flex-shrink: 0; }
+.comentario .campo { flex: 1; font-weight: 900; font-size: 40px; letter-spacing: .04em; display: flex; align-items: center; }
+.comentario .campo::after { content: ""; width: 4px; height: 44px; background: var(--azul); margin-left: 6px; }
+.comentario .pub { font-weight: 900; font-size: 26px; color: var(--azul); }
+.dm { position: absolute; right: 0; top: 150px; width: 600px; transform: rotate(2deg); }
+.dm .de { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 22px; color: #5A4100; margin-bottom: 10px; justify-content: flex-end; }
+.dm .de svg { width: 34px; height: 34px; }
+.dm .bolha { margin-left: auto; font-size: 30px; background: var(--noite); color: #fff; box-shadow: 0 30px 60px -20px rgba(5,15,43,.6); }
+.cta { margin-top: 10px; align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 40px; padding: 26px 44px; border-radius: 99px; }
+.cta svg { width: 40px; height: 40px; }
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
   <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
   <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
 <!-- 1. Capa -->
-<section class="slide escuro">
-  <div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="kicker">Nova marca</span>
-    <h1>Solicitou,<br><span class="hl">entregamos.</span></h1>
-    <p class="texto">A Single Tecnologia mudou por fora para mostrar o que sempre fez por dentro.</p>
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="palco">
+    <div class="halo" style="width:460px;height:420px;right:60px;top:160px;background:rgba(37,99,235,.6)"></div>
+    <div class="bolha eles">Preciso do painel de vendas até sexta.<small>Gestor de operações, 09:12</small></div>
+    <div class="entrega">
+      <div class="msg">Pronto. Já está no seu Power BI.</div>
+      <div class="mini">
+        <div class="k"><span>Vendas no mês</span><b>R$ 1,9 mi</b></div>
+        <div class="k"><span>Meta atingida</span><b>94%</b></div>
+        <svg viewBox="0 0 560 110" preserveAspectRatio="none"><g fill="#2563EB"><rect x="0" y="62" width="40" height="48" rx="6"/><rect x="58" y="50" width="40" height="60" rx="6"/><rect x="116" y="56" width="40" height="54" rx="6"/><rect x="174" y="38" width="40" height="72" rx="6"/><rect x="232" y="44" width="40" height="66" rx="6"/><rect x="290" y="28" width="40" height="82" rx="6"/><rect x="348" y="34" width="40" height="76" rx="6"/><rect x="406" y="18" width="40" height="92" rx="6"/><rect x="464" y="22" width="40" height="88" rx="6" fill="#0B2A6F"/><rect x="522" y="6" width="38" height="104" rx="6" fill="#FFB400"/></g></svg>
+      </div>
+    </div>
+    <span class="status">Entregue na quarta</span>
   </div>
-  <svg class="simbolo-fundo" style="color:#60A5FA;opacity:.12"><use href="#s-mono"/></svg>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">1/5 →</span></div>
+  <div class="capa-txt">
+    <span class="etiqueta">Nova marca</span>
+    <h1 class="titulo">Solicitou,<br><span class="mk">entregamos.</span></h1>
+    <p class="apoio">A Single Tecnologia mudou por fora para mostrar o que sempre fez por dentro.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i class="at"></i><i></i><i></i><i></i><i></i></div><span class="arraste">Arraste <svg><use href="#seta"/></svg></span></div>
 </section>
 
 <!-- 2. O símbolo -->
 <section class="slide">
-  <div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="kicker">O que o símbolo diz</span>
-    <h2>Duas peças que se <span class="hl">encaixam.</span></h2>
-    <p class="texto">Dados, sistemas e processos se juntam em uma solução só. No centro, o ponto âmbar: o seu negócio.</p>
-    <svg style="width:300px;height:300px;margin-top:60px"><use href="#s-cor"/></svg>
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">O que o símbolo diz</span>
+    <h2 class="titulo p">Duas peças que se <span class="mk az">encaixam.</span></h2>
+    <p class="apoio">Dados, sistemas e processos se juntam em uma solução só. No centro, o ponto âmbar: <b>o seu negócio.</b></p>
+    <div class="explode">
+      <div class="halo" style="width:260px;height:260px;left:330px;top:190px;background:rgba(255,180,0,.55)"></div>
+      <svg class="peca" viewBox="0 0 120 120" style="left:150px;top:-10px;width:520px;height:520px;transform:translate(-36px,-26px)"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24" stroke-linecap="butt"/></svg>
+      <svg class="peca" viewBox="0 0 120 120" style="left:150px;top:-10px;width:520px;height:520px;transform:translate(36px,26px)"><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/></svg>
+      <svg class="peca" viewBox="0 0 120 120" style="left:150px;top:-10px;width:520px;height:520px;filter:drop-shadow(0 0 24px rgba(255,180,0,.8))"><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></svg>
+      <div class="tracejado" style="left:540px;top:40px;width:120px"></div>
+      <div class="nota" style="right:0;top:12px"><i style="background:#0B2A6F"></i>Dados</div>
+      <div class="tracejado" style="left:120px;top:470px;width:140px"></div>
+      <div class="nota" style="left:-10px;top:442px"><i style="background:#2563EB"></i>Sistemas e processos</div>
+      <div class="tracejado" style="left:470px;top:250px;width:170px"></div>
+      <div class="nota" style="right:0;top:222px;background:var(--noite);color:#fff"><i style="background:#FFB400;transform:rotate(45deg)"></i>O seu negócio</div>
+    </div>
   </div>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">2/5 →</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i class="at"></i><i></i><i></i><i></i></div></div>
 </section>
 
 <!-- 3. O que fazemos -->
-<section class="slide escuro">
-  <div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="kicker">Tudo conectado em um só lugar</span>
-    <h2>Uma empresa. <span class="hl">Todas as demandas de tecnologia.</span></h2>
-    <ul class="lista">
-      <li><span class="n">1</span><div>BI e dashboards<small>Power BI, SQL e indicadores que você entende</small></div></li>
-      <li><span class="n">2</span><div>Automação de processos<small>Relatórios, alertas e tarefas que se fazem sozinhos</small></div></li>
-      <li><span class="n">3</span><div>Sistemas e integrações<small>Ferramentas conversando entre si</small></div></li>
-      <li><span class="n">4</span><div>Especialistas sob demanda<small>Reforço para o seu time quando precisar</small></div></li>
-    </ul>
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Tudo conectado em um só lugar</span>
+    <h2 class="titulo p" style="font-size:70px">Uma empresa. <span class="mk">Todas as demandas de tecnologia.</span></h2>
+    <div class="grade">
+      <div class="vidro servico">
+        <div class="ilus"><svg viewBox="0 0 400 150"><g fill="#60A5FA"><rect x="40" y="90" width="34" height="40" rx="5"/><rect x="88" y="70" width="34" height="60" rx="5"/><rect x="136" y="80" width="34" height="50" rx="5"/><rect x="184" y="52" width="34" height="78" rx="5"/><rect x="232" y="60" width="34" height="70" rx="5"/><rect x="280" y="36" width="34" height="94" rx="5"/></g><rect x="328" y="20" width="34" height="110" rx="5" fill="#FFB400"/><path d="M57 82 L105 62 L153 70 L201 44 L249 50 L297 28 L345 12" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 6"/></svg></div>
+        <h3>BI e dashboards</h3><p>Power BI, SQL e indicadores que você entende</p>
+      </div>
+      <div class="vidro servico">
+        <div class="ilus"><svg viewBox="0 0 400 150"><g fill="none" stroke="#60A5FA" stroke-width="4"><rect x="30" y="52" width="80" height="46" rx="12"/><rect x="160" y="52" width="80" height="46" rx="12"/><path d="M110 75h50M240 75h50"/></g><rect x="290" y="45" width="80" height="60" rx="14" fill="#22C55E"/><path d="M314 76l11 11 22-23" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="70" cy="75" r="9" fill="#FFB400"/><circle cx="200" cy="75" r="9" fill="#60A5FA"/></svg></div>
+        <h3>Automação de processos</h3><p>Relatórios, alertas e tarefas que se fazem sozinhos</p>
+      </div>
+      <div class="vidro servico">
+        <div class="ilus"><svg viewBox="0 0 400 150"><g stroke="#60A5FA" stroke-width="3" opacity=".8"><path d="M200 75 L90 35 M200 75 L90 115 M200 75 L310 35 M200 75 L310 115 M90 35 L90 115 M310 35 L310 115"/></g><g fill="#0B2A6F" stroke="#60A5FA" stroke-width="3"><circle cx="90" cy="35" r="18"/><circle cx="90" cy="115" r="18"/><circle cx="310" cy="35" r="18"/><circle cx="310" cy="115" r="18"/></g><rect x="178" y="53" width="44" height="44" rx="6" fill="#FFB400" transform="rotate(45 200 75)"/></svg></div>
+        <h3>Sistemas e integrações</h3><p>Ferramentas conversando entre si</p>
+      </div>
+      <div class="vidro servico">
+        <div class="ilus"><svg viewBox="0 0 400 150"><g><circle cx="150" cy="75" r="40" fill="#2563EB"/><circle cx="150" cy="62" r="14" fill="#BFDBFE"/><path d="M124 100a26 22 0 0 1 52 0" fill="#BFDBFE"/></g><g><circle cx="215" cy="75" r="40" fill="#0B2A6F" stroke="#050F2B" stroke-width="6"/><circle cx="215" cy="62" r="14" fill="#93C5FD"/><path d="M189 100a26 22 0 0 1 52 0" fill="#93C5FD"/></g><circle cx="280" cy="75" r="40" fill="#FFB400" stroke="#050F2B" stroke-width="6"/><path d="M280 58v34M263 75h34" stroke="#050F2B" stroke-width="7" stroke-linecap="round"/></svg></div>
+        <h3>Especialistas sob demanda</h3><p>Reforço para o seu time quando precisar</p>
+      </div>
+    </div>
   </div>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">3/5 →</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i class="at"></i><i></i><i></i></div></div>
 </section>
 
 <!-- 4. Como trabalhamos -->
 <section class="slide">
-  <div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="kicker">Como trabalhamos</span>
-    <h2>Sem burocracia. <span class="hl">Com padrão.</span></h2>
-    <ul class="lista">
-      <li><span class="n">1</span><div>Agilidade<small>Do pedido à entrega, sem fila</small></div></li>
-      <li><span class="n">2</span><div>Clareza<small>Escopo, prazo e resultado combinados antes</small></div></li>
-      <li><span class="n">3</span><div>Eficiência<small>A tecnologia certa para o problema certo</small></div></li>
-      <li><span class="n">4</span><div>Qualidade<small>Entrega validada e acompanhada</small></div></li>
-    </ul>
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Como trabalhamos</span>
+    <h2 class="titulo p">Sem burocracia. <span class="mk az">Com padrão.</span></h2>
+    <div class="cartao chamado">
+      <div class="cab"><div><span>Pedido #0427</span><b>Painel de vendas</b></div><span class="status">Entregue</span></div>
+      <div class="item"><span class="ok"><svg><use href="#check"/></svg></span><div>Agilidade<small>Do pedido à entrega, sem fila</small></div></div>
+      <div class="item"><span class="ok"><svg><use href="#check"/></svg></span><div>Clareza<small>Escopo, prazo e resultado combinados antes</small></div></div>
+      <div class="item"><span class="ok"><svg><use href="#check"/></svg></span><div>Eficiência<small>A tecnologia certa para o problema certo</small></div></div>
+      <div class="item"><span class="ok" style="background:var(--ambar)"><svg><use href="#check"/></svg></span><div>Qualidade<small>Entrega validada e acompanhada</small></div></div>
+    </div>
   </div>
-  <div class="rodape"><span>@singletecnologia</span><span class="contador">4/5 →</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i class="at"></i><i></i></div></div>
 </section>
 
 <!-- 5. Chamada final -->
 <section class="slide ambar">
-  <div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div>
-  <div class="meio">
-    <span class="kicker">Vamos conversar?</span>
-    <h2>Qual é o desafio de dados da sua empresa?</h2>
-    <p class="texto">Comente <b>SINGLE</b> que eu te mando no direct o caminho para começar.</p>
-    <span class="cta">Comente SINGLE</span>
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Vamos conversar?</span>
+    <h2 class="titulo m">Qual é o desafio de dados da <span class="mk">sua empresa?</span></h2>
+    <p class="apoio">Comente <b>SINGLE</b> que eu te mando no direct o caminho para começar.</p>
+    <div class="fluxo">
+      <div class="cartao comentario"><span class="av"></span><span class="campo">SINGLE</span><span class="pub">Publicar</span></div>
+      <div class="dm">
+        <div class="de"><svg><use href="#s-mono" style="color:#050F2B"/></svg>@singletecnologia no seu direct</div>
+        <div class="bolha">Oi! Aqui está o caminho para começar.</div>
+      </div>
+    </div>
+    <span class="cta"><svg><use href="#seta"/></svg>Comente SINGLE</span>
   </div>
-  <svg class="simbolo-fundo" style="color:#050F2B;opacity:.08"><use href="#s-mono"/></svg>
-  <div class="rodape"><span>singletecnologia.netlify.app</span><span class="contador">5/5</span></div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i class="at"></i></div><span style="font-weight:900;font-size:26px">singletecnologia.netlify.app</span></div>
 </section>
 </body>
 </html>

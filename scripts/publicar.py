@@ -166,6 +166,26 @@ def publicar(pasta: Path, post: dict, legenda: str) -> dict:
     return {"media_id": media_id, "permalink": info.get("permalink")}
 
 
+def ja_no_instagram(legenda: str, data: str):
+    """Trava contra post duplicado: procura nas últimas mídias da conta um post do mesmo dia
+    com a mesma primeira linha de legenda. Protege quando o agendamento e a segunda tentativa
+    rodam perto um do outro, ou quando o estado não foi salvo no repositório."""
+    try:
+        recentes = ig.get(f"{ig.user_id()}/media", fields="id,caption,timestamp,permalink", limit=10).get("data", [])
+    except Exception as exc:  # noqa: BLE001 (se a consulta falhar, segue o fluxo normal)
+        print(f"Aviso: não consegui conferir posts recentes ({exc}).", file=sys.stderr)
+        return None
+    primeira = legenda.strip().split("\n")[0].strip()[:80]
+    for m in recentes:
+        try:
+            quando = dt.datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z").astimezone(TZ).date().isoformat()
+        except (KeyError, ValueError):
+            continue
+        if quando == data and (m.get("caption") or "").strip().startswith(primeira):
+            return m
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default=dt.datetime.now(TZ).date().isoformat())
@@ -182,6 +202,13 @@ def main():
             if args.simular:
                 print(f"[{pasta.name}] OK (simulação): {post['tipo']} com {len(post['midias'])} mídia(s)"
                       f" e {len(post.get('stories') or [])} story(s).")
+                continue
+            existente = ja_no_instagram(legenda, args.data)
+            if existente:
+                post.update(media_id=existente["id"], permalink=existente.get("permalink"), status="publicado")
+                post.pop("erro", None)
+                ig.save_json(arq, post)
+                print(f"[{pasta.name}] já estava no Instagram, não publiquei de novo: {existente.get('permalink')}")
                 continue
             resultado = publicar(pasta, post, legenda)
             post.update(resultado, status="publicado",

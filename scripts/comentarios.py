@@ -46,9 +46,46 @@ def posts_com_palavra_chave():
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--plantao", type=int, default=0,
+                    help="minutos de plantão: repete a checagem a cada 3 minutos até o tempo acabar")
+    args = ap.parse_args()
+
     estado = ig.load_json(ESTADO, {"respondidos": []})
     respondidos = set(estado["respondidos"])
     minha_conta = ig.get(ig.user_id(), fields="username").get("username", "").lower()
+    fim = time.time() + args.plantao * 60
+    total = 0
+    while True:
+        if args.plantao:
+            atualizar_posts()
+        try:
+            total += rodada(respondidos, minha_conta)
+        except ig.IGError as exc:
+            print(f"Rodada com erro (tento de novo na próxima): {exc}", file=sys.stderr)
+        estado["respondidos"] = sorted(respondidos)[-5000:]
+        ig.save_json(ESTADO, estado)
+        if time.time() + INTERVALO_PLANTAO > fim:
+            break
+        time.sleep(INTERVALO_PLANTAO)
+    print(f"{total} comentário(s) atendido(s).")
+
+
+INTERVALO_PLANTAO = 180
+
+
+def atualizar_posts():
+    """No plantão, traz da main os post.json mais recentes (ex.: post publicado depois do início)."""
+    import subprocess
+    try:
+        subprocess.run(["git", "fetch", "-q", "origin", "main"], cwd=ROOT, check=True, timeout=60)
+        subprocess.run(["git", "checkout", "origin/main", "--", "posts"], cwd=ROOT, check=True, timeout=60)
+    except Exception as exc:  # noqa: BLE001
+        print(f"Aviso: não consegui atualizar os posts ({exc}).", file=sys.stderr)
+
+
+def rodada(respondidos: set, minha_conta: str) -> int:
     agora = dt.datetime.now(dt.timezone.utc)
     enviados = 0
 
@@ -95,9 +132,7 @@ def main():
             respondidos.add(cid)
             time.sleep(random.uniform(4, 9))
 
-    estado["respondidos"] = sorted(respondidos)[-5000:]
-    ig.save_json(ESTADO, estado)
-    print(f"{enviados} comentário(s) atendido(s).")
+    return enviados
 
 
 if __name__ == "__main__":

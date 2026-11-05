@@ -121,3 +121,5 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 8. Enquanto as fotos do Wallan não chegarem, lembrar no pull request: "Fotos pendentes: mande 5 a 10 fotos suas para usar nas capas e Reels." Quando chegarem (pasta `assets/fotos/`), usar em pelo menos 1 capa ou Reel por semana.
 
 **Atenção:** esta sessão não consegue enviar arquivos dentro de `.github/workflows/` (o GitHub recusa). Mudanças de agendamento precisam ser feitas pelo Wallan no site do GitHub.
+
+**Confiabilidade:** os horários agendados do GitHub atrasam ou são pulados com frequência. Por isso a tarefa agendada "Instagram — segunda tentativa de publicação" (dias úteis, 11:56) dispara `publicar.yml` se o post do dia ainda não saiu e depois dispara `comentarios.yml` uma vez, que no disparo manual fica de plantão (`--plantao 340`, conferindo a cada 3 minutos). O `publicar.py` confere no Instagram antes de publicar, então disparos repetidos não duplicam o post.

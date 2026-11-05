@@ -1,8 +1,14 @@
 {
-  "data": "2026-11-09",
+  "data": "2026-11-05",
   "tipo": "carrossel",
   "tema": "Lançamento da nova marca",
-  "midias": ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"],
+  "midias": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg"
+  ],
   "legenda_arquivo": "legenda.txt",
   "palavra_chave": "SINGLE",
   "material_url": "https://singletecnologia.netlify.app",

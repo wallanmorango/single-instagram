@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>3 medidas DAX para dashboard financeiro — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.dica { margin-top: 36px; display: flex; gap: 18px; align-items: flex-start; font-size: 32px; line-height: 1.35; font-weight: 500; color: var(--muted); }
+.escuro .dica { color: #C9D7F3; }
+.dica b { color: var(--ink); }
+.escuro .dica b { color: #fff; }
+.dica::before { content: ""; flex-shrink: 0; width: 16px; height: 16px; margin-top: 14px; background: var(--amber); border-radius: 3px; transform: rotate(45deg); }
+.num { font-weight: 900; font-size: 30px; color: var(--blue-600); letter-spacing: .1em; }
+.compacto h2 { font-size: 66px; margin-top: 20px; }
+.compacto pre.codigo { font-size: 29px; line-height: 1.38; padding: 32px 40px; margin-top: 28px; }
+.compacto .dica { margin-top: 26px; font-size: 30px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide escuro">
+  <div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div>
+  <div class="meio">
+    <span class="kicker">Dica de DAX</span>
+    <h1>3 medidas que todo <span class="hl">dashboard financeiro</span> precisa</h1>
+    <p class="texto">Copie, cole e adapte no seu Power BI.</p>
+  </div>
+  <svg class="simbolo-fundo" style="color:#60A5FA;opacity:.12"><use href="#s-mono"/></svg>
+  <div class="rodape"><span>@singletecnologia</span><span class="contador">1/6 →</span></div>
+</section>
+
+<!-- 2. YTD -->
+<section class="slide">
+  <div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div>
+  <div class="meio">
+    <span class="num">MEDIDA 1</span>
+    <h2>Acumulado no ano <span class="hl">(YTD)</span></h2>
+    <p class="texto">Mostra quanto a empresa já faturou de janeiro até o mês selecionado.</p>
+<pre class="codigo">Receita YTD =
+<span class="k">TOTALYTD</span> (
+    [Receita],
+    <span class="s">'Calendario'[Data]</span>
+)</pre>
+    <p class="dica"><span><b>[Receita]</b> é a sua medida de soma, por exemplo SUM ( Vendas[Valor] ).</span></p>
+  </div>
+  <div class="rodape"><span>@singletecnologia</span><span class="contador">2/6 →</span></div>
+</section>
+
+<!-- 3. Ano anterior -->
+<section class="slide compacto">
+  <div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div>
+  <div class="meio">
+    <span class="num">MEDIDA 2</span>
+    <h2>Comparação com o <span class="hl">ano anterior</span></h2>
+<pre class="codigo">Receita AA =
+<span class="k">CALCULATE</span> (
+    [Receita],
+    <span class="k">SAMEPERIODLASTYEAR</span> (
+        <span class="s">'Calendario'[Data]</span>
+    )
+)
+
+Var % AA =
+<span class="k">DIVIDE</span> (
+    [Receita] - [Receita AA],
+    [Receita AA]
+)</pre>
+    <p class="dica"><span>Formate <b>Var % AA</b> como porcentagem e use cor verde e vermelha no visual.</span></p>
+  </div>
+  <div class="rodape"><span>@singletecnologia</span><span class="contador">3/6 →</span></div>
+</section>
+
+<!-- 4. Orçado x realizado -->
+<section class="slide">
+  <div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div>
+  <div class="meio">
+    <span class="num">MEDIDA 3</span>
+    <h2>Desvio do <span class="hl">orçamento</span></h2>
+    <p class="texto">Mostra em porcentagem quanto o realizado ficou acima ou abaixo do orçado.</p>
+<pre class="codigo">Desvio % =
+<span class="k">DIVIDE</span> (
+    [Realizado] - [Orçado],
+    [Orçado]
+)</pre>
+    <p class="dica"><span>Use <b>DIVIDE</b> em vez de "/": ele evita erro quando o orçado é zero.</span></p>
+  </div>
+  <div class="rodape"><span>@singletecnologia</span><span class="contador">4/6 →</span></div>
+</section>
+
+<!-- 5. Pré-requisito -->
+<section class="slide escuro">
+  <div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div>
+  <div class="meio">
+    <span class="kicker">Antes de tudo</span>
+    <h2>Sem tabela calendário, <span class="hl">nada disso funciona</span></h2>
+    <ul class="lista">
+      <li><span class="n">1</span><div>Crie uma tabela de datas<small>Calendario = CALENDARAUTO ()</small></div></li>
+      <li><span class="n">2</span><div>Marque como tabela de datas<small>Ferramentas da tabela → Marcar como tabela de datas</small></div></li>
+      <li><span class="n">3</span><div>Relacione com a sua tabela de fatos<small>Calendario[Data] → Vendas[Data]</small></div></li>
+    </ul>
+  </div>
+  <div class="rodape"><span>@singletecnologia</span><span class="contador">5/6 →</span></div>
+</section>
+
+<!-- 6. CTA -->
+<section class="slide ambar">
+  <div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div>
+  <div class="meio">
+    <span class="kicker">Gostou?</span>
+    <h2>Salve para usar no seu próximo dashboard.</h2>
+    <p class="texto">E envie para aquele colega que ainda faz o acumulado na mão no Excel.</p>
+    <span class="cta">Salvar e compartilhar</span>
+  </div>
+  <svg class="simbolo-fundo" style="color:#050F2B;opacity:.08"><use href="#s-mono"/></svg>
+  <div class="rodape"><span>singletecnologia.netlify.app</span><span class="contador">6/6</span></div>
+</section>
+</body>
+</html>

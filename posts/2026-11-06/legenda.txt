@@ -1,0 +1,11 @@
+3 medidas DAX que não podem faltar no seu dashboard financeiro 📊
+
+1️⃣ Acumulado no ano (YTD)
+2️⃣ Comparação com o ano anterior
+3️⃣ Desvio do orçamento
+
+Passe para o lado, copie as fórmulas e adapte no seu Power BI. E não esquece: sem tabela calendário marcada como tabela de datas, nenhuma delas funciona.
+
+Salve para usar no próximo projeto e envie para quem ainda faz isso na mão no Excel.
+
+#powerbi #dax #businessintelligence #analisededados #excel

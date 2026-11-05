@@ -67,6 +67,15 @@ def main():
                 continue
             if not contem_palavra(c.get("text", ""), post["palavra_chave"]):
                 continue
+            # Proteção extra: se a conta já respondeu este comentário, não responde de novo
+            # (vale mesmo se o estado não tiver sido salvo no repositório).
+            try:
+                respostas = ig.get(f"{cid}/replies", fields="username").get("data", [])
+            except ig.IGError:
+                respostas = []
+            if any((r.get("username") or "").lower() == minha_conta for r in respostas):
+                respondidos.add(cid)
+                continue
 
             mensagem = post.get("mensagem_dm") or (
                 "Oi! Aqui está o material que você pediu: {material}\n\n"

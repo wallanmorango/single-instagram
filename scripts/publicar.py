@@ -41,6 +41,9 @@ def posts_do_dia(data: str):
         if post.get("status") == "publicado":
             print(f"[{arq.parent.name}] já publicado, ignorando.")
             continue
+        if post.get("status") != "aprovado":
+            print(f"[{arq.parent.name}] status '{post.get('status')}', só publica 'aprovado'. Ignorando.")
+            continue
         yield arq, post
 
 

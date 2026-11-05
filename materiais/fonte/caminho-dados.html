@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>O caminho para começar — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.conteudo { margin-top: 40px; display: flex; flex-direction: column; gap: 28px; }
+.perguntas { list-style: none; display: grid; gap: 18px; counter-reset: q var(--inicio, 0); }
+.perguntas li { counter-increment: q; display: grid; grid-template-columns: 64px 1fr; gap: 22px; align-items: start; padding: 26px 28px; }
+.perguntas li::before { content: counter(q, decimal-leading-zero); width: 64px; height: 64px; border-radius: 18px; background: var(--azul); color: #fff; font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center; }
+.perguntas b { display: block; font-weight: 900; font-size: 33px; line-height: 1.25; }
+.perguntas .sn { display: flex; gap: 14px; margin-top: 14px; }
+.perguntas .sn span { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 24px; color: var(--cinza); }
+.perguntas .sn span::before { content: ""; width: 30px; height: 30px; border-radius: 9px; border: 3px solid #C5D2EA; }
+.faixas { display: grid; gap: 20px; }
+.faixa { padding: 28px 32px; display: grid; grid-template-columns: 170px 1fr; gap: 24px; align-items: start; }
+.faixa .pts { font-weight: 900; font-size: 42px; letter-spacing: -.02em; line-height: 1; }
+.faixa .pts small { display: block; font-weight: 700; font-size: 22px; letter-spacing: 0; color: var(--nevoa); margin-top: 8px; }
+.faixa h3 { font-weight: 900; font-size: 34px; line-height: 1.15; }
+.faixa p { font-weight: 500; font-size: 27px; line-height: 1.38; color: var(--nevoa); margin-top: 8px; }
+.contato { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
+.contato a { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; text-decoration: none; font-weight: 900; font-size: 38px; padding: 26px 40px; border-radius: 99px; background: var(--noite); color: #fff; }
+.contato a.site { background: transparent; color: var(--noite); border: 3px solid var(--noite); }
+.contato svg { width: 38px; height: 38px; }
+.capa-vis { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+.capa-vis .vidro { display: flex; align-items: center; gap: 18px; padding: 20px 26px; font-weight: 700; font-size: 30px; }
+.capa-vis .vidro i { width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0; background: var(--verde) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/24px no-repeat; }
+.capa-vis .vidro i.nao { background: rgba(255,255,255,.12); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:60px;gap:30px">
+    <span class="etiqueta">O caminho para começar</span>
+    <h1 class="titulo m">10 perguntas para saber se a sua empresa já <span class="mk">decide com dados</span></h1>
+    <p class="apoio">Responda sim ou não. Leva 3 minutos, e no fim você vê por onde começar.</p>
+    <div class="capa-vis">
+      <div class="vidro"><i></i>Os números do mês fecham sozinhos</div>
+      <div class="vidro"><i class="nao"></i>Todo mundo vê o mesmo número</div>
+      <div class="vidro"><i></i>Os relatórios se atualizam sozinhos</div>
+    </div>
+  </div>
+  <div class="rodape"><span class="perfil">singletecnologia.netlify.app</span><span class="perfil">1/5</span></div>
+</section>
+
+<!-- 2. Perguntas 1 a 5 -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">2/5</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Números e relatórios</span>
+    <ul class="perguntas">
+      <li class="cartao"><div><b>O fechamento do mês sai sem ninguém virar a noite no Excel?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+      <li class="cartao"><div><b>Todas as áreas olham o mesmo número para o mesmo indicador?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+      <li class="cartao"><div><b>Os relatórios se atualizam sozinhos, sem copiar e colar?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+      <li class="cartao"><div><b>Você sabe quanto vendeu ontem sem pedir para alguém?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+      <li class="cartao"><div><b>Os indicadores principais têm meta e um responsável?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. Perguntas 6 a 10 -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">3/5</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Sistemas e processos</span>
+    <ul class="perguntas" style="--inicio:5">
+      <li class="cartao"><div><b>O sistema de gestão, as planilhas e as outras ferramentas conversam entre si?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+      <li class="cartao"><div><b>Os dados ficam guardados fora do computador de uma pessoa só?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+      <li class="cartao"><div><b>Dá para comparar com o mesmo mês do ano passado em um clique?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+      <li class="cartao"><div><b>Tarefas repetitivas, como enviar relatórios e conferir notas, já são automáticas?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+      <li class="cartao"><div><b>Você já sabe o que a Reforma Tributária muda nos impostos das suas notas?</b><div class="sn"><span>Sim</span><span>Não</span></div></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. Resultado -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">4/5</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Conte os seus "sim"</span>
+    <h2 class="titulo p">Por onde <span class="mk">começar</span></h2>
+    <div class="faixas">
+      <div class="vidro faixa"><div class="pts">0 a 3<small>respostas sim</small></div><div><h3>Comece pelo básico</h3><p>Organize uma base única e monte um painel com os 5 números que mais importam para o negócio.</p></div></div>
+      <div class="vidro faixa"><div class="pts">4 a 7<small>respostas sim</small></div><div><h3>Conecte o que já existe</h3><p>Os dados existem, mas estão espalhados. Junte as fontes e faça a atualização acontecer sozinha.</p></div></div>
+      <div class="vidro faixa"><div class="pts">8 a 10<small>respostas sim</small></div><div><h3>Vá além do relatório</h3><p>Hora de metas, alertas automáticos e análises que mostram o problema antes de ele chegar.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Contato -->
+<section class="slide ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">5/5</span></div>
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:80px">
+    <span class="etiqueta">Próximo passo</span>
+    <h2 class="titulo m">Quer ajuda com o <span class="mk">próximo passo?</span></h2>
+    <p class="apoio">Conte o seu resultado para a Single. A gente indica o caminho e entrega: BI, automação, sistemas e especialistas, tudo em um só lugar.</p>
+    <div class="contato">
+      <a href="https://wa.me/5521965725125"><svg><use href="#seta"/></svg>Falar no WhatsApp</a>
+      <a class="site" href="https://singletecnologia.netlify.app">singletecnologia.netlify.app</a>
+    </div>
+  </div>
+  <div class="rodape"><span style="font-weight:900;font-size:28px">Solicitou, entregamos.</span><span class="perfil">@singletecnologia</span></div>
+</section>
+</body>
+</html>

@@ -11,8 +11,12 @@
   ],
   "legenda_arquivo": "legenda.txt",
   "palavra_chave": "SINGLE",
-  "material_url": "https://singletecnologia.netlify.app",
-  "mensagem_dm": "Oi! Que bom que você comentou 😊\n\nAqui está tudo o que a Single Tecnologia faz: {material}\n\nMe conta em uma frase qual é o desafio de dados da sua empresa que eu te digo por onde começar. Se preferir, chama no WhatsApp: https://wa.me/5521965725125",
+  "material_url": "https://wallanmorango.github.io/single-instagram/materiais/caminho-dados.pdf",
+  "mensagem_dm": "Oi! Aqui está o caminho para começar: um checklist com 10 perguntas para ver em que ponto a sua empresa está com os dados. {material}\n\nDepois me conta o seu resultado aqui que eu te digo por onde começar.",
   "trial_reel": false,
-  "status": "aprovado"
+  "status": "aprovado",
+  "material_nome": "o checklist do caminho para começar",
+  "stories": [
+    "story-01.jpg"
+  ]
 }

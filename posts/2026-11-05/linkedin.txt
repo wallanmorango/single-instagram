@@ -1,0 +1,17 @@
+A Single Tecnologia está de cara nova.
+
+O símbolo são duas peças que se encaixam: dados, sistemas e processos virando uma solução só. No centro, o ponto âmbar é o negócio do cliente.
+
+Na prática, a Single resolve em um só lugar o que costuma ficar espalhado entre vários fornecedores:
+
+→ BI e dashboards em Power BI
+→ Automação de processos e relatórios
+→ Sistemas e integrações
+→ Especialistas sob demanda
+
+Sem burocracia, com clareza em cada entrega. Solicitou, entregamos.
+
+Para quem quer saber por onde começar, montei um checklist com 10 perguntas para ver se a sua empresa já decide com dados:
+https://wallanmorango.github.io/single-instagram/materiais/caminho-dados.pdf
+
+#powerbi #businessintelligence #dados

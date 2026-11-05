@@ -69,7 +69,25 @@ def validar(pasta: Path, post: dict) -> str:
     hashtags = [p for p in legenda.split() if p.startswith("#")]
     if len(hashtags) > LIMITE_HASHTAGS:
         raise ValueError(f"{len(hashtags)} hashtags (máx. {LIMITE_HASHTAGS})")
+    for s in post.get("stories") or []:
+        if not (pasta / s).exists():
+            raise ValueError(f"story não encontrado: {s}")
+        if not s.lower().endswith((".jpg", ".jpeg")):
+            raise ValueError(f"story precisa ser JPEG: {s}")
     return legenda
+
+
+def publicar_stories(pasta: Path, post: dict) -> list:
+    """Publica os stories do post (depois do post do feed). Falha aqui não desfaz o post."""
+    ids = []
+    for s in post.get("stories") or []:
+        url = url_publica(pasta, s)
+        esperar_url(url)
+        cid = ig.post(f"{ig.user_id()}/media", params={"media_type": "STORIES", "image_url": url})["id"]
+        esperar_container(cid)
+        ids.append(ig.post(f"{ig.user_id()}/media_publish", params={"creation_id": cid})["id"])
+        time.sleep(5)
+    return ids
 
 
 def url_publica(pasta: Path, arquivo: str) -> str:
@@ -162,7 +180,8 @@ def main():
         try:
             legenda = validar(pasta, post)
             if args.simular:
-                print(f"[{pasta.name}] OK (simulação): {post['tipo']} com {len(post['midias'])} mídia(s).")
+                print(f"[{pasta.name}] OK (simulação): {post['tipo']} com {len(post['midias'])} mídia(s)"
+                      f" e {len(post.get('stories') or [])} story(s).")
                 continue
             resultado = publicar(pasta, post, legenda)
             post.update(resultado, status="publicado",
@@ -170,6 +189,14 @@ def main():
             post.pop("erro", None)
             ig.save_json(arq, post)
             print(f"[{pasta.name}] publicado: {resultado['permalink']}")
+            if post.get("stories"):
+                try:
+                    post["story_ids"] = publicar_stories(pasta, post)
+                    print(f"[{pasta.name}] {len(post['story_ids'])} story(s) publicado(s).")
+                except Exception as exc:  # noqa: BLE001
+                    post["story_erro"] = str(exc)[:500]
+                    print(f"[{pasta.name}] story falhou (o post está no ar): {exc}", file=sys.stderr)
+                ig.save_json(arq, post)
         except Exception as exc:  # noqa: BLE001
             erros += 1
             post["erro"] = str(exc)[:500]

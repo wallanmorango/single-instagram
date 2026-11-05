@@ -57,17 +57,20 @@
 .passos small { display: block; font-family: var(--mono); font-weight: 500; font-size: 23px; color: var(--celeste); margin-top: 8px; }
 
 /* lâmina final: barra de ações do Instagram */
-.acoes { margin-top: 110px; padding: 34px 40px; display: flex; align-items: center; gap: 44px; width: 640px; position: relative; }
+.acoes { margin-top: 44px; padding: 34px 40px; display: flex; align-items: center; gap: 44px; width: 640px; position: relative; }
 .acoes svg { width: 64px; height: 64px; stroke: var(--tinta); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.acoes .salvar { margin-left: auto; position: relative; width: 110px; height: 110px; border-radius: 30px; background: var(--noite); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(5,15,43,.12); }
+.acoes .salvar { margin-left: auto; position: relative; width: 96px; height: 96px; border-radius: 30px; background: var(--noite); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(5,15,43,.12); }
 .acoes .salvar svg { stroke: var(--ambar); fill: var(--ambar); width: 60px; height: 60px; }
-.acoes .enviar { position: relative; width: 110px; height: 110px; border-radius: 30px; background: var(--azul); display: flex; align-items: center; justify-content: center; }
+.acoes .enviar { position: relative; width: 96px; height: 96px; border-radius: 30px; background: var(--azul); display: flex; align-items: center; justify-content: center; }
 .acoes .enviar svg { stroke: #fff; width: 58px; height: 58px; }
 .aviso { position: absolute; right: -30px; top: -86px; transform: rotate(3deg); background: var(--noite); color: #fff; font-weight: 900; font-size: 26px; padding: 16px 24px; border-radius: 18px; display: flex; align-items: center; gap: 12px; }
 .aviso::after { content: ""; position: absolute; right: 70px; bottom: -12px; width: 26px; height: 26px; background: var(--noite); transform: rotate(45deg); border-radius: 4px; }
 .cursor { position: absolute; right: 28px; bottom: -46px; width: 70px; height: 70px; }
-.cta { margin-top: 56px; align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 40px; padding: 28px 44px; border-radius: 99px; }
+.cta { margin-top: 34px; align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 40px; padding: 28px 44px; border-radius: 99px; }
 .cta svg { width: 38px; height: 38px; stroke: var(--ambar); fill: var(--ambar); }
+.bonus { margin-top: 26px; font-weight: 700; font-size: 32px; line-height: 1.35; color: #3A2A00; max-width: 860px; }
+.bonus b { color: var(--noite); font-weight: 900; }
+.bonus .mk { font-weight: 900; }
 </style>
 </head>
 <body>
@@ -214,7 +217,7 @@
 <!-- 6. CTA -->
 <section class="slide ambar">
   <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
-  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:90px">
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:110px">
     <span class="etiqueta">Gostou?</span>
     <h2 class="titulo m">Salve para usar no seu <span class="mk">próximo dashboard.</span></h2>
     <p class="apoio">E envie para aquele colega que ainda faz o acumulado na mão no Excel.</p>
@@ -223,10 +226,10 @@
       <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.2A8 8 0 1 1 20 11.5z"/></svg>
       <div class="enviar"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></div>
       <div class="salvar"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
-      <div class="aviso">Salvo para o próximo projeto</div>
       <svg class="cursor" viewBox="0 0 24 24" style="stroke:#fff;fill:#050F2B;stroke-width:1.4"><path d="M5 3l14 8-6 1.5L10 19z"/></svg>
     </div>
     <span class="cta"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Salvar e compartilhar</span>
+    <div class="bonus"><b>Bônus:</b> comente <span class="mk">DAX</span> e receba no direct o PDF com 10 medidas para o financeiro.</div>
   </div>
   <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i></i><i class="at"></i></div><span style="font-weight:900;font-size:26px">singletecnologia.netlify.app</span></div>
 </section>

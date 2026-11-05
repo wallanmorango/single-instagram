@@ -2,9 +2,22 @@
   "data": "2026-11-06",
   "tipo": "carrossel",
   "tema": "3 medidas DAX para dashboard financeiro",
-  "midias": ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg"],
+  "midias": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg"
+  ],
   "legenda_arquivo": "legenda.txt",
-  "palavra_chave": null,
+  "palavra_chave": "DAX",
   "trial_reel": false,
-  "status": "aprovado"
+  "status": "aprovado",
+  "material_url": "https://wallanmorango.github.io/single-instagram/materiais/dax-financeiro.pdf",
+  "material_nome": "o PDF com 10 medidas DAX",
+  "mensagem_dm": "Oi! Aqui está o PDF com as 10 medidas DAX para o financeiro: {material}\n\nSe quiser esse painel pronto com os dados da sua empresa, é só responder aqui.",
+  "stories": [
+    "story-01.jpg"
+  ]
 }

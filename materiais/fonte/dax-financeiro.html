@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>10 medidas DAX para o financeiro — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.conteudo { margin-top: 40px; display: flex; flex-direction: column; gap: 26px; }
+.medida { display: flex; flex-direction: column; gap: 14px; }
+.medida .cab { display: flex; align-items: center; gap: 18px; }
+.medida .num { flex-shrink: 0; width: 64px; height: 64px; border-radius: 18px; background: var(--azul); color: #fff; font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+.medida h3 { font-weight: 900; font-size: 44px; letter-spacing: -.02em; line-height: 1.05; }
+.medida .oque { font-weight: 500; font-size: 29px; line-height: 1.35; color: var(--cinza); }
+.medida .janela pre { font-size: 26px; line-height: 1.45; padding: 22px 30px 26px; }
+.medida .janela .barra { padding: 14px 24px; }
+.medida .dica { font-size: 25px; }
+.medida .dica::before { width: 14px; height: 14px; margin-top: 10px; }
+.sep { height: 2px; background: rgba(10,26,61,.08); margin: 4px 0; }
+.indice { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
+.indice span { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 27px; padding: 16px 20px; border-radius: 18px; background: rgba(255,255,255,.07); border: 1.5px solid rgba(255,255,255,.14); }
+.indice b { font-weight: 900; color: var(--ambar); font-variant-numeric: tabular-nums; }
+.checks { list-style: none; display: grid; gap: 16px; }
+.checks li { display: flex; gap: 20px; align-items: flex-start; font-weight: 700; font-size: 32px; line-height: 1.3; }
+.checks li::before { content: ""; flex-shrink: 0; width: 40px; height: 40px; margin-top: 2px; border-radius: 12px; background: var(--azul) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/26px no-repeat; }
+.checks small { display: block; font-weight: 500; font-size: 26px; color: var(--cinza); margin-top: 4px; }
+.contato { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
+.contato a { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; text-decoration: none; font-weight: 900; font-size: 38px; padding: 26px 40px; border-radius: 99px; background: var(--noite); color: #fff; }
+.contato a.site { background: transparent; color: var(--noite); border: 3px solid var(--noite); }
+.contato svg { width: 38px; height: 38px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:60px;gap:30px">
+    <span class="etiqueta">Material gratuito · Power BI</span>
+    <h1 class="titulo">10 medidas DAX para o <span class="mk">financeiro</span></h1>
+    <p class="apoio">Copie, cole e adapte. Cada medida vem com o que ela mostra e uma dica de uso.</p>
+    <div class="indice">
+      <span><b>01</b>Receita YTD</span><span><b>02</b>Receita MTD</span>
+      <span><b>03</b>Receita AA</span><span><b>04</b>Var % AA</span>
+      <span><b>05</b>Receita YTD AA</span><span><b>06</b>Mês anterior</span>
+      <span><b>07</b>Receita 12 meses</span><span><b>08</b>Margem bruta %</span>
+      <span><b>09</b>Desvio % do orçado</span><span><b>10</b>Participação %</span>
+    </div>
+  </div>
+  <div class="rodape"><span class="perfil">singletecnologia.netlify.app</span><span class="perfil">1/8</span></div>
+</section>
+
+<!-- 2. Antes de começar -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">2/8</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Antes de começar</span>
+    <h2 class="titulo p">Três medidas base e uma <span class="mk az">tabela calendário</span></h2>
+    <p class="apoio">Todas as medidas deste material usam estas três. Ajuste os nomes das tabelas e colunas para os do seu modelo.</p>
+    <div class="janela">
+      <div class="barra"><i></i><i></i><i></i><span>medidas-base.dax</span></div>
+<pre style="font-size:28px"><span class="n">Receita</span> = <span class="k">SUM</span> ( <span class="t">Vendas[Valor]</span> )
+<span class="n">Custo</span> = <span class="k">SUM</span> ( <span class="t">Vendas[Custo]</span> )
+<span class="n">Orçado</span> = <span class="k">SUM</span> ( <span class="t">Orcamento[Valor]</span> )</pre>
+    </div>
+    <ul class="checks">
+      <li><div>Crie a tabela Calendario<small>Calendario = CALENDARAUTO ()</small></div></li>
+      <li><div>Marque como tabela de datas<small>Ferramentas da tabela → Marcar como tabela de datas</small></div></li>
+      <li><div>Relacione com Vendas e Orcamento<small>Calendario[Data] → Vendas[Data] e Orcamento[Data]</small></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. YTD e MTD -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">3/8</span></div>
+  <div class="conteudo">
+    <div class="medida">
+      <div class="cab"><span class="num">01</span><h3>Receita YTD</h3></div>
+      <p class="oque">Soma de janeiro até a data selecionada. Zera na virada do ano.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>01-receita-ytd.dax</span></div>
+<pre><span class="n">Receita YTD</span> =
+<span class="k">TOTALYTD</span> (
+    <span class="m">[Receita]</span>,
+    <span class="t">'Calendario'[Data]</span>
+)</pre></div>
+      <p class="dica"><span>Num gráfico de linha por mês, mostra a curva do ano.</span></p>
+    </div>
+    <div class="sep"></div>
+    <div class="medida">
+      <div class="cab"><span class="num">02</span><h3>Receita MTD</h3></div>
+      <p class="oque">Acumulado do mês até o dia selecionado.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>02-receita-mtd.dax</span></div>
+<pre><span class="n">Receita MTD</span> =
+<span class="k">TOTALMTD</span> (
+    <span class="m">[Receita]</span>,
+    <span class="t">'Calendario'[Data]</span>
+)</pre></div>
+      <p class="dica"><span>Boa para acompanhar a meta mensal antes do mês fechar.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. AA e Var % -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">4/8</span></div>
+  <div class="conteudo">
+    <div class="medida">
+      <div class="cab"><span class="num">03</span><h3>Receita AA</h3></div>
+      <p class="oque">O mesmo período, um ano antes. Base de toda comparação anual.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>03-receita-aa.dax</span></div>
+<pre><span class="n">Receita AA</span> =
+<span class="k">CALCULATE</span> (
+    <span class="m">[Receita]</span>,
+    <span class="k">SAMEPERIODLASTYEAR</span> ( <span class="t">'Calendario'[Data]</span> )
+)</pre></div>
+    </div>
+    <div class="sep"></div>
+    <div class="medida">
+      <div class="cab"><span class="num">04</span><h3>Var % AA</h3></div>
+      <p class="oque">Quanto a receita cresceu ou caiu contra o ano anterior.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>04-var-aa.dax</span></div>
+<pre><span class="n">Var % AA</span> =
+<span class="k">DIVIDE</span> (
+    <span class="m">[Receita]</span> - <span class="m">[Receita AA]</span>,
+    <span class="m">[Receita AA]</span>
+)</pre></div>
+      <p class="dica"><span>Formate como porcentagem. Sem ano anterior, <b>DIVIDE</b> devolve vazio em vez de erro.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. YTD AA e mês anterior -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">5/8</span></div>
+  <div class="conteudo">
+    <div class="medida">
+      <div class="cab"><span class="num">05</span><h3>Receita YTD AA</h3></div>
+      <p class="oque">O acumulado do ano passado até a mesma data. Ao lado da Receita YTD, mostra se o ano está melhor.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>05-receita-ytd-aa.dax</span></div>
+<pre><span class="n">Receita YTD AA</span> =
+<span class="k">CALCULATE</span> (
+    <span class="m">[Receita YTD]</span>,
+    <span class="k">SAMEPERIODLASTYEAR</span> ( <span class="t">'Calendario'[Data]</span> )
+)</pre></div>
+    </div>
+    <div class="sep"></div>
+    <div class="medida">
+      <div class="cab"><span class="num">06</span><h3>Receita do mês anterior</h3></div>
+      <p class="oque">O mês imediatamente antes do selecionado.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>06-mes-anterior.dax</span></div>
+<pre><span class="n">Receita Mês Anterior</span> =
+<span class="k">CALCULATE</span> (
+    <span class="m">[Receita]</span>,
+    <span class="k">DATEADD</span> ( <span class="t">'Calendario'[Data]</span>, -1, <span class="k">MONTH</span> )
+)</pre></div>
+      <p class="dica"><span>Troque <b>MONTH</b> por <b>QUARTER</b> para comparar com o trimestre anterior.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 12 meses e margem -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">6/8</span></div>
+  <div class="conteudo" style="gap:22px">
+    <div class="medida">
+      <div class="cab"><span class="num">07</span><h3>Receita dos últimos 12 meses</h3></div>
+      <p class="oque">Soma dos 12 meses até a data selecionada. Tira o efeito da sazonalidade.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>07-receita-12m.dax</span></div>
+<pre style="font-size:25px;line-height:1.4"><span class="n">Receita 12M</span> =
+<span class="k">CALCULATE</span> (
+    <span class="m">[Receita]</span>,
+    <span class="k">DATESINPERIOD</span> (
+        <span class="t">'Calendario'[Data]</span>,
+        <span class="k">MAX</span> ( <span class="t">'Calendario'[Data]</span> ),
+        -12,
+        <span class="k">MONTH</span>
+    )
+)</pre></div>
+    </div>
+    <div class="sep"></div>
+    <div class="medida">
+      <div class="cab"><span class="num">08</span><h3>Margem bruta %</h3></div>
+      <p class="oque">Quanto sobra da receita depois do custo.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>08-margem-bruta.dax</span></div>
+<pre style="font-size:25px;line-height:1.4"><span class="n">Margem Bruta %</span> =
+<span class="k">DIVIDE</span> (
+    <span class="m">[Receita]</span> - <span class="m">[Custo]</span>,
+    <span class="m">[Receita]</span>
+)</pre></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Desvio e participação -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">7/8</span></div>
+  <div class="conteudo" style="gap:22px">
+    <div class="medida">
+      <div class="cab"><span class="num">09</span><h3>Desvio % do orçado</h3></div>
+      <p class="oque">Quanto o realizado ficou acima ou abaixo do orçamento.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>09-desvio-orcado.dax</span></div>
+<pre style="font-size:25px;line-height:1.4"><span class="n">Desvio % Orçado</span> =
+<span class="k">DIVIDE</span> (
+    <span class="m">[Receita]</span> - <span class="m">[Orçado]</span>,
+    <span class="m">[Orçado]</span>
+)</pre></div>
+      <p class="dica"><span>Orçamento costuma vir por mês. Guarde a data no primeiro dia do mês para relacionar com a Calendario.</span></p>
+    </div>
+    <div class="sep"></div>
+    <div class="medida">
+      <div class="cab"><span class="num">10</span><h3>Participação %</h3></div>
+      <p class="oque">O peso de cada categoria no total do que está filtrado.</p>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>10-participacao.dax</span></div>
+<pre style="font-size:25px;line-height:1.4"><span class="n">Participação %</span> =
+<span class="k">DIVIDE</span> (
+    <span class="m">[Receita]</span>,
+    <span class="k">CALCULATE</span> (
+        <span class="m">[Receita]</span>,
+        <span class="k">ALLSELECTED</span> ( <span class="t">Produto[Categoria]</span> )
+    )
+)</pre></div>
+      <p class="dica"><span><b>ALLSELECTED</b> respeita os filtros da página. Com <b>ALL</b>, compara com o total geral.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Contato -->
+<section class="slide ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">8/8</span></div>
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:80px">
+    <span class="etiqueta">Próximo passo</span>
+    <h2 class="titulo m">Quer esse painel pronto com os <span class="mk">seus dados?</span></h2>
+    <p class="apoio">A Single monta o dashboard financeiro da sua empresa em Power BI, com estas medidas e atualização automática.</p>
+    <div class="contato">
+      <a href="https://wa.me/5521965725125"><svg><use href="#seta"/></svg>Falar no WhatsApp</a>
+      <a class="site" href="https://singletecnologia.netlify.app">singletecnologia.netlify.app</a>
+    </div>
+  </div>
+  <div class="rodape"><span style="font-weight:900;font-size:28px">Solicitou, entregamos.</span><span class="perfil">@singletecnologia</span></div>
+</section>
+</body>
+</html>

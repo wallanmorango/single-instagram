@@ -37,9 +37,13 @@ O público é o gerente de TI, de projetos ou de operações que responde pela e
 | Dica rápida de Power BI/DAX | Carrossel de 5 a 8 lâminas | 2 | Analistas |
 | Antes e depois | Reel 15–30 s ou carrossel | 1 | Analistas e gestores |
 | Erro comum | Carrossel | 1 | Analistas |
-| Negócio e resultado / Reforma Tributária (alternar) | Carrossel | 1 | Donos, gestores, contadores |
+| Reforma Tributária: assunto da semana | Carrossel | 1 | Donos, gestores, contadores |
 
 Todo post: gancho forte na 1ª lâmina (ou nos 2 primeiros segundos do Reel) e última lâmina com chamada para **salvar**, **enviar a um colega** ou **comentar uma palavra-chave** para receber um material.
+
+**Reforma Tributária (toda semana):** pegar um fato atual da semana (prazo que vence, mudança nas notas, regra nova do Simples, CBS e IBS) e mostrar o que muda na prática para a empresa ou o escritório de contabilidade. Pesquisar em fontes oficiais (Receita Federal, CGIBS, Portal da NF-e) e em imprensa econômica; citar a fonte e a data na lâmina de dados. Nunca afirmar prazo ou alíquota sem conferir na semana. A última lâmina leva ao **Raio-X da Reforma Tributária** (painel que lê os XMLs das notas e compara os impostos de hoje com CBS e IBS; página https://singletecnologia.netlify.app/reforma), com a palavra-chave `RAIOX`. Tom informativo, sem alarmismo e sem opinião política.
+
+**Material no direct:** todo post com `palavra_chave` entrega um material de verdade (PDF), nunca só o link do site. Os PDFs ficam em `materiais/` (fonte HTML em `materiais/fonte/`, no visual v2) e são gerados com `python scripts/pdf.py html materiais/fonte/NOME.html materiais/NOME.pdf`. Reaproveite um material existente quando o tema for o mesmo. Materiais prontos: `dax-financeiro.pdf` (10 medidas DAX) e `caminho-dados.pdf` (checklist com 10 perguntas).
 
 ## Formato de cada post
 
@@ -49,6 +53,8 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 - `01.jpg`, `02.jpg`, ... — geradas com `python scripts/render.py posts/AAAA-MM-DD/slides.html` (1080x1350, JPEG).
 - Reel: quadros com `render.py --reel --prefixo quadro` e vídeo com `scripts/reel.py` → `video.mp4` (1080x1920). Música só livre de direitos.
 - `legenda.txt` — legenda final, até 5 hashtags no fim.
+- `story-01.jpg` — story que avisa do post novo, gerado com `python scripts/gerar_story.py posts/AAAA-MM-DD` (usa a capa; se houver palavra-chave, chama para comentar). É publicado automaticamente logo depois do post.
+- `linkedin.pdf` e `linkedin.txt` — o carrossel em PDF (`python scripts/pdf.py carrossel posts/AAAA-MM-DD`) e o texto para o LinkedIn pessoal do Wallan: escrito na voz dele, gancho na 1ª linha, até 3 hashtags, link do material no fim do texto. A publicação no LinkedIn não é automática: só com o ok do Wallan (ele posta ou pede para o Claude agendar).
 - `post.json`:
 
 ```json
@@ -59,19 +65,25 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
   "legenda_arquivo": "legenda.txt",
   "palavra_chave": "DAX",
   "material_url": "https://wallanmorango.github.io/single-instagram/materiais/dax-financeiro.pdf",
+  "material_nome": "o PDF com 10 medidas DAX",
   "mensagem_dm": "Oi! Aqui está o material: {material}\n\nSe quiser conversar sobre dados na sua empresa, é só responder.",
+  "stories": ["story-01.jpg"],
   "trial_reel": false,
   "status": "aprovado"
 }
 ```
 
-`tipo`: `imagem`, `carrossel` (2 a 10 mídias) ou `reel` (`midias: ["video.mp4"]`, `capa` opcional). `palavra_chave` e `material_url` são opcionais. Os scripts preenchem `media_id`, `permalink` e `status: publicado` depois de publicar.
+`tipo`: `imagem`, `carrossel` (2 a 10 mídias) ou `reel` (`midias: ["video.mp4"]`, `capa` opcional). `palavra_chave`, `material_url`, `material_nome` e `stories` são opcionais. Só é publicado o que estiver com `status: aprovado` (use `pausado` para segurar um post). Os scripts preenchem `media_id`, `permalink`, `story_ids` e `status: publicado` depois de publicar.
 
 ## Rotina semanal de conteúdo (tarefa agendada de domingo)
 
 1. Ler o relatório mais recente em `relatorios/` e ver quais temas e formatos tiveram mais envios, salvos e seguidores ganhos.
 2. Pesquisar dúvidas reais de Power BI e DAX da semana (comunidade Microsoft Fabric, Reddit r/PowerBI) e os comentários recebidos.
-3. Criar 5 posts (segunda a sexta) seguindo as linhas editoriais, com pelo menos 1 Reel.
-4. Gerar as imagens com `render.py` e **olhar cada imagem** antes de seguir: texto cortado, sobreposição ou contraste ruim devem ser corrigidos.
-5. Validar com `python scripts/publicar.py --data AAAA-MM-DD --simular` para cada dia.
-6. Criar a branch `semana-AAAA-MM-DD` (data da segunda-feira), fazer commit e abrir um pull request com o título "Semana de AAAA-MM-DD", listando cada dia com tema, formato, legenda e links das imagens.
+3. Pesquisar as notícias da semana sobre a Reforma Tributária para o post da linha "assunto da semana".
+4. Criar 5 posts (segunda a sexta) seguindo as linhas editoriais e o sistema visual v2, com pelo menos 1 Reel. Cada post com palavra-chave ganha o seu material em PDF (novo ou reaproveitado).
+5. Gerar as imagens com `render.py`, o story com `gerar_story.py` e o PDF do LinkedIn com `pdf.py carrossel`, e **olhar cada imagem** antes de seguir: texto cortado, sobreposição, cartão cobrindo texto ou contraste ruim devem ser corrigidos. Conferir a conta de todo número de exemplo e cada fórmula.
+6. Validar com `python scripts/publicar.py --data AAAA-MM-DD --simular` para cada dia.
+7. Criar a branch `semana-AAAA-MM-DD` (data da segunda-feira), fazer commit e abrir um pull request com o título "Semana de AAAA-MM-DD", listando cada dia com tema, formato, legenda, texto do LinkedIn e links das imagens.
+8. Enquanto as fotos do Wallan não chegarem, lembrar no pull request: "Fotos pendentes: mande 5 a 10 fotos suas para usar nas capas e Reels." Quando chegarem (pasta `assets/fotos/`), usar em pelo menos 1 capa ou Reel por semana.
+
+**Atenção:** esta sessão não consegue enviar arquivos dentro de `.github/workflows/` (o GitHub recusa). Mudanças de agendamento precisam ser feitas pelo Wallan no site do GitHub.

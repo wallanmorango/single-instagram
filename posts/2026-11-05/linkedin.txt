@@ -12,6 +12,6 @@ Na prática, a Single resolve em um só lugar o que costuma ficar espalhado entr
 Sem burocracia, com clareza em cada entrega. Solicitou, entregamos.
 
 Para quem quer saber por onde começar, montei um checklist com 10 perguntas para ver se a sua empresa já decide com dados:
-https://wallanmorango.github.io/single-instagram/materiais/caminho-dados.pdf
+https://singletecnologia.netlify.app/materiais/caminho-dados.pdf
 
 #powerbi #businessintelligence #dados

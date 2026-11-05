@@ -54,7 +54,7 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 - Reel: quadros com `render.py --reel --prefixo quadro` e vídeo com `scripts/reel.py` → `video.mp4` (1080x1920). Música só livre de direitos.
 - `legenda.txt` — legenda final, até 5 hashtags no fim.
 - `story-01.jpg` — story que avisa do post novo, gerado com `python scripts/gerar_story.py posts/AAAA-MM-DD` (usa a capa; se houver palavra-chave, chama para comentar). É publicado automaticamente logo depois do post.
-- `linkedin.pdf` e `linkedin.txt` — o carrossel em PDF (`python scripts/pdf.py carrossel posts/AAAA-MM-DD`) e o texto para o LinkedIn pessoal do Wallan: escrito na voz dele, gancho na 1ª linha, até 3 hashtags, link do material no fim do texto. A publicação no LinkedIn não é automática: só com o ok do Wallan (ele posta ou pede para o Claude agendar).
+- `linkedin.pdf` e `linkedin.txt` — o carrossel em PDF (`python scripts/pdf.py carrossel posts/AAAA-MM-DD`) e o texto para o LinkedIn pessoal do Wallan: escrito na voz dele, gancho na 1ª linha, até 3 hashtags, link do material no fim do texto. Aprovar o pull request aprova também o LinkedIn: a tarefa agendada "LinkedIn — agendar o post aprovado do dia" (dias úteis, 8:43) pega o post do dia na main e agenda no LinkedIn do Wallan para as 12:15, como documento.
 - `post.json`:
 
 ```json

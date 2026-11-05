@@ -14,10 +14,21 @@ Automação do Instagram **@singletecnologia** (Single Tecnologia). O Claude cri
 ## Marca (identidade "Encaixe")
 
 - Cores: azul-marinho `#0B2A6F`, fundo escuro `#050F2B`, azul `#2563EB`, azul-claro `#60A5FA`, âmbar `#FFB400` (destaque, nunca em textos longos).
-- Fonte: Red Hat Display (500, 700, 900), já em `templates/fonts`.
+- Fonte: Red Hat Display (500, 700, 900) para tudo; JetBrains Mono só em código. Ambas em `templates/fonts`.
 - Símbolo: duas peças em S que se encaixam em volta de um losango âmbar (`assets/logo-single.svg`).
 - Slogans: "Solicitou, entregamos." e "Tudo conectado em um só lugar."
 - Site: https://singletecnologia.netlify.app · WhatsApp: https://wa.me/5521965725125
+
+## Sistema visual das artes (v2, "Entrega", aprovado pelo Wallan em 05/11/2026)
+
+O público é o gerente de TI, de projetos ou de operações que responde pela empresa. A arte precisa parar a rolagem e mostrar tecnologia funcionando. Texto sobre fundo liso parece "cartilha" e foi reprovado. Referências de padrão: `posts/2026-11-05` e `posts/2026-11-06`, ambos usando `templates/base.css`.
+
+- **Interface como imagem:** toda lâmina tem um objeto visual do mundo de dados desenhado em HTML: painel com gráfico, cartão de indicador (`.kpi`), janela de código (`.janela`), conversa (`.bolha`), chamado com status (`.status`), modelo de tabelas. Nada de foto de banco de imagens nem logo ou foto de empresa real.
+- **Título grande e pesado** (`.titulo`, `.titulo.m`, `.titulo.p`) com a faixa `.mk` (âmbar) ou `.mk.az` (azul) só no trecho que precisa ser lido primeiro. No máximo uma faixa por título.
+- **Profundidade:** cartões levemente inclinados (1° a 4°), sombra, `.halo` de luz atrás do objeto principal. Nunca cubra texto ou código com um cartão.
+- **Ritmo:** alternar `.noite` (escuro), claro e `.ambar` (só na última lâmina, a de ação). Capa com `.arraste`; todas com `.pontos` no rodapé.
+- **Números de exemplo** em painéis e cartões precisam fechar na conta (ex.: variação % calculada a partir dos valores mostrados).
+- **Legibilidade no celular:** nada abaixo de 22px; conteúdo dentro das margens de 80px e acima do rodapé (até ~1210px de altura).
 
 ## Linhas editoriais (por semana)
 

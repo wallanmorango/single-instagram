@@ -30,20 +30,53 @@ O público é o gerente de TI, de projetos ou de operações que responde pela e
 - **Números de exemplo** em painéis e cartões precisam fechar na conta (ex.: variação % calculada a partir dos valores mostrados).
 - **Legibilidade no celular:** nada abaixo de 22px; conteúdo dentro das margens de 80px e acima do rodapé (até ~1210px de altura).
 
-## Linhas editoriais (por semana)
+## Estratégia de conteúdo (aprovada pelo Wallan em 05/11/2026)
 
-| Linha | Formato | Por semana | Para quem |
-| --- | --- | --- | --- |
-| Dica rápida de Power BI/DAX | Carrossel de 5 a 8 lâminas | 2 | Analistas |
-| Antes e depois | Reel 15–30 s ou carrossel | 1 | Analistas e gestores |
-| Erro comum | Carrossel | 1 | Analistas |
-| Reforma Tributária: assunto da semana | Carrossel | 1 | Donos, gestores, contadores |
+O diferencial da Single é resolver de tudo em um só lugar: BI, automação, SQL, Python, sistemas e aplicativos. O conteúdo mostra **problemas resolvidos** e essa variedade, e não fica preso em dicas de DAX. Instagram e LinkedIn **não são cópia um do outro**.
 
-Todo post: gancho forte na 1ª lâmina (ou nos 2 primeiros segundos do Reel) e última lâmina com chamada para **salvar**, **enviar a um colega** ou **comentar uma palavra-chave** para receber um material.
+**Regras de variedade:** nenhuma tecnologia se repete na mesma semana; DAX no máximo 1 vez por semana; a dica técnica reveza DAX → SQL → Python → Power Automate → Power Query (nunca a mesma em 2 semanas seguidas). Antes de criar, leia os posts das 3 últimas semanas em `posts/` para não repetir tema nem gancho.
 
-**Reforma Tributária (toda semana):** pegar um fato atual da semana (prazo que vence, mudança nas notas, regra nova do Simples, CBS e IBS) e mostrar o que muda na prática para a empresa ou o escritório de contabilidade. Pesquisar em fontes oficiais (Receita Federal, CGIBS, Portal da NF-e) e em imprensa econômica; citar a fonte e a data na lâmina de dados. Nunca afirmar prazo ou alíquota sem conferir na semana. A última lâmina leva ao **Raio-X da Reforma Tributária** (painel que lê os XMLs das notas e compara os impostos de hoje com CBS e IBS; página https://singletecnologia.netlify.app/reforma), com a palavra-chave `RAIOX`. Tom informativo, sem alarmismo e sem opinião política.
+### Linhas
 
-**Material no direct:** todo post com `palavra_chave` entrega um material de verdade (PDF), nunca só o link do site. Os PDFs ficam em `materiais/` (fonte HTML em `materiais/fonte/`, no visual v2) e são gerados com `python scripts/pdf.py html materiais/fonte/NOME.html materiais/NOME.pdf`. Reaproveite um material existente quando o tema for o mesmo. Materiais prontos: `dax-financeiro.pdf` (10 medidas DAX) e `caminho-dados.pdf` (checklist com 10 perguntas).
+1. **Bastidores de entrega** (carro-chefe): problema real → solução → resultado, contando como foi construído. Fonte principal: o **Projeto da quinzena** (abaixo) e projetos próprios do Wallan (automação deste Instagram com IA e GitHub Actions a custo zero, leitor de XML de notas para contadores, app de reembolso de despesas com código aberto, simulador CLT x PJ, extrato do cartão que chega sozinho no Power BI, Raio-X da Reforma). Nunca use dado real de cliente nem nada do emprego do Wallan.
+2. **Um problema, 4 ferramentas:** o mesmo desafio resolvido em Excel, Power Query, SQL e Python (ex.: juntar 50 planilhas de uma pasta). Termina perguntando "qual é o seu jeito?".
+3. **Opinião:** uma posição clara que gera conversa, com respeito e sem política (ex.: "Ninguém pediu um dashboard. Pediram uma decisão."). Pode ser enquete.
+4. **Quanto custa o manual:** a conta de horas e dinheiro de uma tarefa repetitiva e a automação que acaba com ela. Fala com o gestor que paga.
+5. **Dados que contam história:** um dado público e neutro (ANP, Banco Central, IBGE, vagas de tecnologia) num painel com um insight. Sempre com fonte e data; números conferidos.
+6. **Reforma Tributária: assunto da semana** (toda semana, ver abaixo).
+7. **Dica técnica da semana** (1 por semana, revezando a tecnologia).
+
+### Instagram (@singletecnologia): 5 por semana, voz da empresa, para o gestor
+
+| Dia | Linha |
+| --- | --- |
+| Segunda | Bastidores de entrega |
+| Terça | Dica técnica da semana |
+| Quarta | Quanto custa o manual **ou** Um problema, 4 ferramentas |
+| Quinta | Reforma Tributária: assunto da semana |
+| Sexta | Dados que contam história **ou** Opinião |
+
+Pelo menos 1 Reel por semana (de preferência o Bastidores, com gravação de tela do projeto). Todo post: gancho forte na 1ª lâmina (ou nos 2 primeiros segundos do Reel) e última lâmina com chamada para **salvar**, **enviar a um colega** ou **comentar uma palavra-chave** para receber um material.
+
+### LinkedIn pessoal do Wallan: 3 por semana (terça, quarta e quinta, 12:15), primeira pessoa
+
+Escrito como o Wallan fala: história, aprendizado, opinião. Pode partir do mesmo tema do Instagram da semana, mas é reescrito para o LinkedIn (não é a legenda colada). Linhas preferidas: Bastidores (sempre que houver Projeto da quinzena), Opinião, Um problema e 4 ferramentas, Carreira (lições de 7 anos com dados). Formatos: carrossel em PDF, texto puro ou texto com 1 imagem. Quando houver material, termina com "Comente PALAVRA que eu te mando o link" (as respostas são preparadas pela tarefa de respostas do LinkedIn e aprovadas pelo Wallan). Até 3 hashtags. Nunca política.
+
+### Projeto da quinzena
+
+A cada 2 semanas, o Wallan desenvolve uma solução nova (aplicação, automação ou dashboard) e manda: o que é e que problema resolve (2 ou 3 frases), de 3 a 5 prints ou uma gravação de tela, as tecnologias e se o código ou modelo pode ser aberto. Ficam em `assets/projetos/AAAA-MM-DD-nome/` (notas.md + imagens/vídeo). Ciclo: **semana 1, bastidores** ("estou construindo X para resolver Y": post no LinkedIn + Reel com a tela); **semana 2, entrega** ("como fiz" no LinkedIn + carrossel antes e depois + Reel da demonstração; se o código ou modelo puder ser aberto, vira material com palavra-chave). Depois, o projeto vira exemplo nas outras linhas. Use só dados fictícios ou anonimizados nas artes. Se na quinzena não chegar projeto, siga com as outras linhas e lembre o Wallan no pull request.
+
+### Reforma Tributária (toda semana)
+
+Pegar um fato atual da semana (prazo que vence, mudança nas notas, regra nova do Simples, CBS e IBS) e mostrar o que muda na prática para a empresa ou o escritório de contabilidade. Pesquisar em fontes oficiais (Receita Federal, CGIBS, Portal da NF-e) e em imprensa econômica; citar a fonte e a data na lâmina de dados. Nunca afirmar prazo ou alíquota sem conferir na semana. A última lâmina leva ao **Raio-X da Reforma Tributária** (painel que lê os XMLs das notas e compara os impostos de hoje com CBS e IBS; página https://singletecnologia.netlify.app/reforma), com a palavra-chave `RAIOX`. Tom informativo, sem alarmismo e sem opinião política.
+
+### Materiais (o que a pessoa recebe ao comentar)
+
+Todo post com palavra-chave entrega um material de verdade, nunca só o link do site.
+
+- **Biblioteca Single** (`biblioteca/`, publicada em https://wallanmorango.github.io/single-instagram/biblioteca/): hoje com 60 medidas DAX por área, em `biblioteca/medidas.js`. Palavra-chave `DAX` sempre entrega a Biblioteca. Quando um post ensinar uma medida nova e útil, acrescente-a à Biblioteca (conferindo a fórmula). Depois virão as seções SQL (`SQL`), Python (`PYTHON`) e Automação: crie a seção quando houver pelo menos 20 itens bons.
+- **PDFs** em `materiais/` (fonte HTML em `materiais/fonte/`, no visual v2), gerados com `python scripts/pdf.py html materiais/fonte/NOME.html materiais/NOME.pdf`. Prontos: `caminho-dados.pdf` (checklist com 10 perguntas, palavra `SINGLE`) e `dax-financeiro.pdf` (10 medidas DAX, substituído pela Biblioteca).
+- Reaproveite um material existente quando o tema for o mesmo.
 
 ## Formato de cada post
 
@@ -54,7 +87,7 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 - Reel: quadros com `render.py --reel --prefixo quadro` e vídeo com `scripts/reel.py` → `video.mp4` (1080x1920). Música só livre de direitos.
 - `legenda.txt` — legenda final, até 5 hashtags no fim.
 - `story-01.jpg` — story que avisa do post novo, gerado com `python scripts/gerar_story.py posts/AAAA-MM-DD` (usa a capa; se houver palavra-chave, chama para comentar). É publicado automaticamente logo depois do post.
-- `linkedin.pdf` e `linkedin.txt` — o carrossel em PDF (`python scripts/pdf.py carrossel posts/AAAA-MM-DD`) e o texto para o LinkedIn pessoal do Wallan: escrito na voz dele, gancho na 1ª linha, até 3 hashtags, link do material no fim do texto. Aprovar o pull request aprova também o LinkedIn: a tarefa agendada "LinkedIn — agendar o post aprovado do dia" (dias úteis, 8:43) pega o post do dia na main e agenda no LinkedIn do Wallan para as 12:15, como documento.
+- LinkedIn (só nos dias com post no LinkedIn: terça, quarta e quinta): `linkedin.txt` (texto na voz do Wallan, gancho na 1ª linha, até 3 hashtags) e, se for carrossel, `linkedin.pdf`. O PDF pode ser o carrossel do Instagram (`python scripts/pdf.py carrossel posts/AAAA-MM-DD`) ou lâminas próprias em `linkedin.html` (`render.py posts/AAAA-MM-DD/linkedin.html --prefixo li-` e depois `pdf.py carrossel posts/AAAA-MM-DD li-`). Se o post do LinkedIn tiver palavra-chave, registre em `post.json` como `"linkedin": {"palavra_chave": "DAX", "material_url": "..."}`. Aprovar o pull request aprova também o LinkedIn: a tarefa agendada "LinkedIn — agendar o post aprovado do dia" (dias úteis, 8:43) agenda o `linkedin.txt` do dia para as 12:15, e a tarefa "LinkedIn — respostas à palavra-chave" prepara as respostas aos comentários para o Wallan aprovar.
 - `post.json`:
 
 ```json
@@ -79,11 +112,11 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 
 1. Ler o relatório mais recente em `relatorios/` e ver quais temas e formatos tiveram mais envios, salvos e seguidores ganhos.
 2. Pesquisar dúvidas reais de Power BI e DAX da semana (comunidade Microsoft Fabric, Reddit r/PowerBI) e os comentários recebidos.
-3. Pesquisar as notícias da semana sobre a Reforma Tributária para o post da linha "assunto da semana".
-4. Criar 5 posts (segunda a sexta) seguindo as linhas editoriais e o sistema visual v2, com pelo menos 1 Reel. Cada post com palavra-chave ganha o seu material em PDF (novo ou reaproveitado).
-5. Gerar as imagens com `render.py`, o story com `gerar_story.py` e o PDF do LinkedIn com `pdf.py carrossel`, e **olhar cada imagem** antes de seguir: texto cortado, sobreposição, cartão cobrindo texto ou contraste ruim devem ser corrigidos. Conferir a conta de todo número de exemplo e cada fórmula.
+3. Pesquisar as notícias da semana sobre a Reforma Tributária para o post da linha "assunto da semana", e ver se há Projeto da quinzena novo em `assets/projetos/`.
+4. Criar os 5 posts do Instagram e os 3 do LinkedIn (terça, quarta e quinta) seguindo a estratégia de conteúdo e o sistema visual v2, com pelo menos 1 Reel e respeitando as regras de variedade. Cada post com palavra-chave entrega o seu material (Biblioteca ou PDF, novo ou reaproveitado).
+5. Gerar as imagens com `render.py`, o story com `gerar_story.py` e o PDF do LinkedIn quando houver, e **olhar cada imagem** antes de seguir: texto cortado, sobreposição, cartão cobrindo texto ou contraste ruim devem ser corrigidos. Conferir a conta de todo número de exemplo e cada fórmula.
 6. Validar com `python scripts/publicar.py --data AAAA-MM-DD --simular` para cada dia.
-7. Criar a branch `semana-AAAA-MM-DD` (data da segunda-feira), fazer commit e abrir um pull request com o título "Semana de AAAA-MM-DD", listando cada dia com tema, formato, legenda, texto do LinkedIn e links das imagens.
+7. Criar a branch `semana-AAAA-MM-DD` (data da segunda-feira), fazer commit e abrir um pull request com o título "Semana de AAAA-MM-DD", listando cada dia com linha editorial, tema, formato, legenda, texto do LinkedIn e links das imagens.
 8. Enquanto as fotos do Wallan não chegarem, lembrar no pull request: "Fotos pendentes: mande 5 a 10 fotos suas para usar nas capas e Reels." Quando chegarem (pasta `assets/fotos/`), usar em pelo menos 1 capa ou Reel por semana.
 
 **Atenção:** esta sessão não consegue enviar arquivos dentro de `.github/workflows/` (o GitHub recusa). Mudanças de agendamento precisam ser feitas pelo Wallan no site do GitHub.

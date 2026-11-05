@@ -3,8 +3,10 @@
 Dois usos:
   python scripts/pdf.py html materiais/fonte/dax-financeiro.html materiais/dax-financeiro.pdf
       Cada <section class="slide"> do HTML vira uma página do PDF (texto selecionável e links clicáveis).
-  python scripts/pdf.py carrossel posts/2026-11-06
+  python scripts/pdf.py carrossel posts/2026-11-06 [prefixo]
       Junta 01.jpg, 02.jpg, ... do post em posts/AAAA-MM-DD/linkedin.pdf (carrossel para o LinkedIn).
+      Com prefixo (ex.: li-), junta li-01.jpg, li-02.jpg, ... (lâminas próprias do LinkedIn,
+      geradas com: python scripts/render.py posts/AAAA-MM-DD/linkedin.html --prefixo li-).
 """
 import sys
 from pathlib import Path
@@ -38,8 +40,8 @@ def html_para_pdf(html: Path, saida: Path):
     print(f"PDF gerado: {saida}")
 
 
-def carrossel_para_pdf(pasta: Path):
-    imagens = sorted(pasta.glob("[0-9][0-9].jpg"))
+def carrossel_para_pdf(pasta: Path, prefixo: str = ""):
+    imagens = sorted(pasta.glob(f"{prefixo}[0-9][0-9].jpg"))
     if not imagens:
         raise SystemExit(f"Nenhuma lâmina 01.jpg, 02.jpg... em {pasta}")
     paginas = [Image.open(i).convert("RGB") for i in imagens]
@@ -52,6 +54,6 @@ if __name__ == "__main__":
     if len(sys.argv) >= 4 and sys.argv[1] == "html":
         html_para_pdf(Path(sys.argv[2]), Path(sys.argv[3]))
     elif len(sys.argv) >= 3 and sys.argv[1] == "carrossel":
-        carrossel_para_pdf(Path(sys.argv[2]))
+        carrossel_para_pdf(Path(sys.argv[2]), sys.argv[3] if len(sys.argv) > 3 else "")
     else:
         raise SystemExit(__doc__)

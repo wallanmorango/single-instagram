@@ -8,6 +8,6 @@ Passe para o lado, copie as fórmulas e adapte no seu Power BI. E não esquece: 
 
 Salve para usar no próximo projeto e envie para quem ainda faz isso na mão no Excel.
 
-Bônus: comente DAX que eu te mando no direct um PDF com 10 medidas para o financeiro.
+Bônus: comente DAX que eu te mando no direct a Biblioteca com 60 medidas DAX prontas para copiar, separadas por área.
 
 #powerbi #dax #businessintelligence #analisededados #excel

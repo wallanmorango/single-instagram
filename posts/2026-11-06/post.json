@@ -14,10 +14,14 @@
   "palavra_chave": "DAX",
   "trial_reel": false,
   "status": "aprovado",
-  "material_url": "https://wallanmorango.github.io/single-instagram/materiais/dax-financeiro.pdf",
-  "material_nome": "o PDF com 10 medidas DAX",
-  "mensagem_dm": "Oi! Aqui está o PDF com as 10 medidas DAX para o financeiro: {material}\n\nSe quiser esse painel pronto com os dados da sua empresa, é só responder aqui.",
+  "material_url": "https://wallanmorango.github.io/single-instagram/biblioteca/",
+  "material_nome": "a Biblioteca com 60 medidas DAX",
+  "mensagem_dm": "Oi! Aqui está a Biblioteca DAX da Single, com 60 medidas prontas para copiar, separadas por área: {material}\n\nSe quiser esse painel pronto com os dados da sua empresa, é só responder aqui.",
   "stories": [
     "story-01.jpg"
-  ]
+  ],
+  "linkedin": {
+    "palavra_chave": "DAX",
+    "material_url": "https://wallanmorango.github.io/single-instagram/biblioteca/"
+  }
 }

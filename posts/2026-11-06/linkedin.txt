@@ -6,9 +6,8 @@
 
 No carrossel está a fórmula de cada uma, pronta para copiar e adaptar. E um aviso: sem tabela calendário marcada como tabela de datas, nenhuma delas funciona.
 
-Juntei essas e mais 7 em um PDF com 10 medidas DAX para o financeiro, cada uma com o que mostra e uma dica de uso:
-https://wallanmorango.github.io/single-instagram/materiais/dax-financeiro.pdf
+Também montei uma Biblioteca com 60 medidas DAX separadas por área: datas, financeiro, vendas, clientes, estoque e RH. Cada uma com o código e uma dica de uso.
 
-Salve para o próximo projeto e envie para quem ainda faz o acumulado na mão no Excel.
+Comente DAX que eu te mando o link.
 
 #powerbi #dax #dados

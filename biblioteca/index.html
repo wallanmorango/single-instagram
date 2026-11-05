@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Biblioteca DAX — Single Tecnologia</title>
+<meta name="description" content="60 medidas DAX prontas para copiar, separadas por área: datas, financeiro, vendas, clientes, estoque e RH.">
+<style>
+@font-face { font-family: "Red Hat Display"; font-weight: 500; src: url("../templates/fonts/red-hat-display-latin-500-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Red Hat Display"; font-weight: 700; src: url("../templates/fonts/red-hat-display-latin-700-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Red Hat Display"; font-weight: 900; src: url("../templates/fonts/red-hat-display-latin-900-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url("../templates/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; font-weight: 800; src: url("../templates/fonts/jetbrains-mono-latin-800-normal.woff2") format("woff2"); font-display: swap; }
+:root {
+  --noite: #050F2B; --marinho: #0B2A6F; --azul: #2563EB; --celeste: #60A5FA; --ambar: #FFB400;
+  --gelo: #EEF3FC; --tinta: #0A1A3D; --cinza: #4A5878; --nevoa: #B9C8E8; --linha: #DCE4F2;
+  --display: "Red Hat Display", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--gelo); color: var(--tinta); font-family: var(--display); -webkit-font-smoothing: antialiased; }
+.faixa { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.dentro { max-width: 980px; margin: 0 auto; }
+
+/* topo */
+header.faixa { color: #fff; padding-block: 28px 64px; background:
+  radial-gradient(520px 420px at 92% 0%, rgba(37,99,235,.6), transparent 70%),
+  radial-gradient(600px 500px at 0% 100%, rgba(11,42,111,.95), transparent 70%), var(--noite); position: relative; overflow: hidden; }
+header.faixa::before { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 30%, #000 10%, transparent 75%); }
+header .dentro { position: relative; display: flex; flex-direction: column; gap: 18px; }
+.marca { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 18px; letter-spacing: .04em; color: #fff; text-decoration: none; }
+.marca svg { width: 32px; height: 32px; }
+h1 { font-weight: 900; font-size: clamp(38px, 8vw, 72px); line-height: 1; letter-spacing: -.03em; margin-top: 18px; text-wrap: balance; max-width: 16ch; }
+h1 .mk { color: var(--noite); padding: 0 .12em; background: linear-gradient(transparent 14%, var(--ambar) 14%, var(--ambar) 94%, transparent 94%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+header p { font-size: 18px; line-height: 1.5; color: var(--nevoa); max-width: 58ch; }
+.areas-resumo { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.areas-resumo span { font-weight: 700; font-size: 14px; padding: 7px 12px; border-radius: 99px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
+.areas-resumo b { color: var(--ambar); font-variant-numeric: tabular-nums; }
+
+main.faixa { padding-block: 0 56px; }
+main .dentro { display: flex; flex-direction: column; gap: 22px; margin-top: -36px; position: relative; }
+
+/* antes de começar */
+details.antes { background: #fff; border: 1px solid var(--linha); border-radius: 20px; box-shadow: 0 20px 50px -30px rgba(5,15,43,.45); }
+details.antes summary { cursor: pointer; list-style: none; padding: 18px 20px; font-weight: 900; font-size: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+details.antes summary::-webkit-details-marker { display: none; }
+details.antes summary small { font-weight: 500; font-size: 14px; color: var(--cinza); display: block; margin-top: 2px; }
+details.antes summary::after { content: "+"; font-size: 26px; color: var(--azul); line-height: 1; }
+details.antes[open] summary::after { content: "−"; }
+.antes-corpo { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.5; color: var(--cinza); }
+.antes-corpo ol { padding-left: 20px; display: grid; gap: 6px; }
+.antes-corpo b { color: var(--tinta); }
+
+/* busca e filtros */
+.controles { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--gelo); padding-block: 10px; display: flex; flex-direction: column; gap: 10px; }
+.busca { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--linha); border-radius: 16px; padding: 0 14px; }
+.busca:focus-within { border-color: var(--azul); }
+.busca svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--cinza); }
+.busca input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: 500 17px var(--display); color: var(--tinta); padding: 14px 0; }
+.filtros { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.filtros button { flex-shrink: 0; font: 700 15px var(--display); padding: 9px 14px; border-radius: 99px; border: 1.5px solid var(--linha); background: #fff; color: var(--tinta); cursor: pointer; }
+.filtros button[aria-pressed="true"] { background: var(--noite); color: #fff; border-color: var(--noite); }
+.filtros button:focus-visible, .copiar:focus-visible, details summary:focus-visible, a:focus-visible { outline: 3px solid var(--celeste); outline-offset: 2px; }
+.contagem { font-size: 14px; color: var(--cinza); font-weight: 700; }
+
+/* cartões */
+.lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 820px) { .lista { grid-template-columns: 1fr 1fr; } }
+.medida { background: #fff; border: 1px solid var(--linha); border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.medida .tag { align-self: flex-start; font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 99px; background: rgba(37,99,235,.1); color: var(--azul); }
+.medida h2 { font-weight: 900; font-size: 21px; letter-spacing: -.01em; line-height: 1.15; }
+.medida .oque { font-size: 15.5px; line-height: 1.45; color: var(--cinza); }
+.codigo { position: relative; background: #0A1430; border-radius: 14px; border: 1px solid rgba(96,165,250,.25); min-width: 0; }
+.codigo pre { overflow-x: auto; padding: 46px 16px 16px; font-family: var(--mono); font-weight: 500; font-size: 13.5px; line-height: 1.6; color: #E4ECFB; tab-size: 4; }
+.codigo .f { color: #7CB7FF; font-weight: 800; }
+.codigo .t { color: #FFC94D; }
+.codigo .m { color: #6EE7A8; }
+.codigo .s { color: #F9A8D4; }
+.codigo .n { color: #FDBA74; }
+.codigo .v { color: #C4B5FD; font-weight: 800; }
+.copiar { position: absolute; top: 8px; right: 8px; font: 700 13px var(--display); padding: 7px 12px; border-radius: 10px; border: 0; background: var(--ambar); color: var(--noite); cursor: pointer; }
+.copiar.ok { background: #22C55E; color: #fff; }
+.dica { display: flex; gap: 10px; font-size: 14.5px; line-height: 1.45; color: var(--cinza); }
+.dica::before { content: ""; flex-shrink: 0; width: 10px; height: 10px; margin-top: 6px; border-radius: 2px; background: var(--ambar); transform: rotate(45deg); }
+.vazio { padding: 30px 10px; text-align: center; color: var(--cinza); font-size: 16px; }
+
+/* rodapé */
+footer.faixa { background: var(--ambar); color: var(--noite); padding-block: 40px calc(40px + env(safe-area-inset-bottom, 0px)); }
+footer .dentro { display: flex; flex-direction: column; gap: 14px; }
+footer h3 { font-weight: 900; font-size: clamp(26px, 5vw, 40px); line-height: 1.05; letter-spacing: -.02em; max-width: 22ch; text-wrap: balance; }
+footer p { font-size: 17px; line-height: 1.5; max-width: 56ch; color: #3A2A00; }
+footer .botoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+footer a.btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; font-size: 17px; padding: 14px 22px; border-radius: 99px; background: var(--noite); color: #fff; }
+footer a.btn.contorno { background: transparent; color: var(--noite); border: 2.5px solid var(--noite); }
+footer small { font-weight: 700; font-size: 14px; color: #5A4100; }
+@media (prefers-reduced-motion: no-preference) { .copiar { transition: background .2s; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="lupa" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="faixa">
+  <div class="dentro">
+    <a class="marca" href="https://singletecnologia.netlify.app"><svg><use href="#s-claro"/></svg>SINGLE</a>
+    <h1>Biblioteca <span class="mk">DAX</span></h1>
+    <p><b style="color:#fff">60 medidas prontas para copiar</b>, separadas por área. Cada uma com o que mostra, o código e uma dica de uso. Ajuste os nomes das tabelas para os do seu modelo.</p>
+    <div class="areas-resumo" id="resumo"></div>
+  </div>
+</header>
+
+<main class="faixa">
+  <div class="dentro">
+    <details class="antes">
+      <summary><span>Antes de começar<small>Medidas base e tabela calendário que todas usam</small></span></summary>
+      <div class="antes-corpo">
+        <p>As medidas desta biblioteca usam seis medidas base. Crie estas primeiro, trocando <b>Vendas</b>, <b>Orcamento</b> e <b>Despesas</b> pelos nomes das suas tabelas:</p>
+        <div class="codigo"><button class="copiar" type="button" data-base>Copiar</button><pre id="base"></pre></div>
+        <ol>
+          <li>Crie a tabela <b>Calendario</b>: <code>Calendario = CALENDARAUTO ()</code></li>
+          <li>Acrescente a coluna <b>AnoMes</b>: <code>AnoMes = FORMAT ( 'Calendario'[Data], "YYYY-MM" )</code></li>
+          <li>Marque como tabela de datas: Ferramentas da tabela → Marcar como tabela de datas.</li>
+          <li>Relacione Calendario[Data] com a coluna de data das suas tabelas de fatos.</li>
+        </ol>
+      </div>
+    </details>
+
+    <div class="controles">
+      <label class="busca"><svg aria-hidden="true"><use href="#lupa"/></svg><input id="q" type="search" placeholder="Buscar: margem, cliente, RANKX..." aria-label="Buscar medida"></label>
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar por área"></div>
+      <span class="contagem" id="contagem" aria-live="polite"></span>
+    </div>
+
+    <div class="lista" id="lista"></div>
+  </div>
+</main>
+
+<footer class="faixa">
+  <div class="dentro">
+    <h3>Quer essas medidas funcionando com os dados da sua empresa?</h3>
+    <p>A Single monta o seu painel em Power BI com atualização automática, e cuida também de automação, SQL, Python e sistemas. Tudo em um só lugar.</p>
+    <div class="botoes">
+      <a class="btn" href="https://wa.me/5521965725125">Falar no WhatsApp</a>
+      <a class="btn contorno" href="https://singletecnologia.netlify.app">singletecnologia.netlify.app</a>
+    </div>
+    <small>Solicitou, entregamos. · @singletecnologia</small>
+  </div>
+</footer>
+
+<script src="medidas.js"></script>
+<script>
+const FUNCS = /^(VAR|RETURN|TRUE|FALSE|DESC|ASC|DENSE|DAY|MONTH|QUARTER|YEAR)$/;
+function destacar(codigo) {
+  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const re = /("[^"]*")|('[^']*'\[[^\]]+\]|\b[A-Za-zÀ-ú_][\wÀ-ú]*\[[^\]]+\])|(\[[^\]]+\])|(\b[A-Z][A-Z0-9_.]*\b)(?=\s*\()|(\b(?:VAR|RETURN)\b)|(-?\b\d+(?:\.\d+)?\b)/g;
+  let out = "", i = 0, m;
+  while ((m = re.exec(codigo))) {
+    out += esc(codigo.slice(i, m.index));
+    const [txt, str, col, med, fn, kw, num] = m;
+    const cls = str ? "s" : col ? "t" : med ? "m" : fn ? "f" : kw ? "v" : "n";
+    out += `<span class="${cls}">${esc(txt)}</span>`;
+    i = m.index + txt.length;
+  }
+  return out + esc(codigo.slice(i));
+}
+const lista = document.getElementById("lista"), q = document.getElementById("q");
+const areas = [...new Set(MEDIDAS.map(m => m.area))];
+let areaAtual = "Todas";
+const sem = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+document.getElementById("base").innerHTML = destacar(BASE);
+document.getElementById("resumo").innerHTML = areas.map(a => `<span><b>${MEDIDAS.filter(m => m.area === a).length}</b> ${a}</span>`).join("");
+const filtros = document.getElementById("filtros");
+["Todas", ...areas].forEach(a => {
+  const b = document.createElement("button");
+  b.type = "button"; b.textContent = a; b.setAttribute("aria-pressed", String(a === areaAtual));
+  b.addEventListener("click", () => { areaAtual = a; filtros.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); desenhar(); });
+  filtros.appendChild(b);
+});
+
+function copiar(botao, texto) {
+  const feito = () => { botao.textContent = "Copiado"; botao.classList.add("ok"); setTimeout(() => { botao.textContent = "Copiar"; botao.classList.remove("ok"); }, 1600); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(texto).then(feito).catch(() => selecionar(botao));
+  } else selecionar(botao);
+}
+function selecionar(botao) {
+  const pre = botao.parentElement.querySelector("pre"); const r = document.createRange(); r.selectNodeContents(pre);
+  const s = getSelection(); s.removeAllRanges(); s.addRange(r); botao.textContent = "Selecionado";
+}
+document.querySelector("[data-base]").addEventListener("click", e => copiar(e.currentTarget, BASE));
+
+function desenhar() {
+  const termo = sem(q.value.trim());
+  const itens = MEDIDAS.filter(m => (areaAtual === "Todas" || m.area === areaAtual) &&
+    (!termo || sem([m.nome, m.oque, m.codigo, m.dica || "", m.area].join(" ")).includes(termo)));
+  lista.innerHTML = "";
+  if (!itens.length) { lista.innerHTML = '<p class="vazio">Nenhuma medida encontrada. Tente outro termo ou escolha "Todas".</p>'; }
+  itens.forEach(m => {
+    const art = document.createElement("article"); art.className = "medida";
+    art.innerHTML = `<span class="tag">${m.area}</span><h2></h2><p class="oque"></p>
+      <div class="codigo"><button class="copiar" type="button">Copiar</button><pre>${destacar(m.codigo)}</pre></div>`;
+    art.querySelector("h2").textContent = m.nome;
+    art.querySelector(".oque").textContent = m.oque;
+    if (m.dica) { const d = document.createElement("p"); d.className = "dica"; d.textContent = m.dica; art.appendChild(d); }
+    art.querySelector(".copiar").setAttribute("aria-label", "Copiar a medida " + m.nome);
+    art.querySelector(".copiar").addEventListener("click", e => copiar(e.currentTarget, m.codigo));
+    lista.appendChild(art);
+  });
+  document.getElementById("contagem").textContent = itens.length === MEDIDAS.length ? `${itens.length} medidas` : `${itens.length} de ${MEDIDAS.length} medidas`;
+}
+q.addEventListener("input", desenhar);
+desenhar();
+</script>
+</body>
+</html>

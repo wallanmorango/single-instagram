@@ -3,9 +3,9 @@ Um dashboard que levava 7h35 para atualizar durante o dia agora atualiza em cerc
 Mesmo dashboard. Mesmas regras de negócio. Mesmos números, conferidos na vírgula.
 
 O cenário:
-Um dashboard de retenção no Power BI, alimentado por SQL nativo e com várias mesclagens no Power Query.
+Um dashboard de Clientes no Power BI, alimentado por SQL nativo e com várias mesclagens no Power Query.
 • Na madrugada, a atualização levava em média 1h48 (e já chegou a 3h25)
-• Durante o dia, com o banco concorrido, levou 7h35 para concluir e chegou a falhar depois de 8h rodando
+• Durante o dia, no horário de pico, levou 7h35 para concluir e chegou a falhar depois de 8h rodando
 • No Desktop, a query principal passava de 100 minutos e nem terminava
 
 O diagnóstico: a query fazia trabalho desnecessário.

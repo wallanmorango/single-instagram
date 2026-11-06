@@ -99,10 +99,10 @@
   <div class="conteudo">
     <span class="etiqueta">O cenário</span>
     <h2 class="titulo p">Um dashboard que virou <span class="mk az">gargalo</span></h2>
-    <p class="apoio">Retenção de clientes no Power BI, alimentado por SQL nativo e com várias mesclagens no Power Query.</p>
+    <p class="apoio">Um dashboard de Clientes no Power BI, alimentado por SQL nativo e com várias mesclagens no Power Query.</p>
     <div class="pilha">
       <div class="cartao linha-kpi"><div class="rot">Na madrugada<small>média, com pico de 3h25</small></div><div class="val">1h48</div></div>
-      <div class="cartao linha-kpi"><div class="rot">Durante o dia<small>com o banco concorrido</small></div><div class="val">7h35</div></div>
+      <div class="cartao linha-kpi"><div class="rot">Durante o dia<small>no horário de pico</small></div><div class="val">7h35</div></div>
       <div class="cartao linha-kpi"><div class="rot">No Desktop<small>a query principal nem terminava</small></div><div class="val">100+ min</div></div>
     </div>
     <div class="cartao carregando"><span class="gira"></span><div><b>Atualizando conjunto de dados…</b><span>8h08 em execução</span></div><span class="erro">Falhou</span></div>
@@ -151,11 +151,12 @@
     <span class="etiqueta">Na prática</span>
     <h2 class="titulo p">Antes e depois, <span class="mk az">no SQL</span></h2>
     <div class="janela">
-      <div class="barra"><i></i><i></i><i></i><span>otimizacao.sql</span></div>
-<pre class="sql"><span class="c">-- 1 leitura só, já filtrada</span>
+      <div class="barra"><i></i><i></i><i></i><span>exemplo-ficticio.sql</span></div>
+<pre class="sql"><span class="c">-- exemplo com nomes fictícios</span>
+<span class="c">-- 1 leitura só, já filtrada</span>
 <span class="k">SELECT</span> ClienteID, Data, Valor
-<span class="k">INTO</span> <span class="t">#base</span>
-<span class="k">FROM</span> <span class="t">Movimento</span>
+<span class="k">INTO</span> <span class="t">#pedidos</span>
+<span class="k">FROM</span> <span class="t">Pedidos</span>
 <span class="k">WHERE</span> Data >= <span class="m">@Inicio</span>;
 
 <span class="c">-- antes: FORMAT(Data, 'yyyy-MM-01')</span>

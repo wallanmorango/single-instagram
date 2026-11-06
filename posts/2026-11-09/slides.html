@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>De 7h35 para 30 minutos — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.conteudo { margin-top: 44px; display: flex; flex-direction: column; gap: 30px; }
+.capa-txt { margin-top: auto; padding-bottom: 150px; display: flex; flex-direction: column; gap: 26px; }
+
+/* capa: gráfico de barras do tempo de atualização */
+.palco { position: absolute; left: 80px; right: 80px; top: 150px; height: 560px; z-index: 2; }
+.grafico { position: absolute; left: 0; right: 40px; top: 20px; padding: 34px 38px 30px; transform: rotate(-1.5deg); }
+.grafico .cab { display: flex; justify-content: space-between; align-items: baseline; font-weight: 900; font-size: 28px; }
+.grafico .cab span { font-weight: 700; font-size: 22px; color: var(--nevoa); }
+.barra { display: grid; grid-template-columns: 210px 1fr; gap: 18px; align-items: center; margin-top: 22px; }
+.barra .rot { font-weight: 700; font-size: 24px; line-height: 1.2; }
+.barra .rot small { display: block; font-weight: 500; font-size: 21px; color: var(--nevoa); }
+.barra .trilho { position: relative; height: 46px; }
+.barra .valor { height: 100%; border-radius: 10px; background: linear-gradient(90deg, #E2552B, #F97316); display: flex; align-items: center; justify-content: flex-end; }
+.barra .valor.dep { background: linear-gradient(90deg, var(--azul), var(--celeste)); box-shadow: 0 0 30px rgba(96,165,250,.7); }
+.barra .num { position: absolute; top: 50%; transform: translateY(-50%); font-weight: 900; font-size: 26px; white-space: nowrap; }
+.barra .num small { font-weight: 700; font-size: 18px; color: var(--nevoa); margin-left: 6px; }
+.selo { position: absolute; right: 0; top: 400px; transform: rotate(4deg); padding: 22px 30px; }
+.selo .val { font-size: 72px; }
+
+/* cenário */
+.pilha { display: grid; gap: 20px; }
+.linha-kpi { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 26px 30px; }
+.linha-kpi .rot { font-weight: 900; font-size: 32px; line-height: 1.2; }
+.linha-kpi .rot small { display: block; font-weight: 500; font-size: 25px; color: var(--cinza); margin-top: 6px; }
+.linha-kpi .val { font-weight: 900; font-size: 60px; letter-spacing: -.03em; color: #C2410C; font-variant-numeric: tabular-nums; }
+.carregando { display: flex; align-items: center; gap: 18px; padding: 22px 28px; margin-top: 6px; transform: rotate(-1.5deg); }
+.carregando .gira { width: 40px; height: 40px; border-radius: 99px; border: 5px solid #E3EAF7; border-top-color: #F97316; flex-shrink: 0; }
+.carregando b { font-weight: 900; font-size: 28px; }
+.carregando span { font-weight: 500; font-size: 24px; color: var(--cinza); display: block; }
+.carregando .erro { margin-left: auto; font-weight: 900; font-size: 22px; padding: 8px 16px; border-radius: 99px; background: rgba(244,63,94,.13); color: #BE123C; }
+
+/* diagnóstico */
+.desperdicio { list-style: none; display: grid; gap: 22px; margin-top: 14px; }
+.desperdicio li { display: flex; gap: 24px; align-items: flex-start; padding: 34px 32px; font-weight: 700; font-size: 36px; line-height: 1.25; }
+.desperdicio .x { flex-shrink: 0; width: 52px; height: 52px; border-radius: 14px; background: rgba(244,63,94,.18); color: #FB7185; font-weight: 900; font-size: 30px; display: flex; align-items: center; justify-content: center; }
+.desperdicio small { display: block; font-weight: 500; font-size: 27px; color: var(--nevoa); margin-top: 6px; }
+
+/* mudanças */
+.mudancas { list-style: none; display: grid; gap: 14px; counter-reset: m; }
+.mudancas li { counter-increment: m; display: flex; gap: 20px; align-items: flex-start; padding: 20px 26px; font-weight: 700; font-size: 30px; line-height: 1.25; }
+.mudancas li::before { content: counter(m); flex-shrink: 0; width: 50px; height: 50px; border-radius: 14px; background: var(--azul); color: #fff; font-weight: 900; font-size: 26px; display: flex; align-items: center; justify-content: center; }
+.mudancas small { display: block; font-weight: 500; font-size: 24px; color: var(--cinza); margin-top: 4px; }
+.janela pre.sql { font-size: 26px; line-height: 1.5; padding: 24px 30px 28px; }
+
+/* resultado */
+.grade3 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grade3 .kpi { min-width: 0; }
+.grade3 .kpi .val { font-size: 54px; }
+.grade3 .kpi.largo { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.de-para { display: flex; align-items: baseline; gap: 14px; }
+.de-para s { font-weight: 700; font-size: 32px; color: var(--nevoa); text-decoration-thickness: 3px; }
+
+.cta { margin-top: 10px; align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 36px; padding: 24px 40px; border-radius: 99px; }
+.cta svg { width: 36px; height: 36px; stroke: var(--ambar); fill: var(--ambar); }
+.pergunta { margin-top: 40px; padding: 28px 32px; transform: rotate(-1.5deg); font-weight: 900; font-size: 38px; line-height: 1.25; }
+.pergunta small { display: block; font-weight: 500; font-size: 26px; color: var(--cinza); margin-top: 8px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="palco">
+    <div class="halo" style="width:420px;height:300px;left:120px;top:330px;background:rgba(37,99,235,.55)"></div>
+    <div class="vidro grafico">
+      <div class="cab">Tempo de atualização<span>Power BI Service</span></div>
+      <div class="barra"><div class="rot">Antes<small>de dia, falhou</small></div><div class="trilho"><div class="valor" style="width:78%"></div><span class="num" style="left:calc(78% + 14px)">8h08</span></div></div>
+      <div class="barra"><div class="rot">Antes<small>de dia, concluída</small></div><div class="trilho"><div class="valor" style="width:72.7%"></div><span class="num" style="left:calc(72.7% + 14px)">7h35</span></div></div>
+      <div class="barra"><div class="rot">Antes<small>madrugada, média</small></div><div class="trilho"><div class="valor" style="width:17.3%"></div><span class="num" style="left:calc(17.3% + 14px)">1h48</span></div></div>
+      <div class="barra"><div class="rot" style="color:var(--celeste)">Depois<small>de dia, média</small></div><div class="trilho"><div class="valor dep" style="width:4.8%"></div><span class="num" style="left:calc(4.8% + 14px);color:var(--celeste)">~30 min</span></div></div>
+    </div>
+    <div class="cartao kpi selo"><div class="rot">em horário comercial</div><div class="val">15x</div><span class="var sobe">▲ mais rápido</span></div>
+  </div>
+  <div class="capa-txt">
+    <span class="etiqueta">Case real: Power BI + SQL Server</span>
+    <h1 class="titulo m">De 7h35 para <span class="mk">30 minutos</span></h1>
+    <p class="apoio">Mesmas regras de negócio, mesmos números. Só o caminho mudou.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i class="at"></i><i></i><i></i><i></i><i></i><i></i></div><span class="arraste">Arraste <svg><use href="#seta"/></svg></span></div>
+</section>
+
+<!-- 2. Cenário -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">O cenário</span>
+    <h2 class="titulo p">Um dashboard que virou <span class="mk az">gargalo</span></h2>
+    <p class="apoio">Um dashboard de Clientes no Power BI, alimentado por SQL nativo e com várias mesclagens no Power Query.</p>
+    <div class="pilha">
+      <div class="cartao linha-kpi"><div class="rot">Na madrugada<small>média, com pico de 3h25</small></div><div class="val">1h48</div></div>
+      <div class="cartao linha-kpi"><div class="rot">Durante o dia<small>no horário de pico</small></div><div class="val">7h35</div></div>
+      <div class="cartao linha-kpi"><div class="rot">No Desktop<small>a query principal nem terminava</small></div><div class="val">100+ min</div></div>
+    </div>
+    <div class="cartao carregando"><span class="gira"></span><div><b>Atualizando conjunto de dados…</b><span>8h08 em execução</span></div><span class="erro">Falhou</span></div>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i class="at"></i><i></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 3. Diagnóstico -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">O diagnóstico</span>
+    <h2 class="titulo p">A query fazia <span class="mk">trabalho desnecessário</span></h2>
+    <ul class="desperdicio">
+      <li class="vidro"><span class="x">✕</span><div>Processava o histórico inteiro<small>e só no final descartava o que não seria usado</small></div></li>
+      <li class="vidro"><span class="x">✕</span><div>Lia a mesma tabela 3 vezes</div></li>
+      <li class="vidro"><span class="x">✕</span><div>Repetia a mesma agregação pesada 2 vezes</div></li>
+      <li class="vidro"><span class="x">✕</span><div>Fazia as junções na memória<small>as mesclagens do Power Query obrigavam a baixar tudo antes</small></div></li>
+    </ul>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i class="at"></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 4. O que mudou -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:24px">
+    <span class="etiqueta">O que mudou</span>
+    <h2 class="titulo p">6 ajustes, <span class="mk az">zero regra alterada</span></h2>
+    <ol class="mudancas">
+      <li class="cartao"><div>Filtrar o período na primeira leitura<small>e não no fim da query</small></div></li>
+      <li class="cartao"><div>Ler cada tabela uma vez só<small>em tabelas temporárias (#temp): no SQL Server, a CTE é recalculada a cada uso</small></div></li>
+      <li class="cartao"><div>DATEFROMPARTS no lugar de FORMAT<small>o mesmo primeiro dia do mês, com muito menos custo</small></div></li>
+      <li class="cartao"><div>Função de janela no lugar de auto-junção</div></li>
+      <li class="cartao"><div>Uma agregação no lugar de duas<small>separando os meses com CASE</small></div></li>
+      <li class="cartao"><div>Relacionamentos no modelo<small>no lugar das mesclagens do Power Query</small></div></li>
+    </ol>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i class="at"></i><i></i><i></i></div></div>
+</section>
+
+<!-- 5. No código -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">Na prática</span>
+    <h2 class="titulo p">Antes e depois, <span class="mk az">no SQL</span></h2>
+    <div class="janela">
+      <div class="barra"><i></i><i></i><i></i><span>exemplo-ficticio.sql</span></div>
+<pre class="sql"><span class="c">-- exemplo com nomes fictícios</span>
+<span class="c">-- 1 leitura só, já filtrada</span>
+<span class="k">SELECT</span> ClienteID, Data, Valor
+<span class="k">INTO</span> <span class="t">#pedidos</span>
+<span class="k">FROM</span> <span class="t">Pedidos</span>
+<span class="k">WHERE</span> Data >= <span class="m">@Inicio</span>;
+
+<span class="c">-- antes: FORMAT(Data, 'yyyy-MM-01')</span>
+<span class="k">DATEFROMPARTS</span>(<span class="k">YEAR</span>(Data), <span class="k">MONTH</span>(Data), 1)
+
+<span class="c">-- antes: a tabela juntada com ela mesma</span>
+<span class="k">MAX</span>(Data) <span class="k">OVER</span> (<span class="k">PARTITION BY</span> ClienteID)</pre>
+    </div>
+    <p class="dica"><span>Para medir cada etapa: <b>SET STATISTICS TIME, IO ON</b> no SSMS. Ele mostra onde o tempo vai e se a query está calculando ou só esperando.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i class="at"></i><i></i></div></div>
+</section>
+
+<!-- 6. Resultado e chamada -->
+<section class="slide ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:24px">
+    <span class="etiqueta">O resultado</span>
+    <div class="grade3">
+      <div class="cartao kpi"><div class="rot">Query principal</div><div class="de-para"><s>100+ min</s><div class="val">9 min</div></div></div>
+      <div class="cartao kpi"><div class="rot">Atualização de dia</div><div class="de-para"><s>7h35</s><div class="val">~30 min</div></div></div>
+      <div class="cartao kpi largo"><div><div class="rot">Números validados antes de ir para produção</div><div class="val">100%</div></div><span class="status">Mesmas regras de negócio</span></div>
+    </div>
+    <h2 class="titulo p" style="font-size:64px">Performance raramente pede uma máquina maior. Quase sempre pede <span class="mk">menos trabalho desnecessário.</span></h2>
+    <span class="cta"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Salve para o próximo BI lento</span>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i></i><i class="at"></i></div><span style="font-weight:900;font-size:26px">singletecnologia.netlify.app</span></div>
+</section>
+</body>
+</html>

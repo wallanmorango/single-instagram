@@ -1,0 +1,18 @@
+Um dashboard que levava 7h35 para atualizar durante o dia hoje atualiza em cerca de 30 minutos. ⚡
+
+Mesmas regras de negócio. Mesmos números, conferidos na vírgula. Só o caminho mudou.
+
+O case é do Wallan Jorge, fundador da Single: um BI de Clientes em Power BI e SQL Server que tinha virado gargalo, chegando a falhar depois de 8 horas atualizando.
+
+O segredo não foi uma máquina maior. Foi tirar trabalho desnecessário da query:
+→ filtrar o período logo na primeira leitura
+→ ler cada tabela uma vez só
+→ trocar FORMAT por DATEFROMPARTS
+→ função de janela no lugar de juntar a tabela com ela mesma
+→ relacionamentos no modelo no lugar de mesclagens
+
+Arraste para ver o antes e depois no SQL.
+
+Salve para o próximo BI lento e conta aqui: qual foi a maior otimização que você já fez?
+
+#powerbi #sql #sqlserver #microsoftfabric #businessintelligence

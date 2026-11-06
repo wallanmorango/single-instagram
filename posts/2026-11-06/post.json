@@ -13,7 +13,7 @@
   "legenda_arquivo": "legenda.txt",
   "palavra_chave": "DAX",
   "trial_reel": false,
-  "status": "aprovado",
+  "status": "publicado",
   "material_url": "https://singletecnologia.netlify.app/biblioteca",
   "material_nome": "a Biblioteca com 60 medidas DAX",
   "mensagem_dm": "Oi! Aqui está a Biblioteca DAX da Single, com 60 medidas prontas para copiar, separadas por área: {material}\n\nSe quiser esse painel pronto com os dados da sua empresa, é só responder aqui.",
@@ -23,5 +23,11 @@
   "linkedin": {
     "palavra_chave": "DAX",
     "material_url": "https://singletecnologia.netlify.app/biblioteca"
-  }
+  },
+  "media_id": "18098809055444710",
+  "permalink": "https://www.instagram.com/p/DfZ4A2uF__Y/",
+  "publicado_em": "2026-11-06T11:58:31-03:00",
+  "story_ids": [
+    "18635698600019628"
+  ]
 }

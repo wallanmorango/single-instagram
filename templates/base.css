@@ -150,7 +150,7 @@ body { background: #1b1f2a; font-family: "Red Hat Display", sans-serif; display:
 .janela .barra i:nth-child(2) { background: var(--ambar); }
 .janela .barra i:nth-child(3) { background: var(--verde); }
 .janela .barra span { margin-left: 14px; font-family: var(--mono); font-weight: 500; font-size: 22px; color: #8EA3CC; }
-.janela pre { font-family: var(--mono); font-weight: 500; font-size: 32px; line-height: 1.5; padding: 30px 36px 34px; white-space: pre; }
+.janela pre { font-variant-ligatures: none; font-family: var(--mono); font-weight: 500; font-size: 32px; line-height: 1.5; padding: 30px 36px 34px; white-space: pre; }
 .janela .k { color: #7CB7FF; font-weight: 800; }   /* funções */
 .janela .t { color: #FFC94D; }                       /* tabelas e colunas */
 .janela .m { color: #6EE7A8; }                       /* medidas */

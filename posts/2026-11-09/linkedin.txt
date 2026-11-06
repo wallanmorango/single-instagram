@@ -1,0 +1,37 @@
+Um dashboard que levava 7h35 para atualizar durante o dia agora atualiza em cerca de 30 minutos.
+
+Mesmo dashboard. Mesmas regras de negócio. Mesmos números, conferidos na vírgula.
+
+O cenário:
+Um dashboard de retenção no Power BI, alimentado por SQL nativo e com várias mesclagens no Power Query.
+• Na madrugada, a atualização levava em média 1h48 (e já chegou a 3h25)
+• Durante o dia, com o banco concorrido, levou 7h35 para concluir e chegou a falhar depois de 8h rodando
+• No Desktop, a query principal passava de 100 minutos e nem terminava
+
+O diagnóstico: a query fazia trabalho desnecessário.
+Processava o histórico inteiro e só no final descartava o que não seria usado. Lia a mesma tabela 3 vezes. Repetia a mesma agregação pesada 2 vezes. E as mesclagens no Power Query obrigavam o motor a baixar tudo e fazer as junções na memória.
+
+O que eu fiz:
+1. Filtrei o período logo na primeira leitura, e não no fim
+2. Li cada tabela uma vez só e guardei em tabelas temporárias (#temp). No SQL Server, a CTE é recalculada a cada vez que é usada
+3. Troquei FORMAT() por DATEFROMPARTS() para achar o primeiro dia do mês. Mesmo resultado, muito menos custo em milhões de linhas
+4. Usei função de janela (MAX() OVER (PARTITION BY)) no lugar de juntar a tabela com ela mesma
+5. Juntei duas agregações idênticas em uma só, separando os meses com CASE
+6. Troquei as mesclagens do Power Query por relacionamentos no modelo
+
+Para medir cada etapa, usei SET STATISTICS TIME, IO no SSMS. Ele mostra onde o tempo está indo e se a query está calculando ou só esperando.
+
+O resultado:
+✅ Query principal: de mais de 100 min para menos de 9 min
+✅ Atualização em horário comercial: de 7h35 para ~30 min (cerca de 15x mais rápido)
+✅ Nenhuma regra de negócio alterada, com todos os números validados antes de ir para produção
+
+A lição que fica: performance raramente pede uma máquina maior. Quase sempre pede menos trabalho desnecessário.
+
+Usei IA como copiloto para analisar a query bloco a bloco. A validação dos números, base por base, foi manual.
+
+No carrossel, o antes e depois de cada mudança no SQL.
+
+Qual foi a maior otimização que você já fez em um BI?
+
+#PowerBI #SQLServer #MicrosoftFabric

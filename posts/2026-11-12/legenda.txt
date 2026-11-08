@@ -1,0 +1,20 @@
+CBS de 11,3%: o número que vai substituir o PIS e a Cofins em 2027. 📑
+
+No dia 28/10, o TCU aprovou o cálculo da alíquota de referência da CBS para 2027: 11,3%. Agora o cálculo vai ao Senado, que tem até 15/12 para fixar a alíquota por resolução. Sem resolução, vale o número do TCU.
+
+Na prática, em 2027 e 2028:
+→ CBS de 11,2% (a referência menos 0,1 ponto)
+→ IBS de 0,1%, em teste
+→ Total de 11,3% na alíquota padrão
+
+E aqui está o ponto que mais confunde: 11,3% sobre a venda não é 11,3% do faturamento saindo do caixa. A CBS é não cumulativa, com crédito das compras. Num exemplo simplificado, quem vende R$ 100 mil e compra R$ 60 mil com crédito paga R$ 4.520, ou seja, 11,3% sobre o que agregou.
+
+Por isso, a partir de 2027, nota de compra bem lançada vale dinheiro.
+
+Arraste para ver a linha do tempo, a conta e o que fazer até dezembro.
+
+Comente RAIOX que eu te mando no direct o link do Raio-X da Reforma: o painel que lê os XMLs das suas notas e compara os impostos de hoje com a CBS e o IBS.
+
+Fontes: Agência Senado (28/10 e 03/11/2026) e Lei Complementar 214/2025.
+
+#reformatributaria #cbs #ibs #contabilidade #notafiscal

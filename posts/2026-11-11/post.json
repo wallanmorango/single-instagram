@@ -1,0 +1,24 @@
+{
+  "data": "2026-11-11",
+  "tipo": "reel",
+  "tema": "Estreia da Biblioteca Single: 60 medidas DAX por área, com busca e botão de copiar",
+  "linha": "Bastidores de entrega (lançamento de material) — post de DAX da semana",
+  "midias": [
+    "video.mp4"
+  ],
+  "capa": "quadro01.jpg",
+  "legenda_arquivo": "legenda.txt",
+  "palavra_chave": "DAX",
+  "material_url": "https://singletecnologia.netlify.app/biblioteca",
+  "material_nome": "o link da Biblioteca com 60 medidas DAX",
+  "mensagem_dm": "Oi! Aqui está a Biblioteca Single, com 60 medidas DAX prontas para copiar, separadas por área: {material}\n\nComece por \"Antes de começar\" (medidas base e tabela calendário). Se quiser esse painel pronto com os dados da sua empresa, é só responder aqui.",
+  "linkedin": {
+    "palavra_chave": "DAX",
+    "material_url": "https://singletecnologia.netlify.app/biblioteca"
+  },
+  "trial_reel": false,
+  "status": "aprovado",
+  "stories": [
+    "story-01.jpg"
+  ]
+}

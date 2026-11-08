@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Compare 2 planilhas sem PROCV — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.conteudo { margin-top: 44px; display: flex; flex-direction: column; gap: 30px; }
+.capa-txt { margin-top: auto; padding-bottom: 150px; display: flex; flex-direction: column; gap: 26px; }
+.palco { position: absolute; left: 80px; right: 80px; top: 150px; height: 560px; z-index: 2; }
+.tab { position: absolute; width: 470px; padding: 24px 26px 18px; }
+.tab .cab { display: flex; justify-content: space-between; align-items: center; font-weight: 900; font-size: 28px; margin-bottom: 12px; }
+.tab .cab span { font-family: var(--mono); font-weight: 500; font-size: 22px; color: var(--cinza); }
+.vidro.tab .cab span { color: var(--nevoa); }
+.lin { display: grid; grid-template-columns: 110px 1fr; gap: 10px; font-family: var(--mono); font-weight: 500; font-size: 24px; padding: 8px 12px; border-radius: 10px; font-variant-numeric: tabular-nums; }
+.lin span:last-child { text-align: right; }
+.lin.h { font-family: "Red Hat Display"; font-weight: 900; font-size: 22px; opacity: .6; }
+.lin.falta { background: rgba(244,63,94,.16); color: #BE123C; font-weight: 700; }
+.vidro .lin.falta { color: #FB7185; }
+.lin.amb { background: rgba(255,180,0,.2); color: #8A5A00; font-weight: 700; }
+.vidro .lin.amb { color: var(--ambar); }
+.lin.vazia { opacity: .35; }
+.t1 { left: 0; top: 10px; transform: rotate(-3deg); }
+.t2 { right: 0; top: 50px; transform: rotate(2.5deg); }
+
+.perguntas { display: grid; gap: 20px; }
+.perg { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; padding: 26px 30px; }
+.perg b { font-weight: 900; font-size: 36px; display: block; }
+.perg small { display: block; font-weight: 500; font-size: 26px; color: var(--cinza); margin-top: 6px; line-height: 1.3; }
+.selo-s, .selo-n { font-weight: 900; font-size: 24px; padding: 10px 18px; border-radius: 99px; white-space: nowrap; }
+.selo-s { background: rgba(34,197,94,.15); color: #15803D; }
+.selo-n { background: rgba(244,63,94,.13); color: #BE123C; }
+
+.janela pre.py { font-size: 29px; line-height: 1.55; padding: 26px 32px 30px; }
+.janela pre.py2 { font-size: 25px; line-height: 1.48; padding: 24px 30px 28px; }
+.merge { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.merge div { padding: 20px 22px; }
+.merge code { display: block; font-family: var(--mono); font-weight: 700; font-size: 24px; color: var(--ambar); }
+.merge span { display: block; font-weight: 700; font-size: 26px; margin-top: 8px; line-height: 1.25; }
+
+.planilha { overflow: hidden; transform: rotate(-1.5deg); }
+.planilha .barra-x { display: flex; align-items: center; gap: 14px; padding: 18px 26px; background: #107C41; color: #fff; font-weight: 900; font-size: 24px; }
+.planilha .barra-x i { width: 30px; height: 30px; border-radius: 6px; background: rgba(255,255,255,.25); }
+.grade { display: grid; grid-template-columns: 140px 170px 1fr 1fr; }
+.grade span { padding: 24px 20px; font-weight: 500; font-size: 30px; border-bottom: 1px solid #E3EAF7; border-right: 1px solid #E3EAF7; font-variant-numeric: tabular-nums; }
+.grade span.h { font-weight: 900; font-size: 22px; background: #F3F6FC; color: var(--cinza); }
+.grade span.r { text-align: right; }
+.grade span.alerta { background: rgba(255,180,0,.22); font-weight: 900; }
+.abas { display: flex; gap: 4px; padding: 0 16px; background: #F3F6FC; }
+.abas span { font-weight: 700; font-size: 24px; padding: 18px 18px; color: var(--cinza); }
+.abas span.at { background: #fff; color: #107C41; font-weight: 900; border-bottom: 4px solid #107C41; }
+.abas b { display: inline-block; margin-left: 6px; min-width: 30px; text-align: center; border-radius: 99px; background: rgba(244,63,94,.15); color: #BE123C; font-size: 20px; padding: 2px 8px; }
+.kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.kpis .kpi { min-width: 0; }
+
+.armadilhas { list-style: none; display: grid; gap: 20px; }
+.armadilhas li { padding: 26px 30px; }
+.armadilhas b { display: block; font-weight: 900; font-size: 34px; line-height: 1.2; }
+.armadilhas p { font-weight: 500; font-size: 27px; color: var(--nevoa); margin-top: 8px; line-height: 1.3; }
+.armadilhas code { display: inline-block; margin-top: 12px; font-family: var(--mono); font-weight: 700; font-size: 25px; color: #6EE7A8; background: rgba(0,0,0,.3); padding: 8px 14px; border-radius: 10px; }
+
+.pdf { position: absolute; right: 80px; top: 170px; width: 330px; padding: 26px; transform: rotate(4deg); z-index: 2; }
+.pdf .capa-pdf { background: var(--noite); color: #fff; border-radius: 16px; padding: 24px 22px; }
+.pdf .capa-pdf b { display: block; font-weight: 900; font-size: 34px; line-height: 1.05; }
+.pdf .capa-pdf b em { font-style: normal; color: var(--noite); background: var(--ambar); padding: 0 6px; border-radius: 4px; }
+.pdf .capa-pdf small { display: block; margin-top: 14px; font-weight: 700; font-size: 22px; color: var(--nevoa); }
+.pdf .ext { display: inline-block; margin-top: 16px; font-weight: 900; font-size: 22px; padding: 6px 14px; border-radius: 8px; background: #F43F5E; color: #fff; }
+.cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 36px; padding: 24px 40px; border-radius: 99px; }
+.cta svg { width: 36px; height: 36px; stroke: var(--ambar); fill: var(--ambar); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="palco">
+    <div class="halo" style="width:520px;height:340px;left:200px;top:180px;background:rgba(37,99,235,.55)"></div>
+    <div class="vidro tab t1">
+      <div class="cab">Pedidos<span>sistema</span></div>
+      <div class="lin h"><span>Pedido</span><span>Valor</span></div>
+      <div class="lin"><span>1001</span><span>1.250,00</span></div>
+      <div class="lin amb"><span>1002</span><span>980,00</span></div>
+      <div class="lin falta"><span>1003</span><span>2.400,00</span></div>
+      <div class="lin"><span>1004</span><span>315,50</span></div>
+      <div class="lin"><span>1005</span><span>760,00</span></div>
+    </div>
+    <div class="cartao tab t2">
+      <div class="cab">Notas<span>faturamento</span></div>
+      <div class="lin h"><span>Pedido</span><span>Valor</span></div>
+      <div class="lin"><span>1001</span><span>1.250,00</span></div>
+      <div class="lin amb"><span>1002</span><span>890,00</span></div>
+      <div class="lin"><span>1004</span><span>315,50</span></div>
+      <div class="lin"><span>1005</span><span>760,00</span></div>
+      <div class="lin falta"><span>1006</span><span>1.120,00</span></div>
+    </div>
+  </div>
+  <div class="capa-txt">
+    <span class="etiqueta">Dica de Python</span>
+    <h1 class="titulo m">Compare 2 planilhas <span class="mk">sem PROCV</span></h1>
+    <p class="apoio">Pedido sem nota, nota sem pedido e valor diferente. Tudo de uma vez.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i class="at"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="arraste">Arraste <svg><use href="#seta"/></svg></span></div>
+</section>
+
+<!-- 2. O problema -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">O problema</span>
+    <h2 class="titulo p">O PROCV só olha <span class="mk az">para um lado</span></h2>
+    <p class="apoio">Na conferência do fim do mês, o gestor quer três respostas. O PROCV entrega uma.</p>
+    <div class="perguntas">
+      <div class="cartao perg"><div><b>Pedido sem nota?</b><small>PROCV dos pedidos nas notas: aparece #N/D</small></div><span class="selo-s">PROCV resolve</span></div>
+      <div class="cartao perg"><div><b>Nota sem pedido?</b><small>precisa de outro PROCV, na outra planilha</small></div><span class="selo-n">2º PROCV</span></div>
+      <div class="cartao perg"><div><b>Valor diferente?</b><small>mais uma coluna, um SE e um filtro</small></div><span class="selo-n">Mais trabalho</span></div>
+    </div>
+    <p class="dica"><span>No pandas, <b>uma junção</b> responde as três perguntas. Arraste para ver.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i class="at"></i><i></i><i></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 3. Passo 1 -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">Passo 1</span>
+    <h2 class="titulo p">Junte tudo com <span class="mk">indicator=True</span></h2>
+    <div class="janela">
+      <div class="barra"><i></i><i></i><i></i><span>conferencia.py</span></div>
+<pre class="py"><span class="k">import</span> pandas <span class="k">as</span> pd
+
+pedidos = pd.<span class="k">read_excel</span>(<span class="t">&quot;pedidos.xlsx&quot;</span>)
+notas = pd.<span class="k">read_excel</span>(<span class="t">&quot;notas.xlsx&quot;</span>)
+
+comp = pedidos.<span class="k">merge</span>(
+    notas, on=<span class="t">&quot;Pedido&quot;</span>, how=<span class="t">&quot;outer&quot;</span>,
+    suffixes=(<span class="t">&quot;_ped&quot;</span>, <span class="t">&quot;_nf&quot;</span>),
+    indicator=<span class="k">True</span>, validate=<span class="t">&quot;one_to_one&quot;</span>)</pre>
+    </div>
+    <p class="apoio" style="font-size:32px">A coluna <b>_merge</b> diz de onde veio cada pedido:</p>
+    <div class="merge">
+      <div class="vidro"><code>left_only</code><span>só nos pedidos</span></div>
+      <div class="vidro"><code>right_only</code><span>só nas notas</span></div>
+      <div class="vidro"><code>both</code><span>nas duas</span></div>
+    </div>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i class="at"></i><i></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 4. Passo 2 -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">Passo 2</span>
+    <h2 class="titulo p">Separe e salve em <span class="mk az">3 abas</span></h2>
+    <div class="janela">
+      <div class="barra"><i></i><i></i><i></i><span>conferencia.py (continuação)</span></div>
+<pre class="py2">sem_nota = comp[comp[<span class="t">&quot;_merge&quot;</span>] == <span class="t">&quot;left_only&quot;</span>]
+sem_pedido = comp[comp[<span class="t">&quot;_merge&quot;</span>] == <span class="t">&quot;right_only&quot;</span>]
+ambos = comp[comp[<span class="t">&quot;_merge&quot;</span>] == <span class="t">&quot;both&quot;</span>]
+dif = (ambos[<span class="t">&quot;Valor_ped&quot;</span>] - ambos[<span class="t">&quot;Valor_nf&quot;</span>]).<span class="k">abs</span>()
+valor_dif = ambos[dif &gt; <span class="m">0.01</span>]
+
+abas = {<span class="t">&quot;Sem nota&quot;</span>: sem_nota,
+        <span class="t">&quot;Sem pedido&quot;</span>: sem_pedido,
+        <span class="t">&quot;Valor diferente&quot;</span>: valor_dif}
+<span class="k">with</span> pd.<span class="k">ExcelWriter</span>(<span class="t">&quot;conferencia.xlsx&quot;</span>) <span class="k">as</span> arq:
+    <span class="k">for</span> nome, tabela <span class="k">in</span> abas.<span class="k">items</span>():
+        tabela.<span class="k">to_excel</span>(arq, sheet_name=nome,
+                        index=<span class="k">False</span>)</pre>
+    </div>
+    <p class="dica"><span>Comparar com <b>&gt; 0.01</b> e não com <b>!=</b> evita falso alarme por causa de centavos arredondados.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i class="at"></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 5. Resultado -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:40px">
+    <span class="etiqueta">O resultado</span>
+    <h2 class="titulo p">A conferência <span class="mk">se monta sozinha</span></h2>
+    <div class="cartao planilha">
+      <div class="barra-x"><i></i>conferencia.xlsx</div>
+      <div class="grade">
+        <span class="h">Pedido</span><span class="h">Cliente</span><span class="h r">Valor_ped</span><span class="h r">Valor_nf</span>
+        <span>1002</span><span>Bruno</span><span class="r alerta">980,00</span><span class="r alerta">890,00</span>
+      </div>
+      <div class="abas"><span>Sem nota<b>1</b></span><span>Sem pedido<b>1</b></span><span class="at">Valor diferente<b>1</b></span></div>
+    </div>
+    <div class="kpis">
+      <div class="cartao kpi"><div class="rot">Pedido sem nota</div><div class="val">1003</div><span class="var desce">R$ 2.400,00 parado</span></div>
+      <div class="cartao kpi"><div class="rot">Nota a menor no 1002</div><div class="val">R$ 90,00</div><span class="var desce">980,00 − 890,00</span></div>
+    </div>
+    <p class="dica"><span>Mês que vem, é só trocar os dois arquivos e rodar de novo. <b>Exemplo com dados fictícios.</b></span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i class="at"></i><i></i><i></i></div></div>
+</section>
+
+<!-- 6. Pegadinhas -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">Antes de rodar</span>
+    <h2 class="titulo p">3 pegadinhas que <span class="mk">enganam a comparação</span></h2>
+    <ul class="armadilhas">
+      <li class="vidro"><b>"1003 " não é "1003"</b><p>Espaço sobrando ou zero à esquerda: o pedido aparece nas duas listas como faltando.</p><code>df["Pedido"].astype(str).str.strip()</code></li>
+      <li class="vidro"><b>Pedido repetido multiplica linhas</b><p>Duas linhas do mesmo pedido em cada lado viram quatro. O validate trava e avisa.</p><code>validate="one_to_one"</code></li>
+      <li class="vidro"><b>Coluna de texto com "1.234,56"</b><p>Converta para número antes de comparar valores.</p><code>pd.to_numeric(...)</code></li>
+    </ul>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i></i><i class="at"></i><i></i></div></div>
+</section>
+
+<!-- 7. Chamada -->
+<section class="slide ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cartao pdf"><div class="capa-pdf"><b>10 receitas de Python para <em>planilhas</em></b><small>PROCV, tabela dinâmica, juntar pasta e mais</small></div><span class="ext">PDF</span></div>
+  <div class="conteudo" style="margin-top:300px;gap:28px">
+    <span class="etiqueta">Material gratuito</span>
+    <h2 class="titulo m">Comente <span class="mk">PYTHON</span></h2>
+    <p class="apoio">e receba no direct o PDF com <b>10 receitas de Python para planilhas</b>, todas testadas: juntar uma pasta, PROCV, tabela dinâmica, limpar dados e mais.</p>
+    <span class="cta"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Salve para a próxima conferência</span>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i></i><i></i><i class="at"></i></div><span style="font-weight:900;font-size:26px">singletecnologia.netlify.app</span></div>
+</section>
+</body>
+</html>

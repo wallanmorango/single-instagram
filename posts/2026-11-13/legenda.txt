@@ -1,0 +1,17 @@
+Automatizar um processo bagunçado não resolve a bagunça. Só faz o erro chegar mais rápido. ⚙️
+
+Quase todo pedido de automação começa igual: "esse relatório leva 2 dias para montar, dá para automatizar?". Dá. Mas antes do primeiro código, quase sempre aparece outra coisa:
+
+→ 3 versões do mesmo número, cada área com a sua
+→ uma regra que só existe na cabeça de alguém
+→ dado digitado duas vezes, no sistema e na planilha
+
+Se automatizar desse jeito, o número errado que levava 2 dias para sair agora sai em 2 minutos, direto no e-mail de todo mundo.
+
+A ordem que funciona: uma fonte da verdade, regra escrita com dono e, aí sim, a automação.
+
+Concorda ou discorda? Conta aqui nos comentários.
+
+E comente SINGLE que eu te mando no direct o checklist com 10 perguntas para ver em que ponto a sua empresa está com os dados.
+
+#automacao #processos #gestao #dados #tecnologia

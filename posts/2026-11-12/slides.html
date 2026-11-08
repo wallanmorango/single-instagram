@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CBS de 11,3% — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.conteudo { margin-top: 44px; display: flex; flex-direction: column; gap: 30px; }
+.capa-txt { margin-top: auto; padding-bottom: 150px; display: flex; flex-direction: column; gap: 26px; }
+.palco { position: absolute; left: 80px; right: 80px; top: 150px; height: 560px; z-index: 2; }
+.aliq { position: absolute; left: 0; top: 30px; width: 560px; padding: 34px 38px; transform: rotate(-2deg); }
+.aliq .rot { font-weight: 700; font-size: 26px; color: var(--nevoa); }
+.aliq .big { font-weight: 900; font-size: 190px; letter-spacing: -.05em; line-height: 1; margin-top: 6px; color: #fff; }
+.aliq .big small { font-size: 90px; }
+.aliq .sub { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+.aliq .sub span { font-weight: 900; font-size: 22px; padding: 8px 14px; border-radius: 99px; background: rgba(255,180,0,.16); color: var(--ambar); }
+.troca { position: absolute; right: 0; top: 260px; width: 380px; padding: 26px 28px; transform: rotate(3deg); }
+.troca .lin { display: flex; justify-content: space-between; align-items: center; font-weight: 900; font-size: 28px; padding: 10px 0; }
+.troca .lin s { color: var(--cinza); text-decoration-thickness: 3px; }
+.troca .tag { font-weight: 900; font-size: 22px; padding: 6px 12px; border-radius: 99px; }
+.troca .sai { background: rgba(244,63,94,.13); color: #BE123C; }
+.troca .entra { background: rgba(34,197,94,.15); color: #15803D; }
+
+.linha-tempo { list-style: none; display: grid; gap: 0; position: relative; padding-left: 8px; }
+.linha-tempo li { display: grid; grid-template-columns: 200px 1fr; gap: 26px; align-items: start; padding: 18px 0; position: relative; }
+.linha-tempo .data { font-weight: 900; font-size: 30px; color: var(--azul); padding: 10px 16px; border-radius: 14px; background: rgba(37,99,235,.1); text-align: center; }
+.linha-tempo b { display: block; font-weight: 900; font-size: 32px; line-height: 1.2; }
+.linha-tempo small { display: block; font-weight: 500; font-size: 25px; color: var(--cinza); margin-top: 4px; line-height: 1.3; }
+.linha-tempo li.fim .data { background: var(--ambar); color: var(--noite); }
+.fonte { font-weight: 700; font-size: 22px; color: var(--cinza); line-height: 1.4; }
+.noite .fonte { color: var(--nevoa); }
+
+.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.duas .kpi { min-width: 0; }
+.duas .kpi .val { font-size: 72px; color: #fff; }
+.duas .kpi small { display: block; font-weight: 500; font-size: 24px; color: var(--nevoa); margin-top: 8px; line-height: 1.3; }
+.soma { padding: 26px 30px; display: flex; justify-content: space-between; align-items: center; }
+.soma b { font-weight: 900; font-size: 34px; }
+.soma .val { font-weight: 900; font-size: 64px; color: var(--ambar); }
+.nota-s { font-weight: 500; font-size: 27px; color: var(--nevoa); line-height: 1.38; }
+.nota-s b { color: #fff; font-weight: 900; }
+
+.conta { padding: 30px 34px; transform: rotate(-1deg); }
+.conta .cab { font-weight: 900; font-size: 28px; display: flex; justify-content: space-between; margin-bottom: 14px; }
+.conta .cab span { font-weight: 700; font-size: 22px; color: var(--cinza); }
+.barra-c { display: grid; grid-template-columns: 300px 1fr; gap: 18px; align-items: center; margin-top: 28px; }
+.barra-c .rot { font-weight: 700; font-size: 28px; line-height: 1.2; }
+.barra-c .rot small { display: block; font-weight: 500; font-size: 22px; color: var(--cinza); }
+.barra-c .trilho { position: relative; height: 68px; }
+.barra-c .v { height: 100%; border-radius: 12px; display: flex; align-items: center; padding-left: 16px; font-weight: 900; font-size: 30px; color: #fff; white-space: nowrap; }
+.v.deb { background: linear-gradient(90deg, #E2552B, #F97316); }
+.v.cre { background: linear-gradient(90deg, #15803D, var(--verde)); }
+.v.pag { background: linear-gradient(90deg, var(--azul), var(--celeste)); box-shadow: 0 0 26px rgba(96,165,250,.6); }
+.igual { margin-top: 30px; padding-top: 22px; border-top: 2px dashed #DCE4F2; font-weight: 700; font-size: 30px; line-height: 1.35; }
+.igual b { font-weight: 900; color: var(--azul); }
+
+.acoes { list-style: none; display: grid; gap: 20px; counter-reset: a; }
+.acoes li { counter-increment: a; display: flex; gap: 22px; align-items: flex-start; padding: 28px 30px; font-weight: 900; font-size: 34px; line-height: 1.22; }
+.acoes li::before { content: counter(a); flex-shrink: 0; width: 54px; height: 54px; border-radius: 14px; background: var(--ambar); color: var(--noite); font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center; }
+.acoes small { display: block; font-weight: 500; font-size: 26px; color: var(--nevoa); margin-top: 8px; line-height: 1.3; }
+
+.painel { position: absolute; right: 80px; top: 170px; width: 400px; padding: 24px 26px; transform: rotate(4deg); z-index: 2; }
+.painel .cab { font-weight: 900; font-size: 24px; margin-bottom: 14px; }
+.painel .cab small { display: block; font-weight: 700; font-size: 22px; color: var(--cinza); }
+.painel .ln { display: flex; justify-content: space-between; font-weight: 700; font-size: 24px; padding: 10px 0; border-bottom: 1px solid #E3EAF7; }
+.painel .ln b { font-weight: 900; }
+.painel .ln b.ok { color: #15803D; font-size: 22px; padding: 2px 12px; border-radius: 99px; background: rgba(34,197,94,.15); }
+.cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 34px; padding: 24px 38px; border-radius: 99px; }
+.cta svg { width: 34px; height: 34px; stroke: var(--ambar); fill: var(--ambar); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="palco">
+    <div class="halo" style="width:460px;height:320px;left:80px;top:160px;background:rgba(37,99,235,.6)"></div>
+    <div class="vidro aliq">
+      <div class="rot">CBS 2027 · alíquota de referência</div>
+      <div class="big">11,3<small>%</small></div>
+      <div class="sub"><span>calculada pelo TCU</span><span>falta o Senado</span></div>
+    </div>
+    <div class="cartao troca">
+      <div class="lin"><s>PIS</s><span class="tag sai">sai</span></div>
+      <div class="lin"><s>Cofins</s><span class="tag sai">sai</span></div>
+      <div class="lin">CBS<span class="tag entra">entra</span></div>
+    </div>
+  </div>
+  <div class="capa-txt">
+    <span class="etiqueta">Reforma Tributária · assunto da semana</span>
+    <h1 class="titulo p">CBS de 11,3%: a conta é <span class="mk">venda menos crédito</span></h1>
+    <p class="apoio">O número saiu. Veja o que ele quer dizer para o caixa da sua empresa em 2027.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i class="at"></i><i></i><i></i><i></i><i></i><i></i></div><span class="arraste">Arraste <svg><use href="#seta"/></svg></span></div>
+</section>
+
+<!-- 2. O fato -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:24px">
+    <span class="etiqueta">O que aconteceu</span>
+    <h2 class="titulo p">O TCU fez a conta. <span class="mk az">O&nbsp;Senado decide.</span></h2>
+    <ol class="linha-tempo">
+      <li><span class="data">28/10</span><div><b>TCU aprova 11,3%</b><small>alíquota de referência da CBS para 2027, acima da estimativa de 9,21% que circulava</small></div></li>
+      <li><span class="data">10/11</span><div><b>O cálculo vai ao Senado</b><small>previsão de envio e de audiência pública na CAE</small></div></li>
+      <li><span class="data">até 15/12</span><div><b>Senado fixa por resolução</b><small>sem resolução, vale o número do TCU</small></div></li>
+      <li class="fim"><span class="data">1º/01/27</span><div><b>CBS começa a ser cobrada</b><small>no lugar do PIS e da Cofins</small></div></li>
+    </ol>
+    <p class="fonte">Fontes: Agência Senado (28/10 e 03/11/2026) e Lei Complementar 214/2025. Conferido em 08/11/2026.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i class="at"></i><i></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 3. 2027 na prática -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">2027 na prática</span>
+    <h2 class="titulo p">Na nota, a soma <span class="mk">dá os mesmos 11,3%</span></h2>
+    <div class="duas">
+      <div class="vidro kpi"><div class="rot">CBS (federal)</div><div class="val">11,2%</div><small>referência menos 0,1 ponto, em 2027 e 2028</small></div>
+      <div class="vidro kpi"><div class="rot">IBS (teste)</div><div class="val">0,1%</div><small>0,05% estadual + 0,05% municipal</small></div>
+    </div>
+    <div class="vidro soma"><b>Total na alíquota padrão</b><span class="val">11,3%</span></div>
+    <p class="nota-s">Vale para quem está no <b>Lucro Real ou Presumido</b>, sem regime diferenciado. Setores com redução de alíquota pagam menos. O <b>Simples Nacional</b> segue no DAS, com regras próprias.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i class="at"></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 4. A conta -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:36px">
+    <span class="etiqueta">A conta que importa</span>
+    <h2 class="titulo p">Você paga sobre o que <span class="mk az">agrega</span>, não sobre tudo</h2>
+    <div class="cartao conta">
+      <div class="cab">Exemplo simplificado<span>valores fictícios, em R$</span></div>
+      <div class="barra-c"><div class="rot">CBS sobre a venda<small>11,3% de 100.000</small></div><div class="trilho"><div class="v deb" style="width:100%">11.300</div></div></div>
+      <div class="barra-c"><div class="rot">Crédito das compras<small>11,3% de 60.000</small></div><div class="trilho"><div class="v cre" style="width:60%">− 6.780</div></div></div>
+      <div class="barra-c"><div class="rot">A pagar<small>débito − crédito</small></div><div class="trilho"><div class="v pag" style="width:40%">4.520</div></div></div>
+      <p class="igual">Mesmo valor de <b>11,3% sobre os R$ 40.000</b> que a empresa agregou.</p>
+    </div>
+    <p class="dica"><span>Quanto mais das suas compras gerar crédito, menor a conta. Por isso <b>a nota de compra vale dinheiro</b> a partir de 2027.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i class="at"></i><i></i><i></i></div></div>
+</section>
+
+<!-- 5. O que fazer agora -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">O que fazer até dezembro</span>
+    <h2 class="titulo p">3 contas para <span class="mk">não chegar no escuro</span></h2>
+    <ol class="acoes">
+      <li class="vidro"><div>Quanto das compras vira crédito<small>separe nas notas de entrada o que é insumo, revenda, serviço e despesa</small></div></li>
+      <li class="vidro"><div>Margem e preço com CBS e IBS<small>simule os produtos principais antes de fechar a tabela de 2027</small></div></li>
+      <li class="vidro"><div>Notas e sistema prontos<small>confira se o ERP já preenche os campos de IBS e CBS nas notas emitidas</small></div></li>
+    </ol>
+    <p class="fonte">A alíquota final ainda depende da resolução do Senado. Use 11,3% para simular, não para fechar contrato.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i class="at"></i><i></i></div></div>
+</section>
+
+<!-- 6. Chamada -->
+<section class="slide ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cartao painel">
+    <div class="cab">Raio-X da Reforma<small>como funciona</small></div>
+    <div class="ln"><span>1. XMLs das notas</span><b class="ok">lidos</b></div>
+    <div class="ln"><span>2. Impostos de hoje</span><b class="ok">somados</b></div>
+    <div class="ln" style="border:0"><span>3. CBS e IBS</span><b class="ok">simulados</b></div>
+  </div>
+  <div class="conteudo" style="margin-top:330px;gap:28px">
+    <span class="etiqueta">Raio-X da Reforma Tributária</span>
+    <h2 class="titulo m">Comente <span class="mk">RAIOX</span></h2>
+    <p class="apoio">e receba no direct o link do painel que lê os <b>XMLs das suas notas</b> e compara os impostos de hoje com a CBS e o IBS.</p>
+    <span class="cta"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Envie para o seu contador</span>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i></i><i class="at"></i></div><span style="font-weight:900;font-size:26px">singletecnologia.netlify.app/reforma</span></div>
+</section>
+</body>
+</html>

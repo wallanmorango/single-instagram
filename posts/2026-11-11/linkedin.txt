@@ -1,0 +1,20 @@
+Toda vez que começa um painel novo no Power BI, as mesmas medidas voltam: acumulado no ano, comparação com o ano anterior, margem, ticket médio, ranking.
+
+E quase sempre alguém escreve tudo do zero. Ou pior: copia de um projeto antigo, com o nome de tabela errado, e passa meia hora descobrindo por que o YTD não fecha.
+
+Por isso organizei e abri a Biblioteca Single: 60 medidas DAX prontas para copiar, separadas por área.
+
+• 12 de Datas e tempo
+• 12 do Financeiro
+• 12 de Vendas
+• 8 de Clientes, 8 de Estoque e 8 de RH
+
+Cada medida tem o que ela mostra, o código e uma dica de uso. Tem busca, filtro por área e botão de copiar. Funciona no celular. Grátis e sem cadastro.
+
+Uma dica antes de colar qualquer medida de tempo: crie a tabela calendário e marque como tabela de datas. Sem isso, TOTALYTD e SAMEPERIODLASTYEAR não se comportam como você espera. Deixei esse passo a passo logo no topo, em "Antes de começar".
+
+A ideia é que ela cresça. Se faltar uma medida que você usa sempre, me conta nos comentários que eu confiro e acrescento.
+
+Comente DAX que eu te mando o link.
+
+#PowerBI #DAX #BusinessIntelligence

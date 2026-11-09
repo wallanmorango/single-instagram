@@ -1,0 +1,24 @@
+Muita conferência de fim de mês ainda é uma planilha com três PROCVs, dois filtros e uma coluna chamada "CONFERIR".
+
+As perguntas são sempre as mesmas: o que foi vendido e não foi faturado? O que foi faturado sem pedido? E onde o valor da nota não bate com o do pedido?
+
+O PROCV responde a primeira pergunta. Para a segunda, você faz outro PROCV, do outro lado. Para a terceira, mais uma coluna com SE. E todo mês alguém esquece de arrastar a fórmula até a última linha.
+
+Em Python, essa conferência vira uma junção só:
+
+pedidos.merge(notas, on="Pedido", how="outer", indicator=True)
+
+O indicator=True cria uma coluna que diz de onde veio cada linha: só dos pedidos, só das notas ou das duas. Dali para frente é filtrar e salvar um Excel com três abas. No mês seguinte, é trocar os arquivos e rodar de novo.
+
+Três pegadinhas que eu sempre confiro antes de rodar:
+1. "1003 " com espaço não é "1003". Limpe a chave antes (str.strip).
+2. Pedido repetido nos dois lados multiplica linhas sem avisar. O validate="one_to_one" trava e avisa.
+3. Compare valor com tolerância (diferença maior que 0,01), não com "diferente de". Centavo arredondado gera falso alarme.
+
+No carrossel, o código completo com dados fictícios.
+
+Juntei essa e outras 9 tarefas de planilha que mais tomam tempo (juntar uma pasta, tabela dinâmica, limpar dados, um arquivo por vendedor…) num PDF com tudo testado.
+
+Comente PYTHON que eu te mando o link.
+
+#Python #Excel #Automação

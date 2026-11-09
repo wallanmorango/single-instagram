@@ -1,0 +1,18 @@
+Pedido sem nota, nota sem pedido e valor diferente. Três perguntas, uma junção. 🐍
+
+Na conferência do fim do mês, o PROCV resolve só um lado da história. Para o outro lado, é um segundo PROCV. Para os valores, mais uma coluna e um SE.
+
+Com Python (pandas), um merge com indicator=True compara as duas planilhas de uma vez e diz de onde veio cada linha:
+→ left_only: só nos pedidos
+→ right_only: só nas notas
+→ both: nas duas (aí é só conferir o valor)
+
+No fim, um arquivo com 3 abas pronto para quem cobra o faturamento. Mês que vem, troca os arquivos e roda de novo.
+
+Arraste para ver o código completo e as 3 pegadinhas que enganam a comparação.
+
+Comente PYTHON que eu te mando no direct o PDF com 10 receitas de Python para planilhas: juntar uma pasta, PROCV, tabela dinâmica, limpar dados e mais.
+
+Salve e envie para quem ainda confere isso na mão.
+
+#python #pandas #excel #automacao #analisededados

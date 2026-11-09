@@ -1,0 +1,29 @@
+11,3%. Esse é o número que o TCU calculou para a CBS em 2027.
+
+E é fácil fazer a conta errada com ele.
+
+A conta errada: "minha empresa fatura R$ 1 milhão, então vou pagar R$ 113 mil de CBS".
+
+A conta certa considera o crédito. A CBS é não cumulativa: você paga 11,3% sobre a venda e desconta 11,3% do que pagou nas compras que dão crédito. Num exemplo simplificado, com R$ 100 mil de venda e R$ 60 mil de compras com crédito:
+
+• Débito: R$ 11.300
+• Crédito: R$ 6.780
+• A pagar: R$ 4.520
+
+É exatamente 11,3% sobre os R$ 40 mil que a empresa agregou.
+
+Onde estamos:
+• 28/10: o TCU aprovou o cálculo da alíquota de referência (11,3%)
+• O Senado tem até 15/12 para fixar a alíquota por resolução. Sem resolução, vale o número do TCU
+• Em 2027 e 2028, a CBS fica em 11,2% e o IBS entra em teste com 0,1%. Juntos, os mesmos 11,3%
+• O PIS e a Cofins saem de cena em 2027
+
+O que eu faria agora, olhando como dado e não como notícia: abrir as notas de entrada do último ano e medir quanto das compras realmente vai gerar crédito. Esse número diz mais sobre o impacto na sua empresa do que qualquer alíquota.
+
+Foi para isso que montei o Raio-X da Reforma: ele lê os XMLs das notas e compara os impostos de hoje com a CBS e o IBS.
+
+Comente RAIOX que eu te mando o link.
+
+Fontes: Agência Senado (28/10 e 03/11/2026) e LC 214/2025. Valores do exemplo são fictícios e não consideram regimes diferenciados.
+
+#ReformaTributária #CBS #Contabilidade

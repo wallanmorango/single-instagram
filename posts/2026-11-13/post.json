@@ -1,0 +1,23 @@
+{
+  "data": "2026-11-13",
+  "tipo": "carrossel",
+  "tema": "Opinião: automatizar bagunça só acelera o erro",
+  "linha": "Opinião",
+  "midias": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg"
+  ],
+  "legenda_arquivo": "legenda.txt",
+  "palavra_chave": "SINGLE",
+  "material_url": "https://singletecnologia.netlify.app/materiais/caminho-dados.pdf",
+  "material_nome": "o checklist com 10 perguntas sobre dados",
+  "mensagem_dm": "Oi! Aqui está o checklist com 10 perguntas para ver em que ponto a sua empresa está com os dados: {material}\n\nDepois me conta o seu resultado aqui que eu te digo por onde começar.",
+  "trial_reel": false,
+  "status": "aprovado",
+  "stories": [
+    "story-01.jpg"
+  ]
+}

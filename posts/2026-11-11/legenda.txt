@@ -1,0 +1,19 @@
+A Biblioteca Single está no ar: 60 medidas DAX prontas para copiar. 📚
+
+Separadas por área:
+• 12 de Datas e tempo (YTD, ano anterior, 12 meses)
+• 12 do Financeiro (margem, orçado x realizado, despesas)
+• 12 de Vendas (ticket médio, ranking, participação)
+• 8 de Clientes
+• 8 de Estoque
+• 8 de RH
+
+Cada medida vem com o que ela mostra, o código e uma dica de uso. Tem busca (digite "margem", "cliente" ou "RANKX") e botão de copiar. Funciona no celular e é grátis, sem cadastro.
+
+Antes de colar, abra "Antes de começar": lá estão as medidas base e a tabela calendário que todas usam.
+
+Comente DAX que eu te mando o link da Biblioteca no direct.
+
+Salve para o próximo painel e envie para quem vive escrevendo a mesma medida do zero.
+
+#powerbi #dax #businessintelligence #analisededados #dashboard

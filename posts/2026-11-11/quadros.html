@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Biblioteca Single: Reel — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.slide.reel { padding-top: 170px; }
+.cab-reel { display: flex; flex-direction: column; gap: 22px; margin-top: 50px; }
+.cab-reel .titulo { font-size: 92px; line-height: 1.02; }
+.cel { position: absolute; left: 262px; top: 640px; width: 556px; z-index: 2; }
+.moldura { position: relative; padding: 18px; border-radius: 64px; background: #0F1B3D; border: 2px solid rgba(255,255,255,.18); box-shadow: 0 60px 120px -30px rgba(0,0,0,.85), 0 0 0 10px rgba(96,165,250,.08); }
+.tela { width: 520px; height: 988px; border-radius: 48px; overflow: hidden; background: #000; }
+.tela img { width: 520px; height: 988px; display: block; }
+.lado { position: absolute; z-index: 3; padding: 16px 20px; max-width: 232px; font-weight: 900; font-size: 30px; }
+.lado small { display: block; font-weight: 700; font-size: 22px; color: var(--cinza); }
+.l1 { left: 18px; top: 900px; transform: rotate(-5deg); }
+.l2 { right: 18px; top: 1180px; transform: rotate(4deg); }
+.areas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px; }
+.areas span { display: flex; align-items: center; gap: 16px; font-weight: 700; font-size: 32px; padding: 20px 24px; border-radius: 20px; background: rgba(5,15,43,.08); border: 2px solid rgba(5,15,43,.14); }
+.areas b { font-weight: 900; font-size: 40px; min-width: 50px; font-variant-numeric: tabular-nums; }
+.cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 38px; padding: 26px 42px; border-radius: 99px; }
+.cta svg { width: 38px; height: 38px; stroke: var(--ambar); fill: var(--ambar); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Gancho (também é a capa) -->
+<section class="slide reel noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel">
+    <span class="etiqueta">Novo: Biblioteca Single</span>
+    <h1 class="titulo">60 medidas DAX <span class="mk">prontas para copiar</span></h1>
+  </div>
+  <div class="cel"><div class="halo" style="width:640px;height:640px;left:-40px;top:200px;background:rgba(37,99,235,.55)"></div><div class="moldura"><div class="tela" id="tela"><img src="tela-biblioteca.png" alt=""></div></div></div>
+  <div class="cartao lado l1">Grátis<small>sem cadastro</small></div>
+  <div class="cartao lado l2">6 áreas<small>do financeiro ao RH</small></div>
+</section>
+
+<!-- 2. Fundo da gravação de tela (o vídeo entra no lugar da tela) -->
+<section class="slide reel noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel">
+    <span class="etiqueta">Como funciona</span>
+    <h2 class="titulo">Busque, <span class="mk">copie</span> e cole no Power BI</h2>
+  </div>
+  <div class="cel"><div class="halo" style="width:640px;height:640px;left:-40px;top:200px;background:rgba(37,99,235,.55)"></div><div class="moldura"><div class="tela" id="tela"></div></div></div>
+</section>
+
+<!-- 3. Chamada -->
+<section class="slide reel ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel" style="gap:30px;margin-top:140px">
+    <span class="etiqueta">Biblioteca Single</span>
+    <h2 class="titulo" style="font-size:120px">Comente <span class="mk">DAX</span></h2>
+    <p class="apoio" style="font-size:42px">e receba o link no direct. As 60 medidas, cada uma com o que mostra, o código e uma dica de uso:</p>
+    <div class="areas">
+      <span><b>12</b>Datas e tempo</span><span><b>12</b>Financeiro</span>
+      <span><b>12</b>Vendas</span><span><b>8</b>Clientes</span>
+      <span><b>8</b>Estoque</span><span><b>8</b>RH</span>
+    </div>
+    <span class="cta" style="margin-top:20px"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Salve para o próximo painel</span>
+  </div>
+</section>
+</body>
+</html>

@@ -58,7 +58,7 @@ O diferencial da Single é resolver de tudo em um só lugar: BI, automação, SQ
 
 Pelo menos 1 Reel por semana (de preferência o Bastidores, com gravação de tela do projeto). Todo post: gancho forte na 1ª lâmina (ou nos 2 primeiros segundos do Reel) e última lâmina com chamada para **salvar**, **enviar a um colega** ou **comentar uma palavra-chave** para receber um material.
 
-### LinkedIn pessoal do Wallan: 3 por semana (terça, quarta e quinta, 12:15), primeira pessoa
+### LinkedIn pessoal do Wallan: 3 por semana (terça, quarta e quinta, 8:00), primeira pessoa
 
 Escrito como o Wallan fala: história, aprendizado, opinião. Pode partir do mesmo tema do Instagram da semana, mas é reescrito para o LinkedIn (não é a legenda colada). Linhas preferidas: Bastidores (sempre que houver Projeto da quinzena), Opinião, Um problema e 4 ferramentas, Carreira (lições de 7 anos com dados). Formatos: carrossel em PDF, texto puro ou texto com 1 imagem. Quando houver material, termina com "Comente PALAVRA que eu te mando o link" (as respostas são preparadas pela tarefa de respostas do LinkedIn e aprovadas pelo Wallan). Até 3 hashtags. Nunca política.
 
@@ -88,7 +88,7 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 - Reel: quadros com `render.py --reel --prefixo quadro` e vídeo com `scripts/reel.py` → `video.mp4` (1080x1920). Música só livre de direitos.
 - `legenda.txt` — legenda final, até 5 hashtags no fim.
 - `story-01.jpg` — story que avisa do post novo, gerado com `python scripts/gerar_story.py posts/AAAA-MM-DD` (usa a capa; se houver palavra-chave, chama para comentar). É publicado automaticamente logo depois do post.
-- LinkedIn (só nos dias com post no LinkedIn: terça, quarta e quinta): `linkedin.txt` (texto na voz do Wallan, gancho na 1ª linha, até 3 hashtags) e, se for carrossel, `linkedin.pdf`. O PDF pode ser o carrossel do Instagram (`python scripts/pdf.py carrossel posts/AAAA-MM-DD`) ou lâminas próprias em `linkedin.html` (`render.py posts/AAAA-MM-DD/linkedin.html --prefixo li-` e depois `pdf.py carrossel posts/AAAA-MM-DD li-`). Se o post do LinkedIn tiver palavra-chave, registre em `post.json` como `"linkedin": {"palavra_chave": "DAX", "material_url": "..."}`. Aprovar o pull request aprova também o LinkedIn: a tarefa agendada "LinkedIn — agendar o post aprovado do dia" (dias úteis, 8:43) agenda o `linkedin.txt` do dia para as 12:15, e a tarefa "LinkedIn — respostas à palavra-chave" prepara as respostas aos comentários para o Wallan aprovar.
+- LinkedIn (só nos dias com post no LinkedIn: terça, quarta e quinta): `linkedin.txt` (texto na voz do Wallan, gancho na 1ª linha, até 3 hashtags) e, se for carrossel, `linkedin.pdf`. O PDF pode ser o carrossel do Instagram (`python scripts/pdf.py carrossel posts/AAAA-MM-DD`) ou lâminas próprias em `linkedin.html` (`render.py posts/AAAA-MM-DD/linkedin.html --prefixo li-` e depois `pdf.py carrossel posts/AAAA-MM-DD li-`). Se o post do LinkedIn tiver palavra-chave, registre em `post.json` como `"linkedin": {"palavra_chave": "DAX", "material_url": "..."}`. Aprovar o pull request aprova também o LinkedIn: a tarefa agendada "LinkedIn — agendar o post aprovado do dia" (dias úteis, 7:13) agenda o `linkedin.txt` do dia para as 8:00, e a tarefa "LinkedIn — respostas à palavra-chave" prepara as respostas aos comentários para o Wallan aprovar.
 - `post.json`:
 
 ```json
@@ -122,4 +122,4 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 
 **Atenção:** esta sessão não consegue enviar arquivos dentro de `.github/workflows/` (o GitHub recusa). Mudanças de agendamento precisam ser feitas pelo Wallan no site do GitHub.
 
-**Confiabilidade:** os horários agendados do GitHub atrasam ou são pulados com frequência. Por isso a tarefa agendada "Instagram — segunda tentativa de publicação" (dias úteis, 11:56) dispara `publicar.yml` se o post do dia ainda não saiu e depois dispara `comentarios.yml` uma vez, que no disparo manual fica de plantão (`--plantao 340`, conferindo a cada 3 minutos). O `publicar.py` confere no Instagram antes de publicar, então disparos repetidos não duplicam o post.
+**Confiabilidade:** os horários agendados do GitHub atrasam ou são pulados com frequência. Por isso o post do Instagram sai às 8h pela tarefa agendada "Instagram — publicar o post do dia às 8h" (dias úteis, 7:56), que dispara `publicar.yml` se o post do dia ainda não saiu (o agendamento do próprio GitHub, às 11:40, fica só como reserva) e depois dispara `comentarios.yml` uma vez, que no disparo manual fica de plantão (`--plantao 340`, conferindo a cada 3 minutos). O `publicar.py` confere no Instagram antes de publicar, então disparos repetidos não duplicam o post.

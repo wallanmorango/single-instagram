@@ -8,7 +8,7 @@ Automação gratuita do Instagram **@singletecnologia**: o Claude cria os posts,
 | --- | --- | --- |
 | Criar os 5 posts da semana e abrir um pull request | Claude (tarefa agendada) | Domingo |
 | Aprovar a semana (merge do pull request) | Você | Domingo, ~10 min |
-| Publicar o post do dia | `publicar.yml` | Segunda a sexta, 11:40 |
+| Publicar o post do dia | `publicar.yml` | Segunda a sexta, 8:00 (disparado pela tarefa agendada às 7:56; o agendamento do GitHub às 11:40 fica como reserva) |
 | Responder quem comentou a palavra-chave e mandar o material por DM | `comentarios.yml` | A cada 15 min |
 | Relatório de seguidores e desempenho | `relatorio.yml` | Segunda, 8:10 |
 | Renovar o token do Instagram | `renovar-token.yml` | Dias 1 e 15 |

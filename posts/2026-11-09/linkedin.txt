@@ -30,7 +30,7 @@ A lição que fica: performance raramente pede uma máquina maior. Quase sempre 
 
 Usei IA como copiloto para analisar a query bloco a bloco. A validação dos números, base por base, foi manual.
 
-No carrossel, o antes e depois de cada mudança no SQL.
+Na imagem, o tempo de atualização antes e depois e o que mudou na query e no modelo.
 
 Qual foi a maior otimização que você já fez em um BI?
 

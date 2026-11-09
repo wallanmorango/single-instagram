@@ -203,6 +203,13 @@ def main():
                 print(f"[{pasta.name}] OK (simulação): {post['tipo']} com {len(post['midias'])} mídia(s)"
                       f" e {len(post.get('stories') or [])} story(s).")
                 continue
+            horario = (post.get("horario") or "").strip()
+            if horario:
+                h, m = (int(x) for x in horario.split(":"))
+                liberado = dt.datetime.now(TZ).replace(hour=h, minute=m, second=0, microsecond=0) - dt.timedelta(minutes=15)
+                if args.data == dt.datetime.now(TZ).date().isoformat() and dt.datetime.now(TZ) < liberado:
+                    print(f"[{pasta.name}] horário marcado para {horario}: ainda não é hora, não publiquei.")
+                    continue
             existente = ja_no_instagram(legenda, args.data)
             if existente:
                 post.update(media_id=existente["id"], permalink=existente.get("permalink"), status="publicado")

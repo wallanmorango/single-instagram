@@ -107,11 +107,11 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 }
 ```
 
-`tipo`: `imagem`, `carrossel` (2 a 10 mídias) ou `reel` (`midias: ["video.mp4"]`, `capa` opcional). `palavra_chave`, `material_url`, `material_nome` e `stories` são opcionais. Só é publicado o que estiver com `status: aprovado` (use `pausado` para segurar um post). Os scripts preenchem `media_id`, `permalink`, `story_ids` e `status: publicado` depois de publicar.
+`tipo`: `imagem`, `carrossel` (2 a 10 mídias) ou `reel` (`midias: ["video.mp4"]`, `capa` opcional). `palavra_chave`, `material_url`, `material_nome` e `stories` são opcionais. `horario` (ex.: `"12:00"`) é opcional: sem ele o post sai às 8h; com ele, o `publicar.py` só publica a partir de 15 minutos antes desse horário (a tarefa agendada dispara às 7:56, 11:56 e 17:56). Só é publicado o que estiver com `status: aprovado` (use `pausado` para segurar um post). Os scripts preenchem `media_id`, `permalink`, `story_ids` e `status: publicado` depois de publicar.
 
 ## Rotina semanal de conteúdo (tarefa agendada de domingo)
 
-1. Ler o relatório mais recente em `relatorios/` e ver quais temas e formatos tiveram mais envios, salvos e seguidores ganhos.
+1. Ler o relatório mais recente em `relatorios/` (e `estado/posts.csv`) e ver quais temas, formatos e horários tiveram mais alcance, envios, salvos, comentários e seguidores ganhos. Semana de 09/11/2026: teste de horários no Instagram (seg 8h, ter 12h, qua 18h, qui 8h, sex 12h); use o resultado da análise de sábado 14/11 para escolher o `horario` dos posts.
 2. Pesquisar dúvidas reais de Power BI e DAX da semana (comunidade Microsoft Fabric, Reddit r/PowerBI) e os comentários recebidos.
 3. Pesquisar as notícias da semana sobre a Reforma Tributária para o post da linha "assunto da semana", e ver se há Projeto da quinzena novo em `assets/projetos/`.
 4. Criar os 5 posts do Instagram e os 3 do LinkedIn (terça, quarta e quinta) seguindo a estratégia de conteúdo e o sistema visual v2, com pelo menos 1 Reel e respeitando as regras de variedade. Cada post com palavra-chave entrega o seu material (Biblioteca ou PDF, novo ou reaproveitado).
@@ -122,4 +122,4 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 
 **Atenção:** esta sessão não consegue enviar arquivos dentro de `.github/workflows/` (o GitHub recusa). Mudanças de agendamento precisam ser feitas pelo Wallan no site do GitHub.
 
-**Confiabilidade:** os horários agendados do GitHub atrasam ou são pulados com frequência. Por isso o post do Instagram sai às 8h pela tarefa agendada "Instagram — publicar o post do dia às 8h" (dias úteis, 7:56), que dispara `publicar.yml` se o post do dia ainda não saiu (o agendamento do próprio GitHub, às 11:40, fica só como reserva) e depois dispara `comentarios.yml` uma vez, que no disparo manual fica de plantão (`--plantao 340`, conferindo a cada 3 minutos). O `publicar.py` confere no Instagram antes de publicar, então disparos repetidos não duplicam o post.
+**Confiabilidade:** os horários agendados do GitHub atrasam ou são pulados com frequência. Por isso o post do Instagram sai pela tarefa agendada "Instagram — publicar o post do dia" (dias úteis, 7:56, 11:56 e 17:56, conforme o `horario` do post; sem `horario`, às 8h), que dispara `publicar.yml` se o post do dia ainda não saiu (o agendamento do próprio GitHub, às 11:40, fica só como reserva) e depois dispara `comentarios.yml` uma vez, que no disparo manual fica de plantão (`--plantao 340`, conferindo a cada 3 minutos). O `publicar.py` confere no Instagram antes de publicar, então disparos repetidos não duplicam o post.

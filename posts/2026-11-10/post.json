@@ -22,9 +22,15 @@
     "material_url": "https://singletecnologia.netlify.app/materiais/python-planilhas.pdf"
   },
   "trial_reel": false,
-  "status": "aprovado",
+  "status": "publicado",
   "stories": [
     "story-01.jpg"
   ],
-  "horario": "12:00"
+  "horario": "12:00",
+  "media_id": "18349992922271949",
+  "permalink": "https://www.instagram.com/p/Dfk0nxnAUSS/",
+  "publicado_em": "2026-11-10T18:00:32-03:00",
+  "story_ids": [
+    "17941614786387431"
+  ]
 }

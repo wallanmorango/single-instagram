@@ -17,9 +17,15 @@
     "material_url": "https://singletecnologia.netlify.app/biblioteca"
   },
   "trial_reel": false,
-  "status": "aprovado",
+  "status": "publicado",
   "stories": [
     "story-01.jpg"
   ],
-  "horario": "18:00"
+  "horario": "18:00",
+  "media_id": "18015141758995368",
+  "permalink": "https://www.instagram.com/reel/Dfnc6UuFcL6/",
+  "publicado_em": "2026-11-11T18:31:36-03:00",
+  "story_ids": [
+    "18437226307149815"
+  ]
 }

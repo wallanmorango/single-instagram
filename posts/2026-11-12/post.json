@@ -21,9 +21,15 @@
     "material_url": "https://singletecnologia.netlify.app/reforma"
   },
   "trial_reel": false,
-  "status": "aprovado",
+  "status": "publicado",
   "stories": [
     "story-01.jpg"
   ],
-  "horario": "08:00"
+  "horario": "08:00",
+  "media_id": "18502420603101411",
+  "permalink": "https://www.instagram.com/p/DfqCVLpF75_/",
+  "publicado_em": "2026-11-12T18:36:42-03:00",
+  "story_ids": [
+    "18201622402388717"
+  ]
 }

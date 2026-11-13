@@ -16,9 +16,15 @@
   "material_nome": "o checklist com 10 perguntas sobre dados",
   "mensagem_dm": "Oi! Aqui está o checklist com 10 perguntas para ver em que ponto a sua empresa está com os dados: {material}\n\nDepois me conta o seu resultado aqui que eu te digo por onde começar.",
   "trial_reel": false,
-  "status": "aprovado",
+  "status": "publicado",
   "stories": [
     "story-01.jpg"
   ],
-  "horario": "12:00"
+  "horario": "12:00",
+  "media_id": "17980946765933503",
+  "permalink": "https://www.instagram.com/p/Dfsi6FDFzse/",
+  "publicado_em": "2026-11-13T17:59:49-03:00",
+  "story_ids": [
+    "18117245960068386"
+  ]
 }

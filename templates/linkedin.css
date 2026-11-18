@@ -1,0 +1,52 @@
+/* Identidade pessoal do Wallan Jorge para o LinkedIn.
+   Carregar DEPOIS de base.css: <link rel="stylesheet" href="../../templates/base.css">
+                                 <link rel="stylesheet" href="../../templates/linkedin.css">
+   Regra: no LinkedIn não entra logo, nome, site nem @ da Single Tecnologia. O cabeçalho é o do Wallan
+   (iniciais, nome e área) e a cor de destaque é o verde-menta, não o âmbar da Single. */
+
+:root {
+  --noite: #0B1220;
+  --marinho: #13233F;
+  --azul: #0A66C2;
+  --celeste: #5AA9F0;
+  --ambar: #3DDC97;   /* destaque pessoal (menta) no lugar do âmbar da Single */
+  --gelo: #F3F6FA;
+  --tinta: #0B1220;
+}
+
+.slide.noite {
+  background:
+    radial-gradient(620px 520px at 85% 8%, rgba(10, 102, 194, .5), transparent 70%),
+    radial-gradient(700px 600px at 10% 100%, rgba(19, 35, 63, .95), transparent 70%),
+    radial-gradient(420px 380px at 60% 58%, rgba(61, 220, 151, .10), transparent 70%),
+    var(--noite);
+}
+
+/* cabeçalho pessoal */
+.autor { display: flex; align-items: center; gap: 16px; }
+.autor .avatar {
+  width: 60px; height: 60px; border-radius: 99px; display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 24px; letter-spacing: .02em; color: #fff;
+  background: linear-gradient(135deg, var(--azul), #0B4A8B); box-shadow: 0 0 0 3px rgba(61, 220, 151, .55);
+}
+.autor b { display: block; font-weight: 900; font-size: 27px; line-height: 1.1; }
+.autor small { display: block; font-weight: 700; font-size: 22px; opacity: .65; margin-top: 2px; }
+
+/* lâmina de ação pessoal (substitui o .ambar da Single) */
+.slide.destaque {
+  color: #fff;
+  background:
+    radial-gradient(700px 600px at 90% 0%, rgba(61, 220, 151, .35), transparent 65%),
+    radial-gradient(800px 700px at 0% 100%, rgba(10, 102, 194, .75), transparent 70%),
+    #0A2540;
+}
+.slide.destaque::before { background-image: radial-gradient(rgba(255, 255, 255, .14) 2px, transparent 2.5px); }
+.destaque .etiqueta { background: rgba(61, 220, 151, .14); color: var(--ambar); border-color: rgba(61, 220, 151, .35); }
+.destaque .apoio { color: #C9D7EA; }
+.destaque .apoio b { color: #fff; }
+.destaque .pontos i.at { background: var(--ambar); }
+.palavra { display: inline-block; font-family: var(--mono); font-weight: 800; color: var(--noite); background: var(--ambar);
+  padding: 0 .18em; border-radius: .12em; }
+.botao-li { align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; font-weight: 900; font-size: 32px;
+  padding: 22px 34px; border-radius: 99px; background: #fff; color: var(--noite); }
+.botao-li svg { width: 32px; height: 32px; color: var(--azul); }

@@ -1,14 +1,15 @@
 {
-  "data": "2026-11-27",
+  "data": "2026-11-20",
   "tipo": "carrossel",
-  "tema": "Black Friday e os recordes diários do Pix (Banco Central): 297,4 mi na BF 2025, 319,7 mi em 06/11/2026; pico de venda é pico de conciliação",
-  "linha": "Dados que contam história",
+  "tema": "Quanto custa juntar 6 planilhas toda segunda: 144 h e R$ 7.200 por ano (exemplo fictício) e a automação com Power Query",
+  "linha": "Quanto custa o manual",
   "midias": [
     "01.jpg",
     "02.jpg",
     "03.jpg",
     "04.jpg",
-    "05.jpg"
+    "05.jpg",
+    "06.jpg"
   ],
   "legenda_arquivo": "legenda.txt",
   "horario": "12:00",

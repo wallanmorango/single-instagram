@@ -1,0 +1,25 @@
+Sexta, 27/11, é Black Friday. E o Pix tem boa chance de bater recorde de novo.
+
+Os números do Banco Central:
+• Black Friday de 2025 (28/11): 297,4 milhões de Pix em um único dia, recorde na época
+• 04/09/2026: 318,1 milhões e R$ 186,89 bilhões, o maior valor movimentado em um dia
+• 06/11/2026: 319,7 milhões, o recorde atual
+
+Em menos de um ano, o pico subiu 7,5%. E os três dias caíram numa sexta-feira. Na semana que começa amanhã tem Black Friday na sexta e a 1ª parcela do 13º na segunda seguinte, 30/11.
+
+Olhando como dado, o que me chama atenção é o outro lado desse recorde.
+
+Cada Pix é uma linha no extrato que alguém precisa bater com um pedido. Dia de pico de venda é dia de pico de conciliação. E em muita empresa essa conciliação ainda é Ctrl+F, linha por linha, na segunda-feira de manhã.
+
+Automatizada, ela vira outra coisa: o sistema cruza extrato e pedidos sozinho e só mostra o que não bateu. Quem concilia deixa de procurar agulha e passa a resolver exceção.
+
+Fiquei curioso: como o Pix é conciliado onde você trabalha?
+A) sozinho, pelo sistema
+B) na planilha, no dia seguinte
+C) só no fechamento do mês
+
+Responde com a letra aqui nos comentários.
+
+Fonte: Banco Central, divulgado pela imprensa (Correio Braziliense, 01/12/2025; SBT News, 09/11/2026).
+
+#Pix #Dados #Automação

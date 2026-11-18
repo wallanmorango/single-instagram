@@ -1,0 +1,27 @@
+"É rapidinho, leva só a manhã de segunda."
+
+Essa é uma das frases que mais escuto quando pergunto como um relatório é feito.
+
+E quase nunca alguém fez a conta. Então eu faço junto, com um exemplo bem comum: 6 filiais, cada uma manda a sua planilha, e uma pessoa junta tudo toda segunda.
+
+• 3 horas por semana
+• × 48 semanas de trabalho = 144 horas por ano
+• ÷ 8 horas por dia = 18 dias inteiros
+• × R$ 50 por hora (salário + encargos, troque pelo da sua empresa) = R$ 7.200 por ano
+
+R$ 7.200 para copiar e colar. E esse é o custo que dá para medir.
+
+O que não aparece na conta costuma pesar mais:
+• A reunião de segunda decide com o número de sexta, porque o relatório só fica pronto às 11h.
+• Uma linha colada duas vezes e a discussão inteira gira em torno de um total que não existe.
+• Só uma pessoa sabe montar. Quando ela tira férias, o relatório tira junto.
+
+Com as filiais salvando na mesma pasta e o Power Query juntando os arquivos, a manhã vira 5 minutos. A montagem leva umas 8 horas e se paga em menos de 3 segundas-feiras.
+
+Em 7 anos trabalhando com dados, aprendi que a pergunta certa não é "vale a pena automatizar?". É "quanto custa continuar esperando?". Quando a conta aparece em reais, a conversa com quem aprova o orçamento muda.
+
+A fórmula é simples: horas por semana × 48 × custo da hora.
+
+Qual é a tarefa da sua equipe que mais custaria nessa conta?
+
+#Automação #Dados #Gestão

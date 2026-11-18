@@ -1,0 +1,16 @@
+{
+  "data": "2026-11-18",
+  "tipo": "reel",
+  "tema": "Bastidores: o Instagram da Single que se publica sozinho (IA + GitHub Actions + API oficial, infraestrutura R$ 0)",
+  "linha": "Bastidores de entrega",
+  "midias": [
+    "video.mp4"
+  ],
+  "capa": "quadro01.jpg",
+  "legenda_arquivo": "legenda.txt",
+  "trial_reel": false,
+  "status": "aprovado",
+  "stories": [
+    "story-01.jpg"
+  ]
+}

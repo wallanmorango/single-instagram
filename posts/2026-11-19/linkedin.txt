@@ -1,0 +1,24 @@
+Tem gente que passa meia hora por dia fazendo a mesma coisa: abrir o e-mail, baixar o anexo, renomear e salvar na pasta.
+
+Nota de fornecedor, boleto, relatório do sistema. Uns 20 anexos por dia, 1 minuto e meio cada. E o pior nem é o tempo: é o arquivo que ficou parado no e-mail de quem saiu de férias.
+
+No Power Automate, isso vira um fluxo de 4 passos:
+
+1. Quando um novo email chegar (V3), com Incluir Anexos e Somente com Anexos em Sim
+2. Aplicar a cada: Anexos
+3. Condição: isInline igual a false
+4. SharePoint: Criar arquivo, com data e hora de Brasília no nome
+
+Parece simples, e é. Mas tem 3 pegadinhas que eu sempre vejo quebrar esse fluxo:
+
+• Arquivo salvo com 0 KB. O Incluir Anexos ficou em Não: o nome chega, o conteúdo não.
+• A pasta cheia de image001.png. O logo da assinatura também é anexo. A condição isInline = false resolve.
+• Um arquivo apagando o outro. Todo fornecedor manda "nota.pdf". Data e hora no nome evitam a troca. E use convertFromUtc, porque o utcNow() sozinho está 3 horas na frente de Brasília.
+
+No carrossel, o passo a passo e a expressão completa do nome do arquivo.
+
+Juntei esse e mais 9 fluxos que resolvem a rotina do escritório (contas a vencer, aprovação de compra, respostas do Forms no Excel, relatório semanal por e-mail…) num PDF com o passo a passo e a pegadinha de cada um.
+
+Comente FLUXO que eu te mando o link.
+
+#PowerAutomate #Automação #Microsoft365

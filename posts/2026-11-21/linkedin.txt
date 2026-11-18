@@ -1,0 +1,32 @@
+Na mesma audiência, dois números para a CBS: 11,3% e 8,5%.
+
+Muita gente vai usar o menor para fazer conta. E vai errar o preço de 2027.
+
+Na terça (17/11), a CAE do Senado ouviu a Fazenda, o TCU e a Receita. O TCU já tinha calculado a alíquota de referência em 11,3%. O ministro Durigan disse que o peso médio para o consumidor fica abaixo de 8,5%.
+
+Os dois estão certos, e a diferença entre eles é o que importa para quem vende.
+
+11,3% é a alíquota padrão: o que paga quem não tem nenhuma redução.
+8,5% é uma média: ela já desconta os setores que pagam menos, como restaurantes, hotéis, saúde, educação e cultura.
+
+E é justamente por causa dessas reduções que a padrão fica alta. A arrecadação precisa ser a mesma do PIS e da Cofins. Se uma parte paga menos, quem está na regra cheia paga mais.
+
+Olhando como dado, sobre os 11,3%:
+• sem redução: 11,3%
+• redução de 40% (bares, restaurantes, hotelaria): 6,78%
+• redução de 60% (saúde, educação, cultura): 4,52%
+• redução de 70% (locação de imóveis): 3,39%
+
+Conta simplificada, sem créditos e sem as regras de cada regime. Mas mostra que "a alíquota da reforma" não existe. Existe a alíquota do que você vende.
+
+Dois prazos para olhar agora:
+• até 15/12: o Senado fixa a alíquota. Sem resolução, vale a do TCU
+• até 20/12: quem está no Simples e optou pelo regime regular de IBS e CBS ainda pode cancelar
+
+Montei o Raio-X da Reforma para essa conversa sair do achismo: ele lê os XMLs das notas e compara os impostos de hoje com a CBS e o IBS.
+
+Comente RAIOX que eu te mando o link.
+
+Fontes: Agência Senado (17/11/2026), Receita Federal e LC 214/2025.
+
+#ReformaTributária #CBS #Contabilidade

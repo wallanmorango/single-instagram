@@ -1,0 +1,21 @@
+Este Instagram se publica sozinho. E a infraestrutura custa R$ 0. 🤖
+
+Bastidores de uma entrega nossa, feita para a própria Single:
+
+1. A IA monta a semana: tema, legenda e arte de cada post
+2. O fundador revisa e aprova com 1 clique (nada sai sem aprovação)
+3. Um robô no GitHub Actions publica no horário, pela API oficial do Instagram
+4. Comentou a palavra-chave? A resposta e o material chegam no direct
+5. Toda segunda sai um relatório com alcance, envios e salvos, e ele decide a pauta seguinte
+
+O que custa: GitHub Actions num repositório público, GitHub Pages para hospedar as imagens e a API oficial. Tudo grátis.
+
+O que mudou: ninguém precisa lembrar de postar, de responder ou de montar planilha de resultado. Sobra tempo para pensar no conteúdo.
+
+E a parte que não muda: sem senha em arquivo, sem app de terceiros e sem seguir ou curtir ninguém no automático.
+
+Qual tarefa da sua empresa ainda depende de alguém lembrar de fazer? Conta aqui nos comentários.
+
+Salve e envie para quem ainda posta na mão.
+
+#automacao #python #githubactions #inteligenciaartificial #bastidores

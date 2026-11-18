@@ -1,0 +1,28 @@
+{
+  "data": "2026-11-21",
+  "tipo": "carrossel",
+  "tema": "Reforma Tributária: CBS de 11,3% (referência do TCU) x 8,5% (peso médio citado pela Fazenda na CAE em 17/11) e as alíquotas reduzidas",
+  "linha": "Reforma Tributária: assunto da semana",
+  "midias": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg"
+  ],
+  "legenda_arquivo": "legenda.txt",
+  "palavra_chave": "RAIOX",
+  "material_url": "https://singletecnologia.netlify.app/reforma",
+  "material_nome": "o link do Raio-X da Reforma",
+  "mensagem_dm": "Oi! Aqui está o Raio-X da Reforma Tributária, o painel que lê os XMLs das suas notas e compara os impostos de hoje com a CBS e o IBS: {material}\n\nSe quiser ajuda para simular com os dados da sua empresa, é só responder aqui.",
+  "linkedin": {
+    "palavra_chave": "RAIOX",
+    "material_url": "https://singletecnologia.netlify.app/reforma"
+  },
+  "trial_reel": false,
+  "status": "aprovado",
+  "stories": [
+    "story-01.jpg"
+  ]
+}

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Bastidores: o Instagram que se publica sozinho — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.slide.reel { padding-top: 170px; }
+.cab-reel { display: flex; flex-direction: column; gap: 24px; margin-top: 50px; }
+.cab-reel .titulo { font-size: 100px; line-height: 1.02; }
+.cab-reel .apoio { font-size: 40px; }
+.passo { font-weight: 900; font-size: 30px; letter-spacing: .08em; text-transform: uppercase; color: var(--ambar); }
+.ambar .passo { color: var(--noite); }
+.palco { position: relative; margin-top: 110px; height: 820px; }
+
+/* 1. capa: celular com o post publicado */
+.post-ig { position: absolute; left: 150px; top: 0; width: 600px; padding: 0; overflow: hidden; transform: rotate(-3deg); }
+.post-ig .cab { display: flex; align-items: center; gap: 16px; padding: 22px 26px; font-weight: 900; font-size: 26px; }
+.post-ig .cab i { width: 52px; height: 52px; border-radius: 99px; background: var(--noite); display: flex; align-items: center; justify-content: center; }
+.post-ig .cab i svg { width: 34px; height: 34px; }
+.post-ig .cab small { display: block; font-weight: 700; font-size: 22px; color: var(--cinza); }
+.post-ig .img { height: 380px; background: radial-gradient(360px 260px at 70% 30%, rgba(37,99,235,.7), transparent 70%), var(--noite); display: flex; align-items: flex-end; padding: 30px; }
+.post-ig .img b { font-weight: 900; font-size: 50px; line-height: 1.05; color: #fff; }
+.post-ig .img b span { background: var(--ambar); color: var(--noite); padding: 0 .12em; border-radius: 6px; }
+.post-ig .acoes { display: flex; gap: 22px; padding: 22px 26px; font-weight: 700; font-size: 24px; color: var(--cinza); }
+.selo { position: absolute; right: 60px; top: 470px; padding: 24px 28px; transform: rotate(4deg); }
+.selo .status { font-size: 26px; }
+.selo b { display: block; font-weight: 900; font-size: 44px; margin-top: 10px; }
+.selo small { display: block; font-weight: 700; font-size: 22px; color: var(--cinza); margin-top: 4px; }
+
+/* 2. pull request */
+.pr { position: absolute; left: 0; right: 0; top: 0; padding: 34px 36px; transform: rotate(-2deg); }
+.pr .t { font-weight: 900; font-size: 42px; display: flex; align-items: center; gap: 16px; }
+.pr .t span { font-weight: 900; font-size: 22px; padding: 6px 14px; border-radius: 99px; background: rgba(34,197,94,.15); color: #15803D; }
+.pr .sub { font-weight: 700; font-size: 24px; color: var(--cinza); margin-top: 8px; }
+.pr ul { list-style: none; margin-top: 22px; display: grid; gap: 4px; }
+.pr li { display: grid; grid-template-columns: 90px 1fr auto; gap: 16px; align-items: center; font-weight: 700; font-size: 27px; padding: 12px 0; border-bottom: 1px solid #E3EAF7; }
+.pr li em { font-style: normal; font-weight: 900; color: var(--azul); }
+.pr li small { font-weight: 900; font-size: 22px; padding: 4px 12px; border-radius: 99px; background: rgba(37,99,235,.1); color: var(--azul); }
+.botao { position: absolute; right: 30px; top: 620px; display: inline-flex; align-items: center; gap: 14px; background: #16A34A; color: #fff; font-weight: 900; font-size: 34px; padding: 24px 36px; border-radius: 18px; transform: rotate(3deg); box-shadow: 0 30px 60px -18px rgba(22,163,74,.8); }
+.botao svg { width: 34px; height: 34px; }
+
+/* 3. log do GitHub Actions */
+.janela.log { position: absolute; left: 0; right: 0; top: 0; transform: rotate(-1.5deg); }
+.janela.log pre { font-size: 29px; line-height: 1.62; }
+.ok { color: #4ADE80; font-weight: 800; }
+.hora { color: #8EA3CC; }
+
+/* 4. comentário vira DM */
+.conversa { position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; gap: 26px; }
+.comentario { align-self: flex-start; display: flex; gap: 22px; align-items: center; padding: 28px 40px 28px 30px; transform: rotate(-2deg); }
+.comentario i { width: 76px; height: 76px; border-radius: 99px; background: linear-gradient(135deg, #60A5FA, #2563EB); flex-shrink: 0; }
+.comentario b { display: block; font-weight: 900; font-size: 30px; }
+.comentario span { font-weight: 900; font-size: 60px; color: var(--azul); }
+.rotulo { font-weight: 700; font-size: 30px; color: var(--nevoa); display: flex; align-items: center; gap: 12px; }
+.rotulo::before { content: ""; width: 12px; height: 12px; border-radius: 3px; background: var(--ambar); transform: rotate(45deg); }
+
+/* 5. relatório */
+.kpis { position: absolute; left: 0; right: 0; top: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.kpis .kpi { min-width: 0; }
+.kpis .kpi .val { color: #fff; }
+.kpis .k1 { transform: rotate(-2deg); }
+.kpis .k2 { transform: rotate(2deg); margin-top: 30px; }
+.tabela { position: absolute; left: 0; right: 0; top: 300px; padding: 28px 32px; transform: rotate(-1deg); }
+.tabela .cab { font-weight: 900; font-size: 28px; margin-bottom: 10px; display: flex; justify-content: space-between; }
+.tabela .cab span { font-weight: 700; font-size: 22px; color: var(--cinza); }
+.tabela .ln { display: grid; grid-template-columns: 1fr 120px 120px; gap: 12px; font-weight: 700; font-size: 26px; padding: 13px 0; border-bottom: 1px solid #E3EAF7; }
+.tabela .ln.h { font-weight: 900; font-size: 22px; color: var(--cinza); }
+.tabela .ln b { font-weight: 900; text-align: right; }
+.tabela .ln.top { color: var(--azul); }
+
+/* 6. chamada */
+.custo { margin-top: 30px; padding: 34px 38px; transform: rotate(-2deg); }
+.custo .ln { display: flex; justify-content: space-between; font-weight: 700; font-size: 32px; padding: 14px 0; border-bottom: 1px solid #E3EAF7; }
+.custo .ln b { font-weight: 900; color: #15803D; }
+.custo .tot { display: flex; justify-content: space-between; align-items: baseline; padding-top: 18px; font-weight: 900; font-size: 34px; }
+.custo .tot span { font-size: 72px; color: var(--azul); }
+.cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 36px; padding: 26px 40px; border-radius: 99px; }
+.cta svg { width: 36px; height: 36px; stroke: var(--ambar); fill: var(--ambar); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="merge" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="6" cy="19" r="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="18" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M6 7.5v9M6 7.5c0 4 4 4.5 9.6 4.5" fill="none" stroke="currentColor" stroke-width="2.4"/></symbol>
+</svg>
+
+<!-- 1. Gancho (capa) -->
+<section class="slide reel noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel">
+    <span class="etiqueta">Bastidores de entrega</span>
+    <h1 class="titulo">Este Instagram <span class="mk">se publica sozinho</span></h1>
+    <p class="apoio">E a infraestrutura custa R$ 0. Veja como funciona em 5 passos.</p>
+  </div>
+  <div class="palco">
+    <div class="halo" style="width:620px;height:520px;left:180px;top:120px;background:rgba(37,99,235,.55)"></div>
+    <div class="cartao post-ig">
+      <div class="cab"><i><svg><use href="#s-claro"/></svg></i><div>singletecnologia<small>agora</small></div></div>
+      <div class="img"><b>Post novo, <span>sem ninguém</span> apertar publicar</b></div>
+      <div class="acoes"><span>♡ curtir</span><span>💬 comentar</span><span>➤ enviar</span></div>
+    </div>
+    <div class="cartao selo"><span class="status">publicado</span><b>08:00</b><small>pelo GitHub Actions</small></div>
+  </div>
+</section>
+
+<!-- 2. A IA escreve, o fundador aprova -->
+<section class="slide reel noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel">
+    <span class="passo">Passos 1 e 2</span>
+    <h2 class="titulo">A IA monta a semana. <span class="mk">O fundador aprova.</span></h2>
+  </div>
+  <div class="palco">
+    <div class="halo" style="width:700px;height:500px;left:120px;top:100px;background:rgba(37,99,235,.5)"></div>
+    <div class="cartao pr">
+      <div class="t">Semana de 18/11 <span>aberto</span></div>
+      <div class="sub">pull request · 5 posts e 5 textos do LinkedIn</div>
+      <ul>
+        <li><em>qua</em>Bastidores<small>Reel</small></li>
+        <li><em>qui</em>Dica técnica<small>carrossel</small></li>
+        <li><em>sex</em>Quanto custa o manual<small>carrossel</small></li>
+        <li><em>sáb</em>Reforma Tributária<small>carrossel</small></li>
+        <li style="border:0"><em>dom</em>Dados que contam história<small>carrossel</small></li>
+      </ul>
+    </div>
+    <span class="botao"><svg><use href="#merge"/></svg>Merge = aprovado</span>
+  </div>
+</section>
+
+<!-- 3. Publica no horário -->
+<section class="slide reel noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel">
+    <span class="passo">Passo 3</span>
+    <h2 class="titulo">Um robô publica <span class="mk">no horário</span></h2>
+    <p class="apoio">Pela API oficial do Instagram. Sem senha em arquivo, sem app de terceiros.</p>
+  </div>
+  <div class="palco">
+    <div class="halo" style="width:700px;height:500px;left:120px;top:60px;background:rgba(37,99,235,.5)"></div>
+    <div class="janela log">
+      <div class="barra"><i></i><i></i><i></i><span>publicar.yml · GitHub Actions</span></div>
+<pre><span class="hora">07:56</span> confere o post de hoje
+<span class="hora">07:56</span> status: <span class="t">aprovado</span>
+<span class="hora">07:58</span> envia as lâminas <span class="ok">✓</span>
+<span class="hora">08:00</span> carrossel publicado <span class="ok">✓</span>
+<span class="hora">08:01</span> story de aviso <span class="ok">✓</span>
+<span class="hora">08:01</span> de plantão nos comentários</pre>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Comentário vira DM -->
+<section class="slide reel noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel">
+    <span class="passo">Passo 4</span>
+    <h2 class="titulo">Comentou a palavra? <span class="mk">A DM chega.</span></h2>
+  </div>
+  <div class="palco">
+    <div class="conversa">
+      <span class="rotulo">no post</span>
+      <div class="cartao comentario"><i></i><div><b>ana.dados</b><span>DAX</span></div></div>
+      <span class="rotulo">segundos depois, no direct</span>
+      <div class="bolha nos" style="align-self:flex-end;font-size:40px;max-width:820px;transform:rotate(1.5deg)">Oi! Aqui está a Biblioteca com 60 medidas DAX: singletecnologia.netlify.app/biblioteca<small style="font-size:24px">enviada pela resposta privada oficial</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Relatório -->
+<section class="slide reel noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel">
+    <span class="passo">Passo 5</span>
+    <h2 class="titulo">Toda segunda, <span class="mk">um relatório</span></h2>
+    <p class="apoio">O que teve mais alcance, envios e salvos decide a pauta da semana seguinte.</p>
+  </div>
+  <div class="palco">
+    <div class="halo" style="width:700px;height:500px;left:120px;top:160px;background:rgba(37,99,235,.5)"></div>
+    <div class="kpis">
+      <div class="vidro kpi k1"><div class="rot">Alcance médio, posts às 12h</div><div class="val">54</div></div>
+      <div class="vidro kpi k2"><div class="rot">Alcance médio, posts às 18h</div><div class="val">13</div></div>
+    </div>
+    <div class="cartao tabela">
+      <div class="cab">Teste de horário<span>média por post, nov/2026</span></div>
+      <div class="ln h"><span>Horário</span><b>Alcance</b><b>Envios</b></div>
+      <div class="ln top"><span>12h</span><b>54</b><b>1</b></div>
+      <div class="ln"><span>08h</span><b>39</b><b>1</b></div>
+      <div class="ln" style="border:0"><span>18h</span><b>13</b><b>0,3</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Chamada -->
+<section class="slide reel ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="cab-reel" style="gap:30px;margin-top:110px">
+    <span class="etiqueta">Quanto custa</span>
+    <h2 class="titulo" style="font-size:110px">Infraestrutura:<br><span class="mk" style="white-space:nowrap">R$ 0 por mês</span></h2>
+    <div class="cartao custo">
+      <div class="ln"><span>GitHub Actions (repositório público)</span><b>grátis</b></div>
+      <div class="ln"><span>GitHub Pages (hospeda as imagens)</span><b>grátis</b></div>
+      <div class="ln"><span>API oficial do Instagram</span><b>grátis</b></div>
+      <div class="tot">Por mês <span>R$ 0</span></div>
+    </div>
+    <p class="apoio" style="font-size:40px">Qual tarefa da sua empresa ainda depende de alguém <b>lembrar de fazer</b>? Conta nos comentários.</p>
+    <span class="cta"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Salve e envie para o seu time</span>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,17 @@
+Anexo do e-mail na pasta certa, sem ninguém abrir o e-mail. 📎
+
+Nota de fornecedor, boleto, relatório do sistema: tem gente que passa meia hora por dia abrindo e-mail, baixando anexo, renomeando e salvando na pasta.
+
+No Power Automate, isso vira um fluxo de 4 passos:
+→ Quando um novo email chegar (V3), com Incluir Anexos e Somente com Anexos em Sim
+→ Aplicar a cada: Anexos
+→ Condição: isInline igual a false (ignora o logo da assinatura)
+→ SharePoint: Criar arquivo, com data e hora de Brasília no nome
+
+Arraste para ver a expressão do nome do arquivo e as 3 pegadinhas que quebram esse fluxo.
+
+Comente FLUXO que eu te mando no direct o PDF com 10 fluxos de Power Automate para o escritório: contas a vencer, aprovação de compra, Forms no Excel, relatório semanal e mais.
+
+Salve e envie para quem vive baixando anexo.
+
+#powerautomate #automacao #microsoft365 #produtividade #sharepoint

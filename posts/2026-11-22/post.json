@@ -13,8 +13,9 @@
   "legenda_arquivo": "legenda.txt",
   "horario": "12:00",
   "trial_reel": false,
-  "status": "aprovado",
+  "status": "manual",
   "stories": [
     "story-01.jpg"
-  ]
+  ],
+  "nome_conteudo": "Black Friday e o Pix"
 }

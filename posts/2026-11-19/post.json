@@ -19,12 +19,13 @@
   "mensagem_dm": "Oi! Aqui está o PDF com 10 fluxos de Power Automate para o escritório, passo a passo e com a pegadinha de cada um: {material}\n\nSe quiser um processo inteiro rodando sozinho na sua empresa, é só responder aqui.",
   "horario": "12:00",
   "trial_reel": false,
-  "status": "aprovado",
+  "status": "manual",
   "stories": [
     "story-01.jpg"
   ],
   "linkedin": {
     "palavra_chave": "FLUXO",
     "material_url": "https://singletecnologia.netlify.app/materiais/power-automate-fluxos.pdf"
-  }
+  },
+  "nome_conteudo": "Power Automate - anexos do e-mail"
 }

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>10 fluxos de Power Automate para o escritório — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.conteudo { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
+.fluxo { display: flex; flex-direction: column; gap: 14px; }
+.fluxo .cab { display: flex; align-items: center; gap: 18px; }
+.fluxo .num { flex-shrink: 0; width: 64px; height: 64px; border-radius: 18px; background: var(--azul); color: #fff; font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+.fluxo h3 { font-weight: 900; font-size: 40px; letter-spacing: -.02em; line-height: 1.05; }
+.fluxo .oque { font-weight: 500; font-size: 27px; line-height: 1.35; color: var(--cinza); }
+.passos { list-style: none; display: grid; gap: 0; padding: 18px 26px; }
+.passos li { display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #E3EAF7; font-weight: 700; font-size: 25px; line-height: 1.3; }
+.passos li:last-child { border-bottom: 0; }
+.passos li span { font-weight: 900; font-size: 22px; text-transform: uppercase; letter-spacing: .04em; color: var(--azul); }
+.passos li small { display: block; font-weight: 500; font-size: 23px; color: var(--cinza); margin-top: 2px; }
+.passos code, .dica code { font-family: var(--mono); font-size: .88em; color: var(--azul); }
+.fluxo .dica { font-size: 25px; }
+.fluxo .dica::before { width: 14px; height: 14px; margin-top: 10px; }
+.sep { height: 2px; background: rgba(10,26,61,.08); margin: 2px 0; }
+.indice { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
+.indice span { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 26px; padding: 16px 20px; border-radius: 18px; background: rgba(255,255,255,.07); border: 1.5px solid rgba(255,255,255,.14); }
+.indice b { font-weight: 900; color: var(--ambar); font-variant-numeric: tabular-nums; }
+.checks { list-style: none; display: grid; gap: 18px; }
+.checks li { display: flex; gap: 20px; align-items: flex-start; font-weight: 700; font-size: 32px; line-height: 1.3; }
+.checks li::before { content: ""; flex-shrink: 0; width: 40px; height: 40px; margin-top: 2px; border-radius: 12px; background: var(--azul) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/26px no-repeat; }
+.checks small { display: block; font-weight: 500; font-size: 26px; color: var(--cinza); margin-top: 4px; }
+.janela pre { font-size: 25px; line-height: 1.45; padding: 22px 30px 26px; }
+.janela .barra { padding: 14px 24px; }
+.contato { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
+.contato a { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; text-decoration: none; font-weight: 900; font-size: 38px; padding: 26px 40px; border-radius: 99px; background: var(--noite); color: #fff; }
+.contato a.site { background: transparent; color: var(--noite); border: 3px solid var(--noite); }
+.contato svg { width: 38px; height: 38px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:60px;gap:30px">
+    <span class="etiqueta">Material gratuito · Power Automate</span>
+    <h1 class="titulo m">10 fluxos de Power Automate para o <span class="mk">escritório</span></h1>
+    <p class="apoio">As tarefas que alguém faz todo dia no e-mail, no Excel e no Teams, montadas passo a passo. Com a pegadinha de cada uma.</p>
+    <div class="indice">
+      <span><b>01</b>Salvar anexos</span>
+      <span><b>02</b>Aviso de arquivo novo</span>
+      <span><b>03</b>Contas a vencer</span>
+      <span><b>04</b>Aprovação de compra</span>
+      <span><b>05</b>Forms no Excel</span>
+      <span><b>06</b>Relatório semanal</span>
+      <span><b>07</b>Converter em PDF</span>
+      <span><b>08</b>Aviso de falha</span>
+      <span><b>09</b>E-mail importante</span>
+      <span><b>10</b>E-mail vira tarefa</span>
+    </div>
+  </div>
+  <div class="rodape"><span class="perfil">singletecnologia.netlify.app</span><span class="perfil">1/8</span></div>
+</section>
+
+<!-- 2. Antes de começar -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">2/8</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Antes de começar</span>
+    <h2 class="titulo p">Uma conta Microsoft 365 e <span class="mk az">10 minutos</span></h2>
+    <p class="apoio">Todos os fluxos usam conectores padrão, incluídos na maioria dos planos do Microsoft 365. Crie em make.powerautomate.com, em Criar &gt; Fluxo da nuvem automatizado.</p>
+    <ul class="checks">
+      <li><div>Nomes como na tela em português<small>os nomes das ações podem variar um pouco conforme a versão; procure pelo conector (Outlook, SharePoint, Excel, Teams)</small></div></li>
+      <li><div>Fuso horário sempre explícito<small>o Power Automate trabalha em UTC: 3 horas a mais que Brasília</small></div></li>
+      <li><div>Teste com um caso real<small>use o botão Testar e confira a execução antes de ligar o fluxo para todo mundo</small></div></li>
+    </ul>
+    <div class="janela">
+      <div class="barra"><i></i><i></i><i></i><span>data e hora de Brasília (expressão)</span></div>
+<pre><span class="k">convertFromUtc</span>(<span class="k">utcNow</span>(),
+  <span class="t">'E. South America Standard Time'</span>,
+  <span class="t">'yyyy-MM-dd_HHmm'</span>)</pre>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Fluxos 1 e 2 -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">3/8</span></div>
+  <div class="conteudo">
+    <div class="fluxo">
+      <div class="cab"><span class="num">01</span><h3>Salvar anexos do e-mail numa pasta</h3></div>
+      <p class="oque">Notas, boletos e relatórios caem sozinhos na pasta certa, com data no nome.</p>
+      <ul class="cartao passos">
+        <li><span>Gatilho</span><div>Quando um novo email chegar (V3)<small>Incluir Anexos: Sim · Somente com Anexos: Sim</small></div></li>
+        <li><span>Repetir</span><div>Aplicar a cada: Anexos</div></li>
+        <li><span>Filtro</span><div>Condição: <code>isInline</code> igual a <code>false</code><small>tira o logo da assinatura (image001.png)</small></div></li>
+        <li><span>Ação</span><div>SharePoint: Criar arquivo<small>Nome: data + nome do anexo · Conteúdo: Conteúdo dos Anexos</small></div></li>
+      </ul>
+      <p class="dica"><span><b>Pegadinha:</b> com Incluir Anexos em Não, o arquivo é criado vazio.</span></p>
+    </div>
+    <div class="sep"></div>
+    <div class="fluxo">
+      <div class="cab"><span class="num">02</span><h3>Avisar no Teams quando chega arquivo</h3></div>
+      <p class="oque">O time fica sabendo na hora que o fornecedor mandou o arquivo, sem ficar abrindo a pasta.</p>
+      <ul class="cartao passos">
+        <li><span>Gatilho</span><div>SharePoint: Quando um arquivo é criado (somente propriedades)</div></li>
+        <li><span>Ação</span><div>Teams: Postar mensagem em um chat ou canal<small>com o nome do arquivo e o link para abrir</small></div></li>
+      </ul>
+      <p class="dica"><span><b>Pegadinha:</b> o gatilho olha a biblioteca inteira. Para uma pasta só, use uma Condição no Caminho da pasta.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Fluxos 3 e 4 -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">4/8</span></div>
+  <div class="conteudo">
+    <div class="fluxo">
+      <div class="cab"><span class="num">03</span><h3>Lembrete de contas a vencer</h3></div>
+      <p class="oque">Todo dia às 8h, um e-mail com o que vence daqui a 3 dias, tirado da planilha de contas a pagar.</p>
+      <ul class="cartao passos">
+        <li><span>Gatilho</span><div>Recorrência: 1 dia, às 8h<small>Fuso horário: (UTC-03:00) Brasília</small></div></li>
+        <li><span>Ação</span><div>Excel: Listar linhas presentes em uma tabela<small>Formato DateTime: ISO 8601</small></div></li>
+        <li><span>Filtro</span><div>Filtrar matriz: Vencimento igual a hoje + 3 dias<small>expressão abaixo, dos dois lados no formato yyyy-MM-dd</small></div></li>
+        <li><span>Ação</span><div>Criar tabela HTML + Enviar um email (V2)</div></li>
+      </ul>
+      <div class="janela"><div class="barra"><i></i><i></i><i></i><span>hoje + 3 dias</span></div>
+<pre><span class="k">formatDateTime</span>(<span class="k">addDays</span>(<span class="k">convertFromUtc</span>(<span class="k">utcNow</span>(),
+  <span class="t">'E. South America Standard Time'</span>), <span class="m">3</span>), <span class="t">'yyyy-MM-dd'</span>)</pre></div>
+      <p class="dica"><span><b>Pegadinha:</b> sem o formato ISO 8601, a data chega como número (27/11/2026 vira 46353).</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Fluxos 4 e 5 -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">5/8</span></div>
+  <div class="conteudo">
+    <div class="fluxo">
+      <div class="cab"><span class="num">04</span><h3>Aprovação de compra ou reembolso</h3></div>
+      <p class="oque">O pedido entra numa lista, o gestor aprova pelo Teams ou pelo e-mail e o status muda sozinho.</p>
+      <ul class="cartao passos">
+        <li><span>Gatilho</span><div>SharePoint: Quando um item é criado<small>lista "Pedidos de compra"</small></div></li>
+        <li><span>Ação</span><div>Aprovações: Iniciar e aguardar uma aprovação<small>Tipo: Aprovar/Rejeitar, o primeiro a responder</small></div></li>
+        <li><span>Filtro</span><div>Condição: Resultado igual a <code>Approve</code></div></li>
+        <li><span>Ação</span><div>SharePoint: Atualizar item<small>Status: Aprovado ou Recusado, com os comentários</small></div></li>
+      </ul>
+      <p class="dica"><span><b>Pegadinha:</b> o Resultado vem em inglês (<code>Approve</code> ou <code>Reject</code>), mesmo com tudo em português.</span></p>
+    </div>
+    <div class="sep"></div>
+    <div class="fluxo">
+      <div class="cab"><span class="num">05</span><h3>Respostas do Forms direto no Excel</h3></div>
+      <p class="oque">Pesquisa, inscrição ou solicitação: cada resposta vira uma linha numa planilha organizada.</p>
+      <ul class="cartao passos">
+        <li><span>Gatilho</span><div>Forms: Quando uma nova resposta é enviada</div></li>
+        <li><span>Ação</span><div>Forms: Obter detalhes da resposta</div></li>
+        <li><span>Ação</span><div>Excel: Adicionar uma linha em uma tabela</div></li>
+      </ul>
+      <p class="dica"><span><b>Pegadinha:</b> o Excel precisa estar formatado como Tabela (Inserir &gt; Tabela) e salvo no OneDrive ou SharePoint.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Fluxos 6 e 7 -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">6/8</span></div>
+  <div class="conteudo">
+    <div class="fluxo">
+      <div class="cab"><span class="num">06</span><h3>Relatório semanal por e-mail</h3></div>
+      <p class="oque">Toda segunda às 8h, o arquivo atualizado chega anexado para quem precisa, sem ninguém lembrar.</p>
+      <ul class="cartao passos">
+        <li><span>Gatilho</span><div>Recorrência: semana, segunda, às 8h<small>Fuso horário: (UTC-03:00) Brasília</small></div></li>
+        <li><span>Ação</span><div>OneDrive: Obter conteúdo do arquivo usando caminho</div></li>
+        <li><span>Ação</span><div>Enviar um email (V2)<small>Anexos: nome do arquivo + conteúdo do arquivo</small></div></li>
+      </ul>
+      <p class="dica"><span><b>Pegadinha:</b> sem fuso horário, a Recorrência roda em UTC e as 8h viram 5h da manhã em Brasília.</span></p>
+    </div>
+    <div class="sep"></div>
+    <div class="fluxo">
+      <div class="cab"><span class="num">07</span><h3>Converter arquivos em PDF</h3></div>
+      <p class="oque">Jogou um Word ou Excel na pasta "Para PDF", o PDF aparece na pasta ao lado.</p>
+      <ul class="cartao passos">
+        <li><span>Gatilho</span><div>OneDrive for Business: Quando um arquivo é criado</div></li>
+        <li><span>Ação</span><div>OneDrive for Business: Converter arquivo<small>Tipo de destino: PDF</small></div></li>
+        <li><span>Ação</span><div>OneDrive for Business: Criar arquivo<small>mesmo nome, trocando a extensão por .pdf</small></div></li>
+      </ul>
+      <p class="dica"><span><b>Pegadinha:</b> o Converter arquivo pede o Identificador do arquivo, não o caminho.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Fluxos 8, 9 e 10 -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">7/8</span></div>
+  <div class="conteudo" style="gap:20px">
+    <div class="fluxo">
+      <div class="cab"><span class="num">08</span><h3>Avisar quando um fluxo falhar</h3></div>
+      <p class="oque">Coloque as ações num Escopo e, depois dele, uma mensagem no Teams. Em Configurar execução após, marque "falhou" e "atingiu o tempo limite".</p>
+      <p class="dica"><span><b>Pegadinha:</b> sem isso, o fluxo para em silêncio e alguém descobre dias depois.</span></p>
+    </div>
+    <div class="sep"></div>
+    <div class="fluxo">
+      <div class="cab"><span class="num">09</span><h3>E-mail importante vira aviso no Teams</h3></div>
+      <p class="oque">Gatilho Quando um novo email chegar (V3) com o filtro De e a ação Postar mensagem em um chat ou canal.</p>
+      <p class="dica"><span><b>Pegadinha:</b> o filtro De aceita vários endereços, separados por ponto e vírgula.</span></p>
+    </div>
+    <div class="sep"></div>
+    <div class="fluxo">
+      <div class="cab"><span class="num">10</span><h3>E-mail sinalizado vira tarefa da equipe</h3></div>
+      <p class="oque">Gatilho Quando um email é sinalizado (V4) e a ação Planner: Criar uma tarefa, com o assunto como título.</p>
+      <p class="dica"><span><b>Pegadinha:</b> se a tarefa é só sua, nem precisa de fluxo: e-mail sinalizado já aparece no Microsoft To Do.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Contato -->
+<section class="slide ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">8/8</span></div>
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:80px">
+    <span class="etiqueta">Próximo passo</span>
+    <h2 class="titulo m">Quer o processo inteiro <span class="mk">rodando sozinho?</span></h2>
+    <p class="apoio">A Single liga e-mail, planilha, sistema e painel num fluxo só, com Power Automate, Python, SQL ou Power BI. Você pede, a gente entrega.</p>
+    <div class="contato">
+      <a href="https://wa.me/5521965725125"><svg><use href="#seta"/></svg>Falar no WhatsApp</a>
+      <a class="site" href="https://singletecnologia.netlify.app">singletecnologia.netlify.app</a>
+    </div>
+  </div>
+  <div class="rodape"><span style="font-weight:900;font-size:28px">Solicitou, entregamos.</span><span class="perfil">@singletecnologia</span></div>
+</section>
+</body>
+</html>

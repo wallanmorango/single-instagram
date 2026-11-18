@@ -1,0 +1,18 @@
+Juntar planilhas toda segunda custa 18 dias de trabalho por ano. 🧮
+
+Um exemplo fictício, mas que você provavelmente conhece: 6 filiais mandam a planilha de vendas e alguém passa a manhã de segunda copiando, colando e conferindo.
+
+A conta:
+→ 3 h por semana × 48 semanas = 144 horas
+→ 144 h ÷ 8 h por dia = 18 dias
+→ 144 h × R$ 50 por hora = R$ 7.200 por ano
+
+E isso é a parte barata. Não entra na conta a decisão tomada com dado atrasado, a linha colada duas vezes e o relatório que tira férias junto com quem faz.
+
+Com as filiais salvando na mesma pasta e o Power Query juntando os arquivos, a manhã vira 5 minutos. A montagem leva umas 8 horas e se paga em menos de 3 segundas-feiras.
+
+Faça a sua conta: horas por semana × 48 × custo da hora. Comente o resultado aqui.
+
+Salve e envie para quem aprova o orçamento.
+
+#automacao #excel #powerquery #gestao #produtividade

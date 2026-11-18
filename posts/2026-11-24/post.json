@@ -1,0 +1,26 @@
+{
+  "data": "2026-11-24",
+  "tipo": "carrossel",
+  "tema": "Power Automate: salvar anexos do e-mail no SharePoint com data e hora no nome",
+  "linha": "Dica técnica da semana (Power Automate)",
+  "midias": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg",
+    "07.jpg"
+  ],
+  "legenda_arquivo": "legenda.txt",
+  "palavra_chave": "FLUXO",
+  "material_url": "https://singletecnologia.netlify.app/materiais/power-automate-fluxos.pdf",
+  "material_nome": "o PDF com 10 fluxos de Power Automate",
+  "mensagem_dm": "Oi! Aqui está o PDF com 10 fluxos de Power Automate para o escritório, passo a passo e com a pegadinha de cada um: {material}\n\nSe quiser um processo inteiro rodando sozinho na sua empresa, é só responder aqui.",
+  "horario": "12:00",
+  "trial_reel": false,
+  "status": "aprovado",
+  "stories": [
+    "story-01.jpg"
+  ]
+}

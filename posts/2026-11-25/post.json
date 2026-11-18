@@ -1,0 +1,21 @@
+{
+  "data": "2026-11-25",
+  "tipo": "carrossel",
+  "tema": "Quanto custa juntar 6 planilhas toda segunda: 144 h e R$ 7.200 por ano (exemplo fictício) e a automação com Power Query",
+  "linha": "Quanto custa o manual",
+  "midias": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg"
+  ],
+  "legenda_arquivo": "legenda.txt",
+  "horario": "12:00",
+  "trial_reel": false,
+  "status": "aprovado",
+  "stories": [
+    "story-01.jpg"
+  ]
+}

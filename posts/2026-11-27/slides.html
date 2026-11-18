@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Pix na Black Friday — Single Tecnologia</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<style>
+.conteudo { margin-top: 44px; display: flex; flex-direction: column; gap: 32px; }
+.capa-txt { margin-top: auto; padding-bottom: 150px; display: flex; flex-direction: column; gap: 24px; }
+.palco { position: absolute; left: 80px; right: 80px; top: 150px; height: 560px; z-index: 2; }
+.fonte { font-weight: 700; font-size: 22px; color: var(--cinza); line-height: 1.4; }
+.noite .fonte { color: var(--nevoa); }
+.recorde { position: absolute; left: 0; top: 20px; width: 600px; padding: 30px 34px; transform: rotate(-2.5deg); }
+.recorde .rot { font-weight: 700; font-size: 24px; color: var(--nevoa); }
+.recorde .big { font-weight: 900; font-size: 150px; letter-spacing: -.05em; line-height: 1; margin-top: 6px; color: #fff; white-space: nowrap; }
+.recorde .big small { font-size: 54px; letter-spacing: -.02em; }
+.recorde .sub { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+.recorde .sub span { font-weight: 900; font-size: 22px; padding: 8px 14px; border-radius: 99px; background: rgba(255,180,0,.16); color: var(--ambar); }
+.agenda { position: absolute; right: 0; top: 300px; width: 380px; padding: 24px 28px; transform: rotate(3deg); }
+.agenda .cab { font-weight: 900; font-size: 26px; margin-bottom: 8px; }
+.agenda .ln { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 24px; padding: 10px 0; border-top: 1px solid #E3EAF7; }
+.agenda .ln b { font-weight: 900; font-size: 22px; padding: 4px 12px; border-radius: 99px; background: rgba(255,180,0,.2); color: #8A5A00; }
+
+.grafico { padding: 30px 34px 26px; transform: rotate(-1deg); }
+.grafico .cab { display: flex; justify-content: space-between; align-items: baseline; font-weight: 900; font-size: 28px; }
+.grafico .cab span { font-weight: 700; font-size: 22px; color: var(--cinza); }
+.barras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; align-items: end; height: 470px; margin-top: 26px; padding: 0 10px; border-bottom: 3px solid #DCE4F2; }
+.barras .b { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; }
+.barras .v { font-weight: 900; font-size: 36px; margin-bottom: 10px; }
+.barras .col { width: 100%; border-radius: 14px 14px 0 0; background: linear-gradient(180deg, var(--celeste), var(--azul)); }
+.barras .b.at .col { background: linear-gradient(180deg, #FFCF4D, var(--ambar)); box-shadow: 0 0 30px rgba(255,180,0,.5); }
+.rotulos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; padding: 14px 10px 0; text-align: center; }
+.rotulos b { display: block; font-weight: 900; font-size: 26px; }
+.rotulos small { display: block; font-weight: 700; font-size: 22px; color: var(--cinza); margin-top: 2px; }
+
+.tres { display: grid; gap: 18px; }
+.tres .vidro { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: center; padding: 28px 30px; }
+.tres .n { font-weight: 900; font-size: 58px; letter-spacing: -.03em; color: var(--ambar); white-space: nowrap; }
+.tres b { display: block; font-weight: 900; font-size: 30px; line-height: 1.2; }
+.tres small { display: block; font-weight: 500; font-size: 25px; color: var(--nevoa); margin-top: 6px; line-height: 1.3; }
+
+.extrato { padding: 26px 30px; transform: rotate(-1.5deg); }
+.extrato .cab { display: flex; justify-content: space-between; font-weight: 900; font-size: 28px; margin-bottom: 8px; }
+.extrato .cab span { font-weight: 700; font-size: 22px; color: var(--cinza); }
+.extrato .ln { display: grid; grid-template-columns: 110px 1fr 170px 150px; gap: 14px; align-items: center; font-weight: 700; font-size: 25px; padding: 13px 0; border-top: 1px solid #E3EAF7; }
+.extrato .ln.h { font-weight: 900; font-size: 22px; color: var(--cinza); }
+.extrato .ln .r { text-align: right; font-weight: 900; }
+.extrato .ok, .extrato .no { font-weight: 900; font-size: 22px; padding: 4px 12px; border-radius: 99px; justify-self: end; }
+.extrato .ok { background: rgba(34,197,94,.15); color: #15803D; }
+.extrato .no { background: rgba(244,63,94,.13); color: #BE123C; }
+.cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 34px; padding: 24px 38px; border-radius: 99px; }
+.cta svg { width: 34px; height: 34px; stroke: var(--ambar); fill: var(--ambar); }
+.pergunta { padding: 30px 34px; font-weight: 900; font-size: 40px; line-height: 1.2; transform: rotate(-1.5deg); }
+.pergunta small { display: block; font-weight: 700; font-size: 26px; color: var(--cinza); margin-top: 12px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="palco">
+    <div class="halo" style="width:540px;height:380px;left:120px;top:120px;background:rgba(37,99,235,.6)"></div>
+    <div class="vidro recorde">
+      <div class="rot">Recorde de Pix em um dia · 06/11/2026</div>
+      <div class="big">319,7 <small>milhões</small></div>
+      <div class="sub"><span>R$ 180,5 bilhões</span><span>numa sexta-feira</span></div>
+    </div>
+    <div class="cartao agenda">
+      <div class="cab">Esta semana</div>
+      <div class="ln">Sex 27/11<b>Black Friday</b></div>
+      <div class="ln">Seg 30/11<b>1ª parcela do 13º</b></div>
+    </div>
+  </div>
+  <div class="capa-txt">
+    <span class="etiqueta">Dados que contam história</span>
+    <h1 class="titulo p">Black Friday: o Pix pode <span class="mk">bater recorde hoje</span></h1>
+    <p class="apoio">E cada Pix é uma linha que alguém vai precisar conciliar na segunda.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i class="at"></i><i></i><i></i><i></i><i></i></div><span class="arraste">Arraste <svg><use href="#seta"/></svg></span></div>
+</section>
+
+<!-- 2. O painel -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">O dado</span>
+    <h2 class="titulo p">Em 1 ano, o pico subiu <span class="mk az">7,5%</span></h2>
+    <div class="cartao grafico">
+      <div class="cab">Pix em um único dia<span>milhões de transações</span></div>
+      <div class="barras">
+        <div class="b"><span class="v">297,4</span><div class="col" style="height:93.0%"></div></div>
+        <div class="b"><span class="v">318,1</span><div class="col" style="height:99.5%"></div></div>
+        <div class="b at"><span class="v">319,7</span><div class="col" style="height:100.0%"></div></div>
+      </div>
+      <div class="rotulos">
+        <div><b>28/11/2025</b><small>Black Friday</small></div>
+        <div><b>04/09/2026</b><small>recorde</small></div>
+        <div><b>06/11/2026</b><small>recorde atual</small></div>
+      </div>
+    </div>
+    <p class="fonte">Fonte: Banco Central, divulgado pela imprensa (Correio Braziliense, 01/12/2025; SBT News, 09/11/2026). Barras a partir do zero. Conferido em 18/11/2026.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i class="at"></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 3. O padrão -->
+<section class="slide noite">
+  <div class="topo"><div class="marca"><svg><use href="#s-claro"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">O que o dado mostra</span>
+    <h2 class="titulo p">Os últimos recordes <span class="mk">caíram numa sexta</span></h2>
+    <div class="tres">
+      <div class="vidro"><span class="n">297,4 mi</span><div><b>Black Friday de 2025</b><small>sexta, 28/11/2025: recorde na época, R$ 166,2 bilhões no dia</small></div></div>
+      <div class="vidro"><span class="n">318,1 mi</span><div><b>Sexta, 04/09/2026</b><small>R$ 186,89 bilhões, o maior valor movimentado em um dia</small></div></div>
+      <div class="vidro"><span class="n">319,7 mi</span><div><b>Sexta, 06/11/2026</b><small>o recorde atual de transações, com R$ 180,5 bilhões</small></div></div>
+    </div>
+    <p class="fonte">Nesta sexta tem Black Friday, e a 1ª parcela do 13º vence na segunda, 30/11. É o tipo de semana que faz recorde.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i class="at"></i><i></i><i></i></div></div>
+</section>
+
+<!-- 4. O que isso quer dizer -->
+<section class="slide">
+  <div class="topo"><div class="marca"><svg><use href="#s-cor"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="gap:30px">
+    <span class="etiqueta">Na sua empresa</span>
+    <h2 class="titulo p">Dia de pico de venda é <span class="mk az">dia de pico de conciliação</span></h2>
+    <div class="cartao extrato">
+      <div class="cab">Extrato x pedidos<span>dados fictícios</span></div>
+      <div class="ln h"><span>Hora</span><span>Pagador</span><span class="r">Valor</span><span class="r">Pedido</span></div>
+      <div class="ln"><span>10:02</span><span>Maria S.</span><span class="r">R$ 189,90</span><span class="ok">#8812</span></div>
+      <div class="ln"><span>10:05</span><span>João P.</span><span class="r">R$ 74,50</span><span class="ok">#8815</span></div>
+      <div class="ln"><span>10:07</span><span>Ana L.</span><span class="r">R$ 320,00</span><span class="no">sem pedido</span></div>
+      <div class="ln"><span>10:09</span><span>Carlos M.</span><span class="r">R$ 59,90</span><span class="ok">#8819</span></div>
+    </div>
+    <p class="dica"><span>Na mão, é Ctrl+F linha por linha. Automatizado, o sistema cruza extrato e pedidos e <b>só mostra o que não bateu</b>.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i class="at"></i><i></i></div></div>
+</section>
+
+<!-- 5. Chamada -->
+<section class="slide ambar">
+  <div class="topo"><div class="marca"><svg style="color:#050F2B"><use href="#s-mono"/></svg>SINGLE</div><span class="perfil">@singletecnologia</span></div>
+  <div class="conteudo" style="margin-top:110px;gap:32px">
+    <span class="etiqueta">Conta pra gente</span>
+    <h2 class="titulo m">Como o Pix é conciliado <span class="mk">aí?</span></h2>
+    <div class="cartao pergunta">A) sozinho, pelo sistema<br>B) na planilha, no dia seguinte<br>C) só no fechamento do mês<small>Responda com a letra nos comentários.</small></div>
+    <p class="apoio">E envie para <b>quem vai conciliar a Black Friday</b> na segunda-feira.</p>
+    <span class="cta"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Salve este dado</span>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i class="at"></i></div><span style="font-weight:900;font-size:26px">singletecnologia.netlify.app</span></div>
+</section>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn — Wallan Jorge</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<link rel="stylesheet" href="../../templates/linkedin.css">
+<style>
+.conteudo { margin-top: 56px; display: flex; flex-direction: column; gap: 34px; }
+.perguntas { list-style: none; display: grid; gap: 20px; counter-reset: q; }
+.perguntas li { counter-increment: q; display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: center; padding: 28px 30px; }
+.perguntas li::before { content: counter(q); width: 64px; height: 64px; border-radius: 18px; background: var(--ambar); color: var(--noite); font-weight: 900; font-size: 32px; display: flex; align-items: center; justify-content: center; }
+.perguntas b { display: block; font-weight: 900; font-size: 36px; line-height: 1.15; color: #fff; }
+.perguntas small { display: block; font-weight: 500; font-size: 26px; color: var(--nevoa); margin-top: 8px; line-height: 1.3; }
+.l1 { transform: rotate(-1.5deg); } .l2 { transform: rotate(1deg); } .l3 { transform: rotate(-.8deg); }
+.ferramenta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-weight: 700; font-size: 26px; color: var(--nevoa); }
+.ferramenta span { font-family: var(--mono); font-weight: 700; font-size: 23px; padding: 8px 14px; border-radius: 12px; background: rgba(255,255,255,.07); border: 1.5px solid rgba(255,255,255,.15); color: #fff; }
+</style>
+</head>
+<body>
+<section class="slide noite">
+  <div class="topo"><div class="autor"><span class="avatar">WJ</span><div><b>Wallan Jorge</b><small>Dados, BI e automação</small></div></div><span class="perfil">in/wallanjorge</span></div>
+  <div class="halo" style="width:640px;height:520px;left:260px;top:520px;background:rgba(10,102,194,.45)"></div>
+  <div class="conteudo">
+    <h1 class="titulo m">3 perguntas antes de automatizar <span class="mk">qualquer coisa</span></h1>
+    <ol class="perguntas">
+      <li class="vidro l1"><div><b>Isso depende de alguém lembrar?</b><small>se sim, é o melhor candidato para automatizar</small></div></li>
+      <li class="vidro l2"><div><b>A regra está escrita?</b><small>se só existe na cabeça de alguém, a automação só acelera o erro</small></div></li>
+      <li class="vidro l3"><div><b>Onde entra a aprovação humana?</b><small>automação boa não tira a pessoa do processo: põe no ponto certo</small></div></li>
+    </ol>
+    <div class="ferramenta">Só depois vem a ferramenta: <span>Power Automate</span><span>Python</span><span>SQL</span></div>
+  </div>
+  <div class="rodape"><span></span><span class="perfil" style="opacity:.8">Wallan Jorge</span></div>
+</section>
+</body>
+</html>

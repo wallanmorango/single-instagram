@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn — Wallan Jorge</title>
+<link rel="stylesheet" href="../../templates/base.css">
+<link rel="stylesheet" href="../../templates/linkedin.css">
+<style>
+.conteudo { margin-top: 44px; display: flex; flex-direction: column; gap: 28px; }
+.capa-txt { margin-top: auto; padding-bottom: 150px; display: flex; flex-direction: column; gap: 24px; }
+.palco { position: absolute; left: 80px; right: 80px; top: 150px; height: 560px; z-index: 2; }
+
+/* capa: e-mail -> pasta */
+.email { position: absolute; left: 0; top: 20px; width: 560px; padding: 26px 30px; transform: rotate(-3deg); }
+.email .de { display: flex; align-items: center; gap: 16px; font-weight: 900; font-size: 28px; }
+.email .de i { width: 54px; height: 54px; border-radius: 99px; background: linear-gradient(135deg, #60A5FA, #2563EB); }
+.email .de small { display: block; font-weight: 700; font-size: 22px; color: var(--cinza); }
+.email .ass { font-weight: 900; font-size: 32px; margin-top: 18px; }
+.anexo { display: inline-flex; align-items: center; gap: 12px; margin-top: 16px; font-weight: 700; font-size: 26px; padding: 12px 18px; border-radius: 14px; background: rgba(244,63,94,.1); color: #BE123C; }
+.anexo b { font-weight: 900; font-size: 22px; padding: 2px 8px; border-radius: 6px; background: #E11D48; color: #fff; }
+.pasta { position: absolute; right: 0; top: 300px; width: 580px; padding: 24px 28px; transform: rotate(3deg); }
+.pasta .cab { font-weight: 900; font-size: 26px; display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.pasta .cab::before { content: ""; width: 34px; height: 26px; border-radius: 4px; background: var(--ambar); }
+.pasta .arq { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-family: var(--mono); font-weight: 500; font-size: 22px; padding: 10px 0; border-top: 1px solid #E3EAF7; }
+.pasta .arq.novo { color: var(--azul); font-weight: 700; }
+.pasta .arq .status { font-family: "Red Hat Display"; font-size: 22px; padding: 4px 12px; }
+.seta-fluxo { position: absolute; left: 470px; top: 210px; width: 120px; height: 120px; color: var(--ambar); transform: rotate(25deg); }
+
+/* problema */
+.tarefas { list-style: none; display: grid; gap: 16px; }
+.tarefas li { display: grid; grid-template-columns: 60px 1fr 130px; gap: 18px; align-items: center; padding: 22px 26px; font-weight: 900; font-size: 32px; }
+.tarefas li i { width: 52px; height: 52px; border-radius: 14px; background: rgba(37,99,235,.1); color: var(--azul); font-style: normal; font-size: 26px; display: flex; align-items: center; justify-content: center; }
+.tarefas li span { font-weight: 900; font-size: 26px; color: var(--cinza); text-align: right; }
+.total { display: flex; justify-content: space-between; align-items: center; padding: 26px 30px; }
+.total b { font-weight: 900; font-size: 32px; }
+.total .val { font-weight: 900; font-size: 60px; color: #BE123C; }
+
+/* fluxo */
+.blocos { display: grid; gap: 0; }
+.bloco { display: grid; grid-template-columns: 70px 1fr; gap: 22px; align-items: center; padding: 24px 28px; }
+.bloco .ic { width: 70px; height: 70px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 30px; color: #fff; }
+.bloco b { display: block; font-weight: 900; font-size: 32px; line-height: 1.15; }
+.bloco small { display: block; font-weight: 700; font-size: 24px; color: var(--nevoa); margin-top: 4px; }
+.liga { width: 4px; height: 30px; margin-left: 61px; background: rgba(255,255,255,.3); }
+
+/* configuração */
+.config { padding: 30px 34px; transform: rotate(-1deg); }
+.config .t { font-weight: 900; font-size: 30px; display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.config .t i { width: 44px; height: 44px; border-radius: 12px; background: #0F6CBD; }
+.campo { display: grid; grid-template-columns: 1fr 260px; gap: 18px; align-items: center; padding: 15px 0; border-bottom: 1px solid #E3EAF7; font-weight: 700; font-size: 29px; }
+.campo:last-child { border: 0; }
+.campo span { font-weight: 900; font-size: 26px; padding: 10px 18px; border-radius: 12px; background: #F1F5FD; border: 2px solid #DCE4F2; }
+.campo span.sim { background: rgba(255,180,0,.18); border-color: var(--ambar); }
+
+/* pegadinhas */
+.pegas { list-style: none; display: grid; gap: 20px; counter-reset: a; }
+.pegas li { counter-increment: a; display: flex; gap: 22px; align-items: flex-start; padding: 26px 30px; font-weight: 900; font-size: 32px; line-height: 1.22; }
+.pegas li::before { content: counter(a); flex-shrink: 0; width: 54px; height: 54px; border-radius: 14px; background: var(--ambar); color: var(--noite); font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center; }
+.pegas small { display: block; font-weight: 500; font-size: 26px; color: var(--cinza); margin-top: 8px; line-height: 1.32; }
+.pegas code { font-family: var(--mono); font-size: .86em; color: var(--azul); }
+.resultado { display: flex; align-items: center; gap: 16px; font-family: var(--mono); font-weight: 700; font-size: 28px; padding: 22px 26px; border-radius: 18px; background: rgba(34,197,94,.12); border: 2px solid rgba(34,197,94,.4); color: #4ADE80; }
+
+.material { position: absolute; right: 80px; top: 170px; width: 380px; padding: 24px 26px; transform: rotate(4deg); z-index: 2; }
+.material .cab { font-weight: 900; font-size: 26px; margin-bottom: 12px; }
+.material .cab small { display: block; font-weight: 700; font-size: 22px; color: var(--cinza); }
+.material .ln { display: flex; gap: 12px; font-weight: 700; font-size: 23px; padding: 8px 0; border-bottom: 1px solid #E3EAF7; }
+.material .ln b { color: var(--azul); font-weight: 900; }
+.cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 16px; background: var(--noite); color: #fff; font-weight: 900; font-size: 34px; padding: 24px 38px; border-radius: 99px; }
+.cta svg { width: 34px; height: 34px; stroke: var(--ambar); fill: var(--ambar); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-claro" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#FFFFFF" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#60A5FA" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-cor" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="#0B2A6F" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="#2563EB" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="#FFB400" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="s-mono" viewBox="0 0 120 120"><path d="M100 20H42a20 20 0 0 0 0 40h4" fill="none" stroke="currentColor" stroke-width="24"/><path d="M20 100h58a20 20 0 0 0 0-40h-4" fill="none" stroke="currentColor" stroke-width="24"/><rect x="53" y="53" width="14" height="14" rx="2" fill="currentColor" transform="rotate(45 60 60)"/></symbol>
+  <symbol id="seta" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- 1. Capa -->
+<section class="slide noite">
+  <div class="topo"><div class="autor"><span class="avatar">WJ</span><div><b>Wallan Jorge</b><small>Dados, BI e automação</small></div></div><span class="perfil">in/wallanjorge</span></div>
+  <div class="palco">
+    <div class="halo" style="width:520px;height:360px;left:200px;top:140px;background:rgba(37,99,235,.6)"></div>
+    <div class="cartao email">
+      <div class="de"><i></i><div>Fornecedor Alfa<small>notas@fornecedor-alfa.com.br</small></div></div>
+      <div class="ass">NF 4521 · novembro</div>
+      <span class="anexo"><b>PDF</b>NF-4521.pdf</span>
+    </div>
+        <div class="cartao pasta">
+      <div class="cab">Notas / 2026</div>
+      <div class="arq"><span>2026-11-23_0915_NF-4498.pdf</span></div>
+      <div class="arq novo"><span>2026-11-24_1430_NF-4521.pdf</span><span class="status">novo</span></div>
+    </div>
+  </div>
+  <div class="capa-txt">
+    <span class="etiqueta">Dica técnica · Power Automate</span>
+    <h1 class="titulo m">Anexo na pasta certa, <span class="mk">sem abrir o e&#8209;mail</span></h1>
+    <p class="apoio">Um fluxo de 4 passos que baixa, renomeia e salva. Todo dia, sozinho.</p>
+  </div>
+  <div class="rodape"><div class="pontos"><i class="at"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="arraste">Arraste <svg><use href="#seta"/></svg></span></div>
+</section>
+
+<!-- 2. O problema -->
+<section class="slide">
+  <div class="topo"><div class="autor"><span class="avatar">WJ</span><div><b>Wallan Jorge</b><small>Dados, BI e automação</small></div></div><span class="perfil">in/wallanjorge</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">O problema</span>
+    <h2 class="titulo p">Abrir, baixar, renomear, salvar. <span class="mk az">20 vezes por dia.</span></h2>
+    <ul class="tarefas">
+      <li class="cartao"><i>1</i>Abrir o e-mail<span>15 s</span></li>
+      <li class="cartao"><i>2</i>Baixar o anexo<span>15 s</span></li>
+      <li class="cartao"><i>3</i>Renomear com a data<span>30 s</span></li>
+      <li class="cartao"><i>4</i>Achar a pasta e salvar<span>30 s</span></li>
+    </ul>
+    <div class="cartao total"><b>1min30 × 20 anexos</b><span class="val">30 min/dia</span></div>
+    <p class="dica"><span>Exemplo fictício. E o pior não é o tempo: é o arquivo que <b>ficou no e-mail de quem saiu de férias</b>.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i class="at"></i><i></i><i></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 3. O fluxo -->
+<section class="slide noite">
+  <div class="topo"><div class="autor"><span class="avatar">WJ</span><div><b>Wallan Jorge</b><small>Dados, BI e automação</small></div></div><span class="perfil">in/wallanjorge</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">O fluxo inteiro</span>
+    <h2 class="titulo p">4 passos no <span class="mk">Power Automate</span></h2>
+    <div class="blocos">
+      <div class="vidro bloco"><span class="ic" style="background:#0F6CBD">1</span><div><b>Quando um novo email chegar (V3)</b><small>gatilho do Outlook, com filtro de assunto "NF"</small></div></div>
+      <div class="liga"></div>
+      <div class="vidro bloco"><span class="ic" style="background:#4A5878">2</span><div><b>Aplicar a cada: Anexos</b><small>repete para cada arquivo do e-mail</small></div></div>
+      <div class="liga"></div>
+      <div class="vidro bloco"><span class="ic" style="background:#7C3AED">3</span><div><b>Condição: isInline igual a false</b><small>ignora as imagens da assinatura</small></div></div>
+      <div class="liga"></div>
+      <div class="vidro bloco"><span class="ic" style="background:#15803D">4</span><div><b>SharePoint: Criar arquivo</b><small>nome com data e hora · conteúdo do anexo</small></div></div>
+    </div>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i class="at"></i><i></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 4. O gatilho -->
+<section class="slide">
+  <div class="topo"><div class="autor"><span class="avatar">WJ</span><div><b>Wallan Jorge</b><small>Dados, BI e automação</small></div></div><span class="perfil">in/wallanjorge</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Passo 1 · o gatilho</span>
+    <h2 class="titulo p">Duas opções em <span class="mk">Sim</span> fazem toda a diferença</h2>
+    <div class="cartao config">
+      <div class="t"><i></i>Quando um novo email chegar (V3)</div>
+      <div class="campo">Pasta<span>Caixa de Entrada</span></div>
+      <div class="campo">Incluir Anexos<span class="sim">Sim</span></div>
+      <div class="campo">Somente com Anexos<span class="sim">Sim</span></div>
+      <div class="campo">Filtro de Assunto<span>NF</span></div>
+    </div>
+    <p class="dica"><span><b>Somente com Anexos</b> faz o fluxo ignorar o resto da caixa. <b>Incluir Anexos</b> traz o conteúdo do arquivo: sem ele, o arquivo é salvo vazio.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i class="at"></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 5. O nome do arquivo -->
+<section class="slide noite">
+  <div class="topo"><div class="autor"><span class="avatar">WJ</span><div><b>Wallan Jorge</b><small>Dados, BI e automação</small></div></div><span class="perfil">in/wallanjorge</span></div>
+  <div class="conteudo" style="gap:26px">
+    <span class="etiqueta">Passo 4 · o nome do arquivo</span>
+    <h2 class="titulo p">Data e hora <span class="mk">de Brasília</span> no nome</h2>
+    <div class="janela">
+      <div class="barra"><i></i><i></i><i></i><span>Nome do Arquivo · expressão</span></div>
+<pre style="font-size:29px"><span class="k">concat</span>(
+  <span class="k">convertFromUtc</span>(<span class="k">utcNow</span>(),
+    <span class="t">'E. South America Standard Time'</span>,
+    <span class="t">'yyyy-MM-dd_HHmm'</span>),
+  <span class="t">'_'</span>,
+  <span class="k">items</span>(<span class="t">'Aplicar_a_cada'</span>)?[<span class="t">'name'</span>]
+)</pre>
+    </div>
+    <div class="resultado">→ 2026-11-24_1430_NF-4521.pdf</div>
+    <p class="dica"><span>O <code>utcNow()</code> sozinho está 3 horas na frente de Brasília. O <b>convertFromUtc</b> corrige.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i class="at"></i><i></i><i></i></div></div>
+</section>
+
+<!-- 6. Pegadinhas -->
+<section class="slide">
+  <div class="topo"><div class="autor"><span class="avatar">WJ</span><div><b>Wallan Jorge</b><small>Dados, BI e automação</small></div></div><span class="perfil">in/wallanjorge</span></div>
+  <div class="conteudo">
+    <span class="etiqueta">Antes de ligar o fluxo</span>
+    <h2 class="titulo p">3 pegadinhas que <span class="mk">quebram</span> esse fluxo</h2>
+    <ol class="pegas">
+      <li class="cartao"><div>Arquivo salvo com 0 KB<small>Incluir Anexos ficou em Não. O nome chega, o conteúdo não.</small></div></li>
+      <li class="cartao"><div>A pasta cheia de image001.png<small>o logo da assinatura também é anexo. A Condição <code>isInline = false</code> filtra.</small></div></li>
+      <li class="cartao"><div>Um arquivo apagando o outro<small>todo fornecedor manda "nota.pdf". Data e hora no nome evitam a troca.</small></div></li>
+    </ol>
+    <p class="dica"><span>Antes de ligar para todo mundo, clique em <b>Testar</b> e mande um e-mail de verdade com 2 anexos e uma assinatura com logo.</span></p>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i></i><i class="at"></i><i></i></div></div>
+</section>
+
+<!-- 7. Chamada -->
+<section class="slide destaque">
+  <div class="topo"><div class="autor"><span class="avatar">WJ</span><div><b>Wallan Jorge</b><small>Dados, BI e automação</small></div></div><span class="perfil">in/wallanjorge</span></div>
+  <div class="conteudo" style="margin-top:auto;margin-bottom:auto;padding-bottom:90px;gap:32px">
+    <span class="etiqueta">PDF gratuito</span>
+    <h2 class="titulo m">Comente <span class="palavra">FLUXO</span></h2>
+    <p class="apoio">que eu te mando o PDF com <b>10 fluxos de Power Automate</b> para o escritório: contas a vencer, aprovação de compra, Forms no Excel e mais. Passo a passo e com a pegadinha de cada um.</p>
+    <span class="botao-li"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z" fill="currentColor"/></svg>Salve para montar o seu</span>
+  </div>
+  <div class="rodape"><div class="pontos"><i></i><i></i><i></i><i></i><i></i><i></i><i class="at"></i></div><span class="perfil" style="opacity:.8">Wallan Jorge</span></div>
+</section>
+</body>
+</html>

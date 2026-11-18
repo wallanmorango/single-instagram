@@ -1,22 +1,16 @@
-O Instagram da minha empresa se publica sozinho. E a infraestrutura custa R$ 0 por mês.
+Antes de automatizar qualquer coisa, eu faço 3 perguntas. Nenhuma delas é sobre ferramenta.
 
-Postar todo dia, responder quem comenta e olhar o que deu certo é o tipo de tarefa que depende de alguém lembrar. E tarefa que depende de alguém lembrar é exatamente o que eu passo o dia automatizando para os outros. Faltava fazer em casa.
+1. Isso depende de alguém lembrar?
+O relatório que alguém precisa lembrar de montar, o arquivo que alguém precisa lembrar de salvar, o aviso que alguém precisa lembrar de mandar. Tarefa que vive de memória é a melhor candidata para automação. E é a que mais falha quando a pessoa sai de férias.
 
-Então montei assim:
+2. A regra está escrita?
+Se a regra só existe na cabeça de uma pessoa, a automação não resolve. Ela só faz o erro chegar mais rápido. Antes do primeiro fluxo, a regra precisa estar escrita e ter um dono.
 
-1. Uma IA prepara a semana: tema, legenda, arte e o texto que você está lendo agora.
-2. Tudo chega para mim como um pull request no GitHub. Eu leio, ajusto o que precisar e aprovo com um clique. Nada sai sem essa aprovação.
-3. Um fluxo no GitHub Actions publica no horário, pela API oficial do Instagram.
-4. Quem comenta a palavra-chave recebe o material no direct, pela resposta privada oficial.
-5. Toda segunda sai um relatório de alcance, envios e salvos. Foi ele que mostrou que, nas últimas semanas, os posts do meio-dia alcançaram 4 vezes mais que os das 18h.
+3. Onde entra a aprovação humana?
+Automação boa não tira a pessoa do processo. Ela coloca a pessoa no ponto certo: revisar a exceção, aprovar o que importa, decidir. O resto roda sozinho.
 
-O custo: repositório público, GitHub Actions, GitHub Pages para hospedar as imagens e a API do Instagram. Tudo grátis.
+Só depois dessas três vem a escolha da ferramenta. Power Automate, Python, SQL, Power Query: quase sempre mais de uma resolve. O que muda o resultado é a clareza do processo.
 
-O que eu aprendi montando:
-• A parte difícil não é o código. É definir as regras: o que pode sair sem mim e o que não pode.
-• Automação boa tem um ponto de aprovação humana no lugar certo. Aqui é o merge.
-• Nada de senha em arquivo nem de seguir e curtir perfis no automático. A conta vale mais que o atalho.
+Qual dessas três perguntas mais pega na sua equipe?
 
-Qual tarefa da sua rotina ainda depende de alguém lembrar de fazer?
-
-#Automação #Python #GitHubActions
+#Automação #Dados #Processos

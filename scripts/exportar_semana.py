@@ -70,6 +70,9 @@ def exportar(inicio: dt.date, fim: dt.date, saida: Path) -> Path:
             # LinkedIn
             texto = pasta / "linkedin.txt"
             if texto.exists():
+                nome_li = post.get("linkedin_nome") or nome_curto(post)
+                nome_li = "".join("-" if c in INVALIDOS else c for c in nome_li)[:60].strip()
+                base = f"{DIAS[dia.weekday()]} {dia:%d-%m} - {nome_li}"
                 imgs = lâminas(pasta, "li-") if (pasta / "linkedin.html").exists() else []
                 if (pasta / "linkedin.jpg").exists():
                     imgs = [pasta / "linkedin.jpg"]
@@ -81,7 +84,7 @@ def exportar(inicio: dt.date, fim: dt.date, saida: Path) -> Path:
                 shutil.copy(texto, li / f"{base}.txt")
                 formato = "texto + 1 imagem" if len(imgs) == 1 else (f"carrossel {len(imgs)} imagens" if imgs else "só texto")
                 palavra_li = (post.get("linkedin") or {}).get("palavra_chave")
-                linhas.append(f"| {DIAS[dia.weekday()]} {dia:%d/%m} | LinkedIn | {nome_curto(post)} | "
+                linhas.append(f"| {DIAS[dia.weekday()]} {dia:%d/%m} | LinkedIn | {nome_li} | "
                               f"`{base}` ({formato}) | 08:00 | {palavra_li or '—'} |")
         dia += dt.timedelta(days=1)
     resumo = ["# Semana " + destino.name, "",

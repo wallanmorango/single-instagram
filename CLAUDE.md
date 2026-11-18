@@ -107,7 +107,15 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 }
 ```
 
-`tipo`: `imagem`, `carrossel` (2 a 10 mídias) ou `reel` (`midias: ["video.mp4"]`, `capa` opcional). `palavra_chave`, `material_url`, `material_nome` e `stories` são opcionais. `horario` (ex.: `"12:00"`) é opcional: sem ele o post sai às 8h; com ele, o `publicar.py` só publica a partir de 15 minutos antes desse horário (a tarefa agendada dispara às 7:56, 11:56 e 17:56). Só é publicado o que estiver com `status: aprovado` (use `pausado` para segurar um post). Os scripts preenchem `media_id`, `permalink`, `story_ids` e `status: publicado` depois de publicar.
+`tipo`: `imagem`, `carrossel` (2 a 10 mídias) ou `reel` (`midias: ["video.mp4"]`, `capa` opcional). `palavra_chave`, `material_url`, `material_nome` e `stories` são opcionais. `horario` (ex.: `"12:00"`) é opcional: sem ele o post sai às 8h; com ele, o `publicar.py` só publica a partir de 15 minutos antes desse horário (a tarefa agendada dispara às 7:56, 11:56 e 17:56). Só é publicado o que estiver com `status: aprovado` (use `pausado` para segurar um post). **Desde 18/11/2026 o Wallan posta à mão:** todo post novo leva `"status": "manual"` (o `publicar.py` ignora) e o campo `"nome_conteudo"` (nome curto, sem `/` nem `:`, usado no nome dos arquivos da pasta da semana). Os scripts preenchem `media_id`, `permalink`, `story_ids` e `status: publicado` depois de publicar.
+
+## Pasta da semana no Google Drive (pedido do Wallan em 18/11/2026)
+
+O Wallan posta à mão. Depois que ele aprovar o pull request da semana (merge na `main`):
+
+1. Rode `python scripts/exportar_semana.py AAAA-MM-DD AAAA-MM-DD` (primeiro e último dia com post). O script monta `exportar/DD-DD-MM/` (ex.: `18-22-11`; o Drive não aceita bem `/` no nome) com `Instagram/` e `LinkedIn/`: as imagens em JPEG (todas as lâminas, `"seg 23-11 - Nome - 01.jpg"`...; Reel em `.mp4` + capa), o texto em `.txt` (legenda no Instagram, `linkedin.txt` no LinkedIn), o `resumo.md` e o `envio.json`. `exportar/` não vai para o Git.
+2. Suba ao Google Drive do Wallan, na pasta **Single Tecnologia - Posts** (id `1AhRbidN5F5jFWpy4LxPIDT7K0CaAVoGV`): crie a pasta da semana e, dentro dela, `Instagram` e `LinkedIn` (`mcp__Google_Drive__create_file` com `contentMimeType: application/vnd.google-apps.folder`). Para cada item do `envio.json`, chame `create_file` com `title` = `titulo`, `parentId` = a pasta `Instagram` ou `LinkedIn`, `contentMimeType` = `mime`, `disableConversionToGoogleType: true` e `base64Content` = `referencia` (até 15 chamadas em paralelo). O script já reduz o vídeo do Reel para menos de 3 MB, o limite do conector.
+3. Mande ao Wallan um resumo bem simples no chat (e em PushNotification): uma linha por post, "Dia DD/MM (dia da semana) · Instagram|LinkedIn · nome do conteúdo · arquivo `nome` · postar às HH:MM", mais o link da pasta no Drive. O horário é o `horario` do post.json (padrão 08:00; LinkedIn 08:00).
 
 ## Rotina semanal de conteúdo (tarefa agendada de domingo)
 
@@ -117,7 +125,7 @@ Pasta `posts/AAAA-MM-DD/` (a data é o dia da publicação, de segunda a sexta):
 4. Criar os 5 posts do Instagram e os 3 do LinkedIn (terça, quarta e quinta) seguindo a estratégia de conteúdo e o sistema visual v2, com pelo menos 1 Reel e respeitando as regras de variedade. Cada post com palavra-chave entrega o seu material (Biblioteca ou PDF, novo ou reaproveitado).
 5. Gerar as imagens com `render.py`, o story com `gerar_story.py` e o PDF do LinkedIn quando houver, e **olhar cada imagem** antes de seguir: texto cortado, sobreposição, cartão cobrindo texto ou contraste ruim devem ser corrigidos. Conferir a conta de todo número de exemplo e cada fórmula.
 6. Validar com `python scripts/publicar.py --data AAAA-MM-DD --simular` para cada dia.
-7. Criar a branch `semana-AAAA-MM-DD` (data da segunda-feira), fazer commit e abrir um pull request com o título "Semana de AAAA-MM-DD", listando cada dia com linha editorial, tema, formato, legenda, texto do LinkedIn e links das imagens.
+7. Criar a branch `semana-AAAA-MM-DD` (data da segunda-feira), fazer commit e abrir um pull request com o título "Semana de AAAA-MM-DD", listando cada dia com linha editorial, tema, formato, legenda, texto do LinkedIn e links das imagens. Depois do merge (a sessão é acordada pelo aviso do GitHub; se não for, o Wallan pede "exportar semana"), faça a **Pasta da semana no Google Drive** (seção acima) e mande o resumo.
 8. Enquanto as fotos do Wallan não chegarem, lembrar no pull request: "Fotos pendentes: mande 5 a 10 fotos suas para usar nas capas e Reels." Quando chegarem (pasta `assets/fotos/`), usar em pelo menos 1 capa ou Reel por semana.
 
 **Atenção:** esta sessão não consegue enviar arquivos dentro de `.github/workflows/` (o GitHub recusa). Mudanças de agendamento precisam ser feitas pelo Wallan no site do GitHub.

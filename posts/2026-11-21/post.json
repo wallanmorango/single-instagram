@@ -21,8 +21,9 @@
     "material_url": "https://singletecnologia.netlify.app/reforma"
   },
   "trial_reel": false,
-  "status": "aprovado",
+  "status": "manual",
   "stories": [
     "story-01.jpg"
-  ]
+  ],
+  "nome_conteudo": "Reforma - CBS 11,3 ou 8,5"
 }

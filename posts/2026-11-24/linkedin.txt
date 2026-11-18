@@ -1,22 +1,24 @@
-O Instagram da minha empresa se publica sozinho. E a infraestrutura custa R$ 0 por mês.
+Tem gente que passa meia hora por dia fazendo a mesma coisa: abrir o e-mail, baixar o anexo, renomear e salvar na pasta.
 
-Postar todo dia, responder quem comenta e olhar o que deu certo é o tipo de tarefa que depende de alguém lembrar. E tarefa que depende de alguém lembrar é exatamente o que eu passo o dia automatizando para os outros. Faltava fazer em casa.
+Nota de fornecedor, boleto, relatório do sistema. Uns 20 anexos por dia, 1 minuto e meio cada. E o pior nem é o tempo: é o arquivo que ficou parado no e-mail de quem saiu de férias.
 
-Então montei assim:
+No Power Automate, isso vira um fluxo de 4 passos:
 
-1. Uma IA prepara a semana: tema, legenda, arte e o texto que você está lendo agora.
-2. Tudo chega para mim como um pull request no GitHub. Eu leio, ajusto o que precisar e aprovo com um clique. Nada sai sem essa aprovação.
-3. Um fluxo no GitHub Actions publica no horário, pela API oficial do Instagram.
-4. Quem comenta a palavra-chave recebe o material no direct, pela resposta privada oficial.
-5. Toda segunda sai um relatório de alcance, envios e salvos. Foi ele que mostrou que, nas últimas semanas, os posts do meio-dia alcançaram 4 vezes mais que os das 18h.
+1. Quando um novo email chegar (V3), com Incluir Anexos e Somente com Anexos em Sim
+2. Aplicar a cada: Anexos
+3. Condição: isInline igual a false
+4. SharePoint: Criar arquivo, com data e hora de Brasília no nome
 
-O custo: repositório público, GitHub Actions, GitHub Pages para hospedar as imagens e a API do Instagram. Tudo grátis.
+Parece simples, e é. Mas tem 3 pegadinhas que eu sempre vejo quebrar esse fluxo:
 
-O que eu aprendi montando:
-• A parte difícil não é o código. É definir as regras: o que pode sair sem mim e o que não pode.
-• Automação boa tem um ponto de aprovação humana no lugar certo. Aqui é o merge.
-• Nada de senha em arquivo nem de seguir e curtir perfis no automático. A conta vale mais que o atalho.
+• Arquivo salvo com 0 KB. O Incluir Anexos ficou em Não: o nome chega, o conteúdo não.
+• A pasta cheia de image001.png. O logo da assinatura também é anexo. A condição isInline = false resolve.
+• Um arquivo apagando o outro. Todo fornecedor manda "nota.pdf". Data e hora no nome evitam a troca. E use convertFromUtc, porque o utcNow() sozinho está 3 horas na frente de Brasília.
 
-Qual tarefa da sua rotina ainda depende de alguém lembrar de fazer?
+No carrossel, o passo a passo e a expressão completa do nome do arquivo.
 
-#Automação #Python #GitHubActions
+Juntei esse e mais 9 fluxos que resolvem a rotina do escritório (contas a vencer, aprovação de compra, respostas do Forms no Excel, relatório semanal por e-mail…) num PDF com o passo a passo e a pegadinha de cada um.
+
+Comente FLUXO que eu te mando o link.
+
+#PowerAutomate #Automação #Microsoft365

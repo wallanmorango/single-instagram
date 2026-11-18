@@ -22,5 +22,9 @@
   "status": "aprovado",
   "stories": [
     "story-01.jpg"
-  ]
+  ],
+  "linkedin": {
+    "palavra_chave": "FLUXO",
+    "material_url": "https://singletecnologia.netlify.app/materiais/power-automate-fluxos.pdf"
+  }
 }

@@ -6,7 +6,8 @@ Uso:
 Cria <saida>/<DD-DD-MM>/ (ex.: 18-22-11) com duas pastas:
   Instagram/  "qua 18-11 - Tema - 01.jpg" ... (ou .mp4 + capa no Reel) e "qua 18-11 - Tema.txt" (legenda)
   LinkedIn/   "qua 18-11 - Tema - 01.jpg" ... e "qua 18-11 - Tema.txt" (texto do LinkedIn)
-e um resumo.md com dia, conteúdo, arquivos e horário sugerido. A pasta é depois enviada
+um resumo.md com dia, conteúdo, arquivos e horário, e um agenda.json (um item por publicação, na ordem,
+com rede, data, horário, arquivos e texto) que a sessão do Claude usa para agendar no LinkedIn e no Instagram. A pasta é depois enviada
 ao Google Drive do Wallan pela sessão do Claude (ver CLAUDE.md, "Pasta da semana").
 """
 import argparse
@@ -40,6 +41,7 @@ def exportar(inicio: dt.date, fim: dt.date, saida: Path) -> Path:
     ig.mkdir(parents=True)
     li.mkdir(parents=True)
     linhas = []
+    agenda = []
     dia = inicio
     while dia <= fim:
         pasta = ROOT / "posts" / dia.isoformat()
@@ -62,6 +64,16 @@ def exportar(inicio: dt.date, fim: dt.date, saida: Path) -> Path:
                 for i, m in enumerate(post.get("midias", []), start=1):
                     shutil.copy(pasta / m, ig / f"{base} - {i:02d}.jpg")
                 arquivos_ig.append(f"{base} - 01 a {len(post.get('midias', [])):02d}.jpg")
+            if post.get("tipo") == "reel":
+                midias_ig = [f"{base}{Path(m).suffix}" for m in post.get("midias", [])]
+                capa_ig = f"{base} - capa.jpg" if capa.exists() else None
+            else:
+                midias_ig = [f"{base} - {i:02d}.jpg" for i in range(1, len(post.get("midias", [])) + 1)]
+                capa_ig = None
+            agenda.append({"rede": "Instagram", "data": dia.isoformat(), "dia": DIAS[dia.weekday()], "horario": horario,
+                           "tipo": post.get("tipo"), "pasta": "Instagram", "midias": midias_ig, "capa": capa_ig,
+                           "texto": f"{base}.txt", "palavra_chave": post.get("palavra_chave"),
+                           "nome": nome_curto(post)})
             legenda = (pasta / post.get("legenda_arquivo", "legenda.txt")).read_text(encoding="utf-8").strip()
             (ig / f"{base}.txt").write_text(legenda + "\n", encoding="utf-8")
             palavra = post.get("palavra_chave")
@@ -82,6 +94,18 @@ def exportar(inicio: dt.date, fim: dt.date, saida: Path) -> Path:
                     sufixo = "" if len(imgs) == 1 else f" - {i:02d}"
                     shutil.copy(img, li / f"{base}{sufixo}.jpg")
                 shutil.copy(texto, li / f"{base}.txt")
+                pdf = None
+                if len(imgs) > 1 and (pasta / "linkedin.pdf").exists():
+                    pdf = f"{base} - carrossel.pdf"
+                    shutil.copy(pasta / "linkedin.pdf", li / pdf)
+                primeira = texto.read_text(encoding="utf-8").strip().splitlines()[0]
+                agenda.append({"rede": "LinkedIn", "data": dia.isoformat(), "dia": DIAS[dia.weekday()],
+                               "horario": post.get("linkedin_horario") or "08:00",
+                               "tipo": "documento" if pdf else ("imagem" if imgs else "texto"), "pasta": "LinkedIn",
+                               "midias": [f"{base}.jpg"] if len(imgs) == 1 else [], "documento": pdf,
+                               "titulo_documento": (post.get("linkedin_titulo") or nome_li)[:58],
+                               "texto": f"{base}.txt", "primeira_linha": primeira,
+                               "palavra_chave": (post.get("linkedin") or {}).get("palavra_chave"), "nome": nome_li})
                 formato = "texto + 1 imagem" if len(imgs) == 1 else (f"carrossel {len(imgs)} imagens" if imgs else "só texto")
                 palavra_li = (post.get("linkedin") or {}).get("palavra_chave")
                 linhas.append(f"| {DIAS[dia.weekday()]} {dia:%d/%m} | LinkedIn | {nome_li} | "
@@ -91,12 +115,13 @@ def exportar(inicio: dt.date, fim: dt.date, saida: Path) -> Path:
               "| Dia | Rede | Conteúdo | Arquivos | Horário | Palavra-chave |",
               "| --- | --- | --- | --- | --- | --- |", *linhas, ""]
     (destino / "resumo.md").write_text("\n".join(resumo), encoding="utf-8")
+    (destino / "agenda.json").write_text(json.dumps(agenda, ensure_ascii=False, indent=1), encoding="utf-8")
     preparar_envio(destino)
     return destino
 
 
 LIMITE_ENVIO = 3_000_000  # o conector do Google Drive aceita ~3,1 MB por arquivo
-MIMES = {".jpg": "image/jpeg", ".mp4": "video/mp4", ".txt": "text/plain"}
+MIMES = {".jpg": "image/jpeg", ".mp4": "video/mp4", ".txt": "text/plain", ".pdf": "application/pdf"}
 
 
 def preparar_envio(destino: Path):
